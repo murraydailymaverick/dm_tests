@@ -1,6 +1,9 @@
 # dm_tests
 a repo to hold the DM tests.
 
+###Use env encrypted secrets
+https://docs.github.com/en/actions/security-guides/encrypted-secrets
+https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsenv
 
 ## Applitools Example: Cypress JavaScript with the Ultrafast Grid
 
