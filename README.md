@@ -6,7 +6,7 @@ https://weareama.com/testing-websites-best-devices-browsers/
 ###Use env encrypted secrets
 https://docs.github.com/en/actions/security-guides/encrypted-secrets
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsenv
-https://applitools.com/blog/link-github-actions/
+To set up I used this example : https://applitools.com/blog/link-github-actions/
 
 
 ## Applitools Example: Cypress JavaScript with the Ultrafast Grid
