@@ -1,5 +1,9 @@
-name: End-to-end tests
-on: [push]
+name: CI
+
+on:
+  push:
+    branches:
+      - '**'
 env:
   APPLITOOLS_API_KEY: ${{ secrets.APPLITOOLS_API_KEY }}
   APPLITOOLS_BATCH_ID: ${{ github.sha }}
