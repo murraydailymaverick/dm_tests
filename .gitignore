@@ -1,2 +1,5 @@
 node_modules
 .idea
+local.cypress.config.js
+adminUserLoginCookiesFromCypress.json
+insiderUserLoginCookiesFromCypress.json

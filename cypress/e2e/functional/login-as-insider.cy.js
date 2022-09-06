@@ -7,21 +7,21 @@ context( 'Login as an admin, create a new insider via subscriptions' , function 
 		cy.clearWordPressCookies();
 	});
 
-	beforeEach(function () {
-		cy.clearWordPressCookies();
-	});
+	// beforeEach(function () {
+	// 	cy.clearWordPressCookies();
+	// });
 
 	// it( 'logs out the user - and logs back in using setting wp-cookies', function(){
 	// 	cy.visit( Cypress.env('dashboardUrl') );
 	// 	cy.location('pathname').should( 'eq', Cypress.env('localfolder')+'/wp-admin/' ); // Is logged in
 	// });
 
-	// it( 'Logs in a admin user', function(){
-	// 	cy.manualWordPressAdminLogin();
-	// 	cy.getWordPressCookies();
-	// 	cy.visit( Cypress.env('dashboardUrl') );
-	// 	cy.location('pathname').should( 'eq', Cypress.env('localfolder')+'/wp-admin/' );
-	// });
+	it( 'Logs in a admin user', function(){
+		cy.manualWordPressAdminLogin();
+		cy.getWordPressCookies();
+		cy.visit( Cypress.env('dashboardUrl') );
+		cy.location('pathname').should( 'eq', Cypress.env('localfolder')+'/wp-admin/' );
+	});
 
 
 	it( 'As an Admin - Get a token, Logout.', function(){
@@ -58,9 +58,6 @@ context( 'Login as an admin, create a new insider via subscriptions' , function 
 		cy.task('getToken').then((token) => {
 			cy.visit( Cypress.env('baseUrl') +  '?token=' + token);
 		});
-
-
-		//http://localhost/dm/?token=ZC8rVlNZSW9GZy92MTZjZ0hPWExSa2YwbVk3b3pFV202UnlWaENlWmlORERWeHpDYWhJTmdKaytOSW1UZmtqNDB5Vk02MnFpSjh4U2JMVzRKOFVOWWhjQkFhckZEUXVhR1J2Q0lTVnVaSXBhMlBudDcyb3k1VTBCQUtPSXR3UVRzUEhXQnlscHZTN2x3dzZ3WS92SUNOVnAybHRURGpaWmFJdllzYUpwK3dFPQ==
 
 		cy.get('button.navbar-toggle').click()
 	});

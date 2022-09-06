@@ -3,6 +3,23 @@ a repo to hold the DM tests.
 Testing Websites – The Best Devices and Browsers
 https://weareama.com/testing-websites-best-devices-browsers/
 
+## npm
+`cd wp-content`
+`npm install`
+
+Take a copy of the env vars in cypress.config.js and create a corresponding json file to adjust for the local env
+`touch cypress.internal.config.js`
+
+##Cypress
+`$(npm bin)/cypress open` and test as per https://docs.cypress.io/guides/end-to-end-testing/testing-your-app
+Pointing to a different configuration file `$(npm bin)/cypress open --config-file cypress.internal.config.js`
+E2E and chrome
+
+
+### Useful links :
+* https://www.stevenhicks.me/blog/2020/02/working-with-variables-in-cypress-tests/
+* https://filiphric.com/switch-between-environments-in-cypress
+
 ###Use env encrypted secrets
 https://docs.github.com/en/actions/security-guides/encrypted-secrets
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsenv
