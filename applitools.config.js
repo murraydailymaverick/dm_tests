@@ -35,8 +35,9 @@ module.exports = {
         // Add 2 mobile emulation devices with different orientations for cross-browser testing in the Ultrafast Grid.
         // Other mobile devices are available, including iOS.
         //ideally The iPhone 6, 6s and 7 Samsung range, and so the S7 and S8
-       // {deviceName: 'iPhone X', screenOrientation: 'portrait'},
+        {deviceName: 'iPhone_6_7_8', screenOrientation: 'portrait'},
         {deviceName: 'Pixel 2', screenOrientation: 'portrait'},
+        {deviceName: 'Galaxy_S8', screenOrientation: 'portrait'},
        // {deviceName: 'Nexus 10', screenOrientation: 'landscape'},
     ]
 }
