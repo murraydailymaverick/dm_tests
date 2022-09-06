@@ -1,0 +1,4 @@
+node_modules
+.idea
+applitools.config.js
+cypress.config.js
