@@ -25,15 +25,18 @@ module.exports = {
 
         // Add 3 desktop browsers with different viewports for cross-browser testing in the Ultrafast Grid.
         // Other browsers are also available, like Edge and IE.
-        {width: 800, height: 600, name: 'chrome'},
+        //functionality of Windows 7, 8, or 10.
+        {width: 1280, height: 1080, name: 'chrome'},
         {width: 1600, height: 1200, name: 'firefox'},
         {width: 1024, height: 768, name: 'safari'},
+        {width: 1024, height: 768, name: 'edge'},
         {width: 1024, height: 768, name: 'ie11'},
 
         // Add 2 mobile emulation devices with different orientations for cross-browser testing in the Ultrafast Grid.
         // Other mobile devices are available, including iOS.
-        {deviceName: 'iPhone X', screenOrientation: 'portrait'},
+        //ideally The iPhone 6, 6s and 7 Samsung range, and so the S7 and S8
+       // {deviceName: 'iPhone X', screenOrientation: 'portrait'},
         {deviceName: 'Pixel 2', screenOrientation: 'portrait'},
-        {deviceName: 'Nexus 10', screenOrientation: 'landscape'},
+       // {deviceName: 'Nexus 10', screenOrientation: 'landscape'},
     ]
 }

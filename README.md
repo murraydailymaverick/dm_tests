@@ -1,5 +1,7 @@
 # dm_tests
 a repo to hold the DM tests.
+Testing Websites – The Best Devices and Browsers
+https://weareama.com/testing-websites-best-devices-browsers/
 
 ###Use env encrypted secrets
 https://docs.github.com/en/actions/security-guides/encrypted-secrets
