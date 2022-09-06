@@ -4,7 +4,9 @@
   "description": "A repo to run tests for DM using cypress and github actions.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx cypress run --browser chrome --spec 'cypress/integration/examples/ultraFastGrid.spec.js'",
+    "cypress:open": "cypress open",
+    "cypress:ci": "node_modules/.bin/cypress run"
   },
   "author": "Murray Greig",
   "license": "ISC",
