@@ -7,23 +7,26 @@ https://weareama.com/testing-websites-best-devices-browsers/
 `cd wp-content`
 `npm install`
 
-Take a copy of the env vars in cypress.config.js and create a corresponding json file to adjust for the local env
-`touch cypress.internal.config.js`
-
-##Cypress
-`$(npm bin)/cypress open` and test as per https://docs.cypress.io/guides/end-to-end-testing/testing-your-app
-Pointing to a different configuration file `$(npm bin)/cypress open --config-file cypress.internal.config.js`
-E2E and chrome
-
-
-### Useful links :
-* https://www.stevenhicks.me/blog/2020/02/working-with-variables-in-cypress-tests/
-* https://filiphric.com/switch-between-environments-in-cypress
-
-###Use env encrypted secrets
+##Use env encrypted secrets & config
 https://docs.github.com/en/actions/security-guides/encrypted-secrets
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsenv
 To set up I used this example : https://applitools.com/blog/link-github-actions/
+
+Take a copy of the env vars in cypress.config.js and create a corresponding json file to adjust for the local env
+`touch cypress.internal.config.js`
+
+##Cypress 
+the configuration fie is for the git hub actions using secrets
+`$(npm bin)/cypress open` or `npx cypress open` and test as per https://docs.cypress.io/guides/end-to-end-testing/testing-your-app
+Pointing to a different configuration file `$(npm bin)/cypress open --config-file dev.cypress.config.js`
+E2E and chrome
+
+
+## Useful links :
+* https://www.stevenhicks.me/blog/2020/02/working-with-variables-in-cypress-tests/
+* https://filiphric.com/switch-between-environments-in-cypress
+
+
 
 
 ## Applitools Example: Cypress JavaScript with the Ultrafast Grid
@@ -61,8 +64,6 @@ npx eyes-setup
 ```
 
 The Applitools config file is [`applitools.config.js`](applitools.config.js).
-The main test spec is [`acme-bank.spec.js`](cypress/integration/acme-bank.spec.js).
-
 To execute tests, set the `APPLITOOLS_API_KEY` environment variable
 to your [account's API key](https://applitools.com/tutorials/getting-started/setting-up-your-environment.html).
 

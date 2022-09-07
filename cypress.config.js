@@ -13,7 +13,9 @@ module.exports = defineConfig({
       })
     },
     env: {
+      env: 'dev',
       baseUrl: 'https://dev.dailymaverick.co.za/',
+      loginUrl: 'https://dev.dailymaverick.co.za/dm-admin/',
       dashboardUrl: 'https://dev.dailymaverick.co.za/wp-admin/',
       localfolder: '',
       domain: 'dev.dailymaverick.co.za',

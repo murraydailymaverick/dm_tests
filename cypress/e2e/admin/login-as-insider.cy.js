@@ -62,8 +62,8 @@ context( 'Login as an admin, create a new insider via subscriptions' , function 
 		cy.get('button.navbar-toggle').click()
 	});
 
-	// it( 'deletes a user', function(){
-	// 	cy.deleteUser(insider1);
-	// });
+	it( 'deletes a user', function(){
+		cy.deleteUser(insider1);
+	});
 
 });
