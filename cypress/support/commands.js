@@ -73,6 +73,11 @@ Cypress.Commands.add("maunallyCreateInsider", (user) => {
     cy.get('#wc-memberships-member-modal-user-source').select('Create a new user to add as a member', {force: true});
 
     cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
+    if(Cypress.env('env')==='local'){
+        cy.get('#wc-memberships-member-modal-user-login').type(user.username, {force: true});
+        cy.get('#wc-memberships-member-modal-password').type(user.pw, {force: true});
+    }
+
     cy.get('#wc-memberships-member-modal-user-email').type(user.email, {force: true});
     cy.get('#wc-memberships-member-modal-user-first-name').type(user.firstname, {force: true});
     cy.get('#wc-memberships-member-modal-user-last-name').type(user.lastname, {force: true});

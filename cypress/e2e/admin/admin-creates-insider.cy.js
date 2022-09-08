@@ -5,14 +5,15 @@ context( 'Login as an admin, create a new insider via subscriptions' , function 
 
 	before(function () {
 		cy.clearWordPressCookies();
-		cy.setWordPressCookies();
+
 	});
 
 	beforeEach(function () {
 		//Cypress.Cookies.preserveOnce('PHPSESSID');
+		cy.setWordPressCookies();
 	});
 
-	it( 'logs out the user - and logs back in using setting wp-cookies', function(){
+	it( 'make sure we are logged in', function(){
 		cy.visit( Cypress.env('dashboardUrl') );
 		cy.location('pathname').should( 'eq', Cypress.env('localfolder')+'/wp-admin/' ); // Is logged in
 	});
@@ -23,8 +24,8 @@ context( 'Login as an admin, create a new insider via subscriptions' , function 
 
 	//reset password http://localhost/dm/wp-admin/user-edit.php?user_id=12431&wp_http_referer=%2Fdm%2Fwp-admin%2Fusers.php%3Frole%3Dcustomer
 
-	it( 'deletes a user', function(){
-		cy.deleteUser(insider1);
-	});
+	// it( 'deletes a user', function(){
+	// 	cy.deleteUser(insider1);
+	// });
 
 });
