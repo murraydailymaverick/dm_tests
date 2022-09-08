@@ -19,6 +19,7 @@ Take a copy of the env vars in cypress.config.js and create a corresponding json
 the configuration fie is for the git hub actions using secrets
 `$(npm bin)/cypress open` or `npx cypress open` and test as per https://docs.cypress.io/guides/end-to-end-testing/testing-your-app
 Pointing to a different configuration file `$(npm bin)/cypress open --config-file dev.cypress.config.js`
+Pointing to a different configuration file `$(npm bin)/cypress open --config-file local.cypress.config.js`
 E2E and chrome
 
 

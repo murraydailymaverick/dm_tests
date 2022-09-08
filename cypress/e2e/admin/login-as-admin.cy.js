@@ -13,7 +13,7 @@ context( 'Login, set and prep cookies' , function () {
 		}
 		cy.manualWordPressAdminLogin();
 		cy.getWordPressCookies();
-		cy.visit( Cypress.env('loginUrl') );
+		cy.visit( Cypress.env('dashboardUrl') );
 		cy.location('pathname').should( 'eq', Cypress.env('localfolder')+'/wp-admin/' );
 	});
 

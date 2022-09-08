@@ -23,15 +23,15 @@ Cypress.Commands.add("clearWordPressCookies", () => {
 Cypress.Commands.add("getWordPressCookies", () => {
     cy.getCookies()
         .then((cookies) => {
-            cy.writeFile('adminUserLoginCookiesFromCypress.json', cookies);
+            cy.writeFile(Cypress.env('env')+'.adminUserLoginCookiesFromCypress.json', cookies);
         });
 });
 
 Cypress.Commands.add("setWordPressCookies", () => {
-    cy.readFile('adminUserLoginCookiesFromCypress.json')
+    cy.readFile(Cypress.env('env')+'.adminUserLoginCookiesFromCypress.json')
         .then((cookies) => {
             cookies.forEach((cookie) => {
-                // cy.log( JSON.stringify( cookie ) ); // See the cookie contents
+                 cy.log( JSON.stringify( cookie ) ); // See the cookie contents
                 cy.setCookie(cookie.name, cookie.value, {
                     domain: Cypress.env('domain'),
                     path: cookie.path,
@@ -64,6 +64,7 @@ Cypress.Commands.add("manualWordPressAdminLogin", () => {
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+//253497
 
 Cypress.Commands.add("maunallyCreateInsider", (user) => {
     cy.visit(Cypress.env('dashboardUrl') + 'edit.php?post_type=wc_user_membership');
