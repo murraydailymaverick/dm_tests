@@ -2,3 +2,10 @@ node_modules
 .idea
 applitools.config.js
 cypress.config.js
+dev.cypress.config.js
+local.cypress.config.js
+
+cypress.internal.config.js
+cypress.local.config.js
+cypress.dev.config.js
+cypress.prod.config.js
