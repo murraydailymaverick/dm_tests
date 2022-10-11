@@ -1,12 +1,15 @@
 node_modules
 .idea
+cypress.config.js
 dev.cypress.config.js
 local.cypress.config.js
-dev.adminUserLoginCookiesFromCypress.json
+internal.cypress.config.js
+
 adminUserLoginCookiesFromCypress.json
+dev.adminUserLoginCookiesFromCypress.json
 insiderUserLoginCookiesFromCypress.json
-/local.adminUserLoginCookiesFromCypress.json
+local.adminUserLoginCookiesFromCypress.json
 
 applitools.config.js
-cypress.config.js
+
 

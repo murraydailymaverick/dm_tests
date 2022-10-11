@@ -25,6 +25,11 @@ module.exports = defineConfig({
           email: process.env.USERNAME+'+admin@dailymaverick.co.za',
           pw: process.env.USER_PASSWORD
         },
+        subscriber: {
+          username: process.env.USERNAME+'_subscriber',
+          email: process.env.USERNAME+'+subscriber@dailymaverick.co.za',
+          pw: process.env.USER_PASSWORD
+        },
         insider1: {
           username: 'mr_insider1',
           email: process.env.USERNAME+'+insider1@dailymaverick.co.za',
