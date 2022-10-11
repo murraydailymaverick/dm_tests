@@ -6,3 +6,7 @@ dev.adminUserLoginCookiesFromCypress.json
 adminUserLoginCookiesFromCypress.json
 insiderUserLoginCookiesFromCypress.json
 /local.adminUserLoginCookiesFromCypress.json
+
+applitools.config.js
+cypress.config.js
+

@@ -29,6 +29,15 @@ E2E and chrome
 
 
 
+config files can we found here: https://drive.google.com/drive/folders/1SxmL6_x5IvZfCJveh75JTFy5kpe8Y6Xl?usp=sharing
+
+Take a copy of the env vars in cypress.config.js and create a corresponding json file to adjust for the local env
+`touch internal.cypress.config.js`
+
+`$(npm bin)/cypress open` and test as per https://docs.cypress.io/guides/end-to-end-testing/testing-your-app
+Pointing to a different configuration file `$(npm bin)/cypress open --config-file cypress.internal.config.js`
+E2E and chrome
+
 
 ## Applitools Example: Cypress JavaScript with the Ultrafast Grid
 
