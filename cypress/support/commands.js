@@ -20,15 +20,15 @@ Cypress.Commands.add("clearWordPressCookies", () => {
     cy.clearCookie('wordpress_test_cookie');
 });
 
-Cypress.Commands.add("getWordPressCookies", () => {
+Cypress.Commands.add("getWordPressCookies", (role = 'admin') => {
     cy.getCookies()
         .then((cookies) => {
-            cy.writeFile(Cypress.env('env')+'.adminUserLoginCookiesFromCypress.json', cookies);
+            cy.writeFile(Cypress.env('env') + '.' + role + 'UserLoginCookiesFromCypress.json', cookies);
         });
 });
 
-Cypress.Commands.add("setWordPressCookies", () => {
-    cy.readFile(Cypress.env('env')+'.adminUserLoginCookiesFromCypress.json')
+Cypress.Commands.add("setWordPressCookies", (role = 'admin') => {
+    cy.readFile(Cypress.env('env') + '.' + role + 'UserLoginCookiesFromCypress.json')
         .then((cookies) => {
             cookies.forEach((cookie) => {
                  cy.log( JSON.stringify( cookie ) ); // See the cookie contents

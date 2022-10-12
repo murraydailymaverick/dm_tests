@@ -12,7 +12,7 @@ context( 'Login, set and prep cookies' , function () {
 			cy.get( '.jetpack-sso-toggle .wpcom' ).click();
 		}
 		cy.manualWordPressAdminLogin();
-		cy.getWordPressCookies();
+		cy.getWordPressCookies('admin');
 		cy.visit( Cypress.env('dashboardUrl') );
 		cy.location('pathname').should( 'eq', Cypress.env('localfolder')+'/wp-admin/' );
 	});
@@ -22,7 +22,7 @@ context( 'Login, set and prep cookies' , function () {
 		cy.clearWordPressCookies();
 		cy.visit( Cypress.env('loginUrl') , );
 		cy.location('pathname').should( 'eq', Cypress.env('localfolder')+'/sign-in/' ); // Not logged in
-		cy.setWordPressCookies();
+		cy.setWordPressCookies('admin');
 		cy.wait(30);
 		cy.visit( Cypress.env('dashboardUrl') );
 		cy.location('pathname').should( 'eq', Cypress.env('localfolder')+'/wp-admin/' ); // Is logged in

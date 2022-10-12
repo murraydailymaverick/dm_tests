@@ -1,0 +1,173 @@
+[
+  {
+    "name": "_gali",
+    "value": "dm_register_newsletter",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1665579384,
+    "domain": "localhost"
+  },
+  {
+    "name": "vic_loc_error",
+    "value": "desktop__1665579950340",
+    "path": "/dm/sign-in",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1665579950,
+    "domain": "localhost"
+  },
+  {
+    "name": "vic_loc_error",
+    "value": "desktop__1665579956820",
+    "path": "/dm/insider",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1665579956,
+    "domain": "localhost"
+  },
+  {
+    "name": "_gid",
+    "value": "GA1.1.181393308.1665579350",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1665665757,
+    "domain": "localhost"
+  },
+  {
+    "name": "blkbs",
+    "value": "96c686b0f96a72430f92f6e2091d5e0b__1666179290341",
+    "path": "/dm/sign-in",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1666179290,
+    "domain": "localhost"
+  },
+  {
+    "name": "blkbs",
+    "value": "96c686b0f96a72430f92f6e2091d5e0b__1666179296821",
+    "path": "/dm/insider",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1666179296,
+    "domain": "localhost"
+  },
+  {
+    "name": "cookielawinfo-checkbox-necessary",
+    "value": "yes",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1697115350,
+    "domain": "localhost"
+  },
+  {
+    "name": "cookielawinfo-checkbox-functional",
+    "value": "no",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1697115350,
+    "domain": "localhost"
+  },
+  {
+    "name": "cookielawinfo-checkbox-analytics",
+    "value": "no",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1697115350,
+    "domain": "localhost"
+  },
+  {
+    "name": "cookielawinfo-checkbox-advertisement",
+    "value": "no",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1697115350,
+    "domain": "localhost"
+  },
+  {
+    "name": "cookielawinfo-checkbox-others",
+    "value": "no",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1697115350,
+    "domain": "localhost"
+  },
+  {
+    "name": "cookielawinfo-checkbox-performance",
+    "value": "no",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1697115350,
+    "domain": "localhost"
+  },
+  {
+    "name": "wordpress_3def6cfd6d196e08f9b7a504c7c35a88",
+    "value": "mr_subscribersubscriber%40dailymaverick.co.za%7C1697115354%7CBdVIouw61pzdoQlqJDvQ4coP82nTl4hZmkLCEe5hSgp%7C70bb42009e554fcc1957000b0fba0ef8843f1f734235a66534ea96237e96fe4e",
+    "path": "/dm/wp-content/plugins",
+    "secure": false,
+    "httpOnly": true,
+    "expiry": 1697158554.395694,
+    "domain": "localhost"
+  },
+  {
+    "name": "wordpress_3def6cfd6d196e08f9b7a504c7c35a88",
+    "value": "mr_subscribersubscriber%40dailymaverick.co.za%7C1697115354%7CBdVIouw61pzdoQlqJDvQ4coP82nTl4hZmkLCEe5hSgp%7C70bb42009e554fcc1957000b0fba0ef8843f1f734235a66534ea96237e96fe4e",
+    "path": "/dm/wp-admin",
+    "secure": false,
+    "httpOnly": true,
+    "expiry": 1697158554.395742,
+    "domain": "localhost"
+  },
+  {
+    "name": "wordpress_logged_in_3def6cfd6d196e08f9b7a504c7c35a88",
+    "value": "mr_subscribersubscriber%40dailymaverick.co.za%7C1697115354%7CBdVIouw61pzdoQlqJDvQ4coP82nTl4hZmkLCEe5hSgp%7C8b4ef7b6e065f66afc692bedd8c6b9eb0851eb9e0751355ba8475e5bf71aa5f2",
+    "path": "/dm/",
+    "secure": false,
+    "httpOnly": true,
+    "expiry": 1697158554.395759,
+    "domain": "localhost"
+  },
+  {
+    "name": "vicinity_id",
+    "value": "7010d155-4823-49e7-9857-4717d3eac605__1725579290332",
+    "path": "/dm/sign-in",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1700139350.332967,
+    "domain": "localhost"
+  },
+  {
+    "name": "vicinity_id",
+    "value": "4b6579f3-bc37-4162-b39c-5342a469bafe__1725579296815",
+    "path": "/dm/insider",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1700139356.815802,
+    "domain": "localhost"
+  },
+  {
+    "name": "_ga",
+    "value": "GA1.1.1642196697.1665579349",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1700139357.927538,
+    "domain": "localhost"
+  },
+  {
+    "name": "_ga_Y7XD5FHQVG",
+    "value": "GS1.1.1665579349.1.1.1665579357.0.0.0",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1700139357.938475,
+    "domain": "localhost"
+  }
+]

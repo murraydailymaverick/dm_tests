@@ -8,7 +8,7 @@ context( 'Login as an admin, create a new insider via subscriptions' , function 
 	});
 
 	beforeEach(function () {
-		cy.setWordPressCookies();
+		cy.setWordPressCookies('admin');
 	});
 
 
@@ -33,10 +33,6 @@ context( 'Login as an admin, create a new insider via subscriptions' , function 
 			cy.task('setToken', $pre.text());
 			cy.wrap($pre.text()).as('token');
 		});
-
-
-
-
 	});
 
 
