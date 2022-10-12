@@ -20,15 +20,15 @@ Cypress.Commands.add("clearWordPressCookies", () => {
     cy.clearCookie('wordpress_test_cookie');
 });
 
-Cypress.Commands.add("getWordPressCookies", () => {
+Cypress.Commands.add("getWordPressCookies", (role = 'admin') => {
     cy.getCookies()
         .then((cookies) => {
-            cy.writeFile(Cypress.env('env')+'.adminUserLoginCookiesFromCypress.json', cookies);
+            cy.writeFile(Cypress.env('env') + '.' + role + 'UserLoginCookiesFromCypress.json', cookies);
         });
 });
 
-Cypress.Commands.add("setWordPressCookies", () => {
-    cy.readFile(Cypress.env('env')+'.adminUserLoginCookiesFromCypress.json')
+Cypress.Commands.add("setWordPressCookies", (role = 'admin') => {
+    cy.readFile(Cypress.env('env') + '.' + role + 'UserLoginCookiesFromCypress.json')
         .then((cookies) => {
             cookies.forEach((cookie) => {
                  cy.log( JSON.stringify( cookie ) ); // See the cookie contents
@@ -157,7 +157,7 @@ Cypress.Commands.add("deleteUser", (user) => {
     cy.get('div.row-actions').invoke('attr', 'style', 'left: 0').should('have.attr', 'style', 'left: 0');
     cy.get('a.submitdelete').click();
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
-    cy.get('#delete_option0').click();
+    //cy.get('#delete_option0').click();
     cy.get('#submit').click();
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
 });

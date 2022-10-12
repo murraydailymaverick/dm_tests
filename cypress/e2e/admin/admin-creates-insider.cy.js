@@ -10,7 +10,7 @@ context( 'Login as an admin, create a new insider via subscriptions' , function 
 
 	beforeEach(function () {
 		//Cypress.Cookies.preserveOnce('PHPSESSID');
-		cy.setWordPressCookies();
+		cy.setWordPressCookies('admin');
 	});
 
 	it( 'make sure we are logged in', function(){
