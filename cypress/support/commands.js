@@ -157,7 +157,7 @@ Cypress.Commands.add("deleteUser", (user) => {
     cy.get('div.row-actions').invoke('attr', 'style', 'left: 0').should('have.attr', 'style', 'left: 0');
     cy.get('a.submitdelete').click();
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
-    cy.get('#delete_option0').click();
+    //cy.get('#delete_option0').click();
     cy.get('#submit').click();
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
 });

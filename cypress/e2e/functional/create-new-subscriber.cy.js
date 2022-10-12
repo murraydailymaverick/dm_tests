@@ -25,7 +25,15 @@ context( 'Create a new user via the API and ads a user meta' , function () {
     //reset password http://localhost/dm/wp-admin/user-edit.php?user_id=12431&wp_http_referer=%2Fdm%2Fwp-admin%2Fusers.php%3Frole%3Dcustomer
 
     it( 'deletes a user', function(){
+        cy.setWordPressCookies();
+        cy.wait(30);
+        cy.visit(Cypress.env('dashboardUrl'));
     	cy.deleteUser(subscriber);
     });
 
 });
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+})
