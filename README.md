@@ -1,7 +1,14 @@
 # dm_tests
 a repo to hold the DM tests.
-Testing Websites – The Best Devices and Browsers
-https://weareama.com/testing-websites-best-devices-browsers/
+
+## Config Files 
+These can we found here: https://drive.google.com/drive/folders/1SxmL6_x5IvZfCJveh75JTFy5kpe8Y6Xl?usp=sharing
+
+
+## GPG secrets
+https://www.gab.lc/articles/encrypt_file_for_github_actions/
+download an install the GPG suite
+gpg --symmetric --cipher-algo AES256 adminUserLoginCookiesFromCypress.json
 
 ## npm
 `cd wp-content`
@@ -27,9 +34,12 @@ E2E and chrome
 * https://www.stevenhicks.me/blog/2020/02/working-with-variables-in-cypress-tests/
 * https://filiphric.com/switch-between-environments-in-cypress
 
+##Notes
+Testing Websites – The Best Devices and Browsers
+https://weareama.com/testing-websites-best-devices-browsers/
 
 
-config files can we found here: https://drive.google.com/drive/folders/1SxmL6_x5IvZfCJveh75JTFy5kpe8Y6Xl?usp=sharing
+
 
 Take a copy of the env vars in cypress.config.js and create a corresponding json file to adjust for the local env
 `touch internal.cypress.config.js`
