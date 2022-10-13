@@ -11,6 +11,10 @@ jobs:
   run-tests:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - name: Decrypt GPG file
+      run: gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.GPG_PASSPHRASE }}" --output adminUserLoginCookiesFromCypress.json adminUserLoginCookiesFromCypress.json.gpg
+
       - name: Checkout
         uses: actions/checkout@v2
       - name: Log Git SHA
