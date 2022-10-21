@@ -162,7 +162,18 @@ Cypress.Commands.add("deleteUser", (user) => {
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
 });
 
-
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // we expect a 3rd party library error with message 'list not defined'
+    // and don't want to fail the test so we return false
+    if (err.message.includes('list not defined')) {
+        return false
+    }
+    if (err.message.includes('Cannot set properties of undefined (setting \'companyId\')')) {
+        return false
+    }
+    // we still want to ensure there are no other unexpected
+    // errors, so we let them fail the test
+})
 
 
 
