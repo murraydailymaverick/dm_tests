@@ -12,7 +12,7 @@ describe('Daily Maverick', () => {
     it('should open up the home page', () => {
 
 
-        cy.visit('https://dailymaverick.co.za')
+        cy.visit( Cypress.env('baseUrl') )
         cy.eyesCheckWindow({
             tag: "Prod Home page",
             target: 'window',

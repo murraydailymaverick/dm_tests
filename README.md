@@ -1,25 +1,20 @@
 # dm_tests
 a repo to hold the DM tests.
 
+## npm
+`npm install` 
+installs script in package.json
+
+
 ## Config Files 
 These can we found here: https://drive.google.com/drive/folders/1SxmL6_x5IvZfCJveh75JTFy5kpe8Y6Xl?usp=sharing
-
-
-## GPG secrets
-https://www.gab.lc/articles/encrypt_file_for_github_actions/
-download an install the GPG suite
-gpg --symmetric --cipher-algo AES256 adminUserLoginCookiesFromCypress.json
-
-## npm
-`npm install`
-
-##Use env encrypted secrets & config
-https://docs.github.com/en/actions/security-guides/encrypted-secrets
-https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsenv
-To set up I used this example : https://applitools.com/blog/link-github-actions/
-
+or 
 Take a copy of the env vars in cypress.config.js and create a corresponding json file to adjust for the local env
-i.e. `touch internal.cypress.config.js`
+i.e. make the new file: `touch internal.cypress.config.js`
+
+## Generally to run all tests
+`npm run cypress:f`
+this refers to a script in package.json using the local config file
 
 ##Cypress 
 the configuration fie is for the git hub actions using secrets
@@ -29,15 +24,13 @@ Pointing to a internal configuration file `$(npm bin)/cypress open --config-file
 Pointing to a local configuration file `$(npm bin)/cypress open --config-file local.cypress.config.js`
 E2E and chrome
 
-
-## Useful links :
-* https://www.stevenhicks.me/blog/2020/02/working-with-variables-in-cypress-tests/
-* https://filiphric.com/switch-between-environments-in-cypress
-
-##Notes
-Testing Websites – The Best Devices and Browsers
-https://weareama.com/testing-websites-best-devices-browsers/
-
+# Visual Tests
+```
+npm install
+npx eyes-setup
+```
+check the apiKey is set properly
+`npm run cypress:f`
 
 ## Applitools Example: Cypress JavaScript with the Ultrafast Grid
 
@@ -91,3 +84,25 @@ npx cypress run
 
 **For full instructions on running this project, take our
 [Cypress JavaScript tutorial](https://applitools.com/tutorials/cypress.html)!**
+
+
+
+## GPG secrets for github
+https://www.gab.lc/articles/encrypt_file_for_github_actions/
+download an install the GPG suite
+gpg --symmetric --cipher-algo AES256 adminUserLoginCookiesFromCypress.json
+
+##Use env encrypted secrets & config
+https://docs.github.com/en/actions/security-guides/encrypted-secrets
+https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsenv
+To set up I used this example : https://applitools.com/blog/link-github-actions/
+
+
+
+## Useful links :
+* https://www.stevenhicks.me/blog/2020/02/working-with-variables-in-cypress-tests/
+* https://filiphric.com/switch-between-environments-in-cypress
+
+##Notes
+Testing Websites – The Best Devices and Browsers
+https://weareama.com/testing-websites-best-devices-browsers/

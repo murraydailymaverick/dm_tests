@@ -12,12 +12,12 @@ module.exports = {
     // To find it: https://applitools.com/tutorials/getting-started/setting-up-your-environment.html
     // If you don't explicitly set the API key here,
     // then the SDK will automatically read the `APPLITOOLS_API_KEY` environment variable to fetch it.
-    apiKey: process.env.APPLITOOLS_API_KEY,
+    //apiKey: process.env.APPLITOOLS_API_KEY,
     
     // A batch is the collection of visual checkpoints for a test suite.
     // Batches are displayed in the dashboard, so use meaningful names.
-    batchName: 'Daily Maverick',
-    batchId: process.env.APPLITOOLS_BATCH_ID,
+    //batchName: 'Daily Maverick',
+    //batchId: process.env.APPLITOOLS_BATCH_ID,
 
     // Applitools can run checkpoints for snapshots against any browser in the Ultrafast Grid.
     // This setting defines 5 unique browser configurations to test.

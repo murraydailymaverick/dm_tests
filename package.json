@@ -6,8 +6,9 @@
   "scripts": {
     "test": "npx cypress run --browser chrome --spec 'cypress/integration/examples/ultraFastGrid.spec.js'",
     "cypress:open": "cypress open",
-    "cypress:ci": "node_modules/.bin/cypress run --spec cypress/e2e/visual/*.js",
-    "cypress:f": "node_modules/.bin/cypress run --spec cypress/e2e/functional/*.js"
+    "cypress:applitools": "node_modules/.bin/cypress run --spec cypress/e2e/applitools/*.js --config-file prod.cypress.config.js",
+    "cypress:functional": "node_modules/.bin/cypress run --spec cypress/e2e/functional/*.js --config-file local.cypress.config.js"
+    "cypress:f": "node_modules/.bin/cypress run --spec cypress/e2e/functional/*.js --config-file local.cypress.config.js"
   },
   "author": "Murray Greig",
   "license": "ISC",

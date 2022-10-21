@@ -8,10 +8,10 @@ internal.cypress.config.js
 adminUserLoginCookiesFromCypress.json
 dev.adminUserLoginCookiesFromCypress.json
 insiderUserLoginCookiesFromCypress.json
+prod.cypress.config.js
+
 local.insiderUserLoginCookiesFromCypress.json
 local.adminUserLoginCookiesFromCypress.json
 local.readerUserLoginCookiesFromCypress.json
 
 applitools.config.js
-
-
