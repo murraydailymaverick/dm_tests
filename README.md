@@ -11,7 +11,6 @@ download an install the GPG suite
 gpg --symmetric --cipher-algo AES256 adminUserLoginCookiesFromCypress.json
 
 ## npm
-`cd wp-content`
 `npm install`
 
 ##Use env encrypted secrets & config
@@ -20,13 +19,14 @@ https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-ac
 To set up I used this example : https://applitools.com/blog/link-github-actions/
 
 Take a copy of the env vars in cypress.config.js and create a corresponding json file to adjust for the local env
-`touch cypress.internal.config.js`
+i.e. `touch internal.cypress.config.js`
 
 ##Cypress 
 the configuration fie is for the git hub actions using secrets
 `$(npm bin)/cypress open` or `npx cypress open` and test as per https://docs.cypress.io/guides/end-to-end-testing/testing-your-app
-Pointing to a different configuration file `$(npm bin)/cypress open --config-file dev.cypress.config.js`
-Pointing to a different configuration file `$(npm bin)/cypress open --config-file local.cypress.config.js`
+By default we use the dev environment to test off. 
+Pointing to a internal configuration file `$(npm bin)/cypress open --config-file internal.cypress.config.js`
+Pointing to a local configuration file `$(npm bin)/cypress open --config-file local.cypress.config.js`
 E2E and chrome
 
 
@@ -37,16 +37,6 @@ E2E and chrome
 ##Notes
 Testing Websites – The Best Devices and Browsers
 https://weareama.com/testing-websites-best-devices-browsers/
-
-
-
-
-Take a copy of the env vars in cypress.config.js and create a corresponding json file to adjust for the local env
-`touch internal.cypress.config.js`
-
-`$(npm bin)/cypress open` and test as per https://docs.cypress.io/guides/end-to-end-testing/testing-your-app
-Pointing to a different configuration file `$(npm bin)/cypress open --config-file cypress.internal.config.js`
-E2E and chrome
 
 
 ## Applitools Example: Cypress JavaScript with the Ultrafast Grid
