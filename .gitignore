@@ -15,3 +15,4 @@ local.adminUserLoginCookiesFromCypress.json
 local.readerUserLoginCookiesFromCypress.json
 
 applitools.config.js
+/cypress/screenshots/
