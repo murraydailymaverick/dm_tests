@@ -16,3 +16,4 @@ local.readerUserLoginCookiesFromCypress.json
 
 applitools.config.js
 /cypress/screenshots/
+/dev.readerUserLoginCookiesFromCypress.json
