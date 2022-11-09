@@ -150,7 +150,7 @@ Cypress.Commands.add("maunallyCreateInsider", (user) => {
 Cypress.Commands.add("deleteUser", (user) => {
     cy.setWordPressCookies();
     cy.visit(Cypress.env('dashboardUrl') + 'users.php');
-    cy.get('#user-search-input').type(user.email, {force: true});
+    cy.get('#user-search-input').type(user.username, {force: true});
     cy.get('#search-submit').click();
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
     cy.get('.email a').should('contain', user.email);
