@@ -14,7 +14,9 @@ i.e. make the new file: `touch internal.cypress.config.js`
 
 ## Generally to run all tests
 `npm run cypress:f`
-this refers to a script in package.json using the local config file
+this refers to a script in package.json using the local config file.
+or 
+`$(npm bin)/cypress open --config-file dev.cypress.config.js`
 
 ##Cypress 
 the configuration fie is for the git hub actions using secrets
