@@ -61,11 +61,9 @@ context( 'Create a new user via the API and ads a user meta' , function () {
     it( 'logs in as a reader', function(){
         cy.setWordPressCookies('reader');
         cy.visit(Cypress.env('baseUrl'));
-
         cy.get('button.navbar-toggle').click()
         cy.get('li.login-mobile-profile a').should('have.length', 6)
         cy.get('li.login-mobile-profile a.profile-link').should('contain.text', 'mr_subscriber')
-
     });
 
 
