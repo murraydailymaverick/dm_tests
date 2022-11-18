@@ -29,6 +29,9 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         cy.get('input#password').type(subscriber.pw);
         cy.get('input#agree_terms').click();
         cy.get('input[name="user_registration"]').click();
+        cy.wait('@ajaxPost');
+        cy.wait(2000);
+
         cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/sign-in' );
 
 
@@ -41,8 +44,8 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         cy.get('input#user-segment0').should('be.checked' );
         cy.get('input#user-segment0').click()
         cy.get('input#user-segment0').should('not.be.checked' );
-
-        cy.get('input.subscribe-btn').click();
+        cy.get('#wt-cli-accept-all-btn').click();
+        cy.get('input.subscribe-btn').scrollIntoView().click();
         cy.wait('@ajaxPost');
         cy.get('.toast-message')
             .should('be.visible' )
