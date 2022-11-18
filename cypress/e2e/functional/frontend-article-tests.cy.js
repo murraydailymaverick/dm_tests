@@ -1,9 +1,9 @@
 describe('Visit urls on front end and ensure elements exist', () => {
 
 	it('tests the first article', () => {
-		cy.visit( Cypress.env('baseUrl') )
+		cy.visit( Cypress.env('articleUrl'));
 
-		cy.get('.main-article-container .hero .feed_item a.feed_link').click();
+		//cy.get('.main-article-container .hero .feed_item a.feed_link').click();
 		cy.url().should('contain', Cypress.env('baseUrl') + 'article/')
 
 		//masthead
