@@ -1,6 +1,6 @@
 describe('Visit urls on front end and ensure elements exist', () => {
 
-	it('iPhone SE - tests an article', () => {
+	it('tests an article on iPhone SE', () => {
 		cy.viewport(375, 667);
 		cy.visit( Cypress.env('articleUrl'));
 
@@ -44,12 +44,12 @@ describe('Visit urls on front end and ensure elements exist', () => {
 	})
 
 
-	it('iPhone SE 375 tests the home page, nav, and footer', () => {
+	it('tests the home page, nav, and footer on iPhone SE ', () => {
 		cy.viewport(375, 667);
 		cy.visit( Cypress.env('baseUrl') )
 	})
 
-	it('in Desktop 1280px tests the home page, nav, and footer', () => {
+	it('tests the home page, nav, and footer on in Desktop 1280px', () => {
 		cy.viewport(1280, 1024);
 		cy.visit( Cypress.env('baseUrl') )
 		//top left nav
@@ -83,7 +83,11 @@ describe('Visit urls on front end and ensure elements exist', () => {
 
 	})
 
-	it('tests the scorpio page', () => {
+	it('Tests an elementor page on Desktop', () => {
+		cy.viewport(1280, 1024);
+	});
+
+	it('tests the scorpio page on Desktop', () => {
 		cy.viewport(1280, 1024);
 		cy.visit( Cypress.env('baseUrl') + 'section/scorpio/')
 
