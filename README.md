@@ -1,5 +1,6 @@
 # dm_tests
 a repo to hold the DM tests.
+`npm run cypress:open`
 
 ## npm
 `npm install` 
