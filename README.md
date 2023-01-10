@@ -109,3 +109,6 @@ To set up I used this example : https://applitools.com/blog/link-github-actions/
 ##Notes
 Testing Websites – The Best Devices and Browsers
 https://weareama.com/testing-websites-best-devices-browsers/
+
+* https://www.stevenhicks.me/blog/2020/02/working-with-variables-in-cypress-tests/
+* https://filiphric.com/switch-between-environments-in-cypress
