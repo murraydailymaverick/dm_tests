@@ -2,6 +2,14 @@
 a repo to hold the DM tests.
 `npm run cypress:open`
 
+## cookies
+The admin logins work on setting cookies to bypass the login process and cloud flair authentication - 
+these cookies should not be check into the repo. 
+`var cookieData = document.cookie.split(';').map(function(c) {
+var i = c.indexOf('=');
+return [c.substring(0, i), c.substring(i + 1)];
+}); copy(JSON.stringify(JSON.stringify(cookieData)));` //copies the cookies to clipboard
+
 ## npm
 `npm install` 
 installs script in package.json
