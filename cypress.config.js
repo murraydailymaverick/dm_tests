@@ -15,12 +15,13 @@ module.exports = defineConfig({
     env: {
       env: 'dev',
       baseUrl: 'https://dev.dailymaverick.co.za/',
-      loginUrl: 'https://dev.dailymaverick.co.za/dm-admin/',
+      loginUrl: 'https://dev.dailymaverick.co.za/sign-in/',
       dashboardUrl: 'https://dev.dailymaverick.co.za/wp-admin/',
       localfolder: '',
       domain: 'dev.dailymaverick.co.za',
       users: {
         admin: {
+          adminLoginUrl: 'https://dev.dailymaverick.co.za/dm-admin/',
           username: process.env.USERNAME+'_admin',
           email: process.env.USERNAME+'+admin@dailymaverick.co.za',
           pw: process.env.USER_PASSWORD

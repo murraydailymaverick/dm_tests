@@ -44,8 +44,11 @@ Cypress.Commands.add("setWordPressCookies", (role = 'admin') => {
 });
 
 Cypress.Commands.add("manualWordPressAdminLogin", () => {
-    cy.clearWordPressCookies();
-    cy.visit(Cypress.env('dashboardUrl'));
+    //cy.clearWordPressCookies();
+    cy.visit(Cypress.env('users').admin.adminLoginUrl);
+    // if(Cypress.env('dev')==='dev'){
+    //     cy.get( '.jetpack-sso-toggle .wpcom' ).click();
+    // }
     cy.get('#user_login').wait(200).type(Cypress.env('users').admin.username, {force: true});
     cy.get('#user_pass').wait(200).type(Cypress.env('users').admin.pw, {force: true});
     cy.get('#wp-submit').click();

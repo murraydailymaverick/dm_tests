@@ -24,8 +24,8 @@ context( 'Login as an admin, create a new insider via subscriptions' , function 
 
 	//reset password http://localhost/dm/wp-admin/user-edit.php?user_id=12431&wp_http_referer=%2Fdm%2Fwp-admin%2Fusers.php%3Frole%3Dcustomer
 
-	// it( 'deletes a user', function(){
-	// 	cy.deleteUser(insider1);
-	// });
+	it( 'deletes the insider user', function(){
+		cy.deleteUser(insider1);
+	});
 
 });

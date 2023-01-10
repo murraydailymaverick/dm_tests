@@ -10,7 +10,6 @@ context( 'Lets test if the elementor pages look consistent' , function () {
     });
 
     it( 'visits a questions page', function(){
-        // cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
         cy.visit( Cypress.env('baseUrl') + '22-questions-with-with-alet-law/');
         cy.get('.elementor-heading-title.elementor-size-xl').should('have.text', '22 Questions with Alet Law')
         cy.get('div.elementor-toggle-item').should('have.length', 22)

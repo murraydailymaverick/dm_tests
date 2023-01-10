@@ -7,13 +7,9 @@ context( 'Login as an admin, create a new insider via subscriptions' , function 
 		cy.clearWordPressCookies();
 	});
 
-	beforeEach(function () {
-		cy.setWordPressCookies('admin');
-	});
-
 
 	it( 'As an Admin - Get a token, Logout.', function(){
-
+		cy.setWordPressCookies('admin');
 		cy.visit( Cypress.env('dashboardUrl') +  'admin.php?page=mailloginengine_encode');
 
 		// cy.get('span#current_user_id').then(($span) => {
@@ -37,12 +33,10 @@ context( 'Login as an admin, create a new insider via subscriptions' , function 
 
 
 	it( 'Logs in with a token and checks that you are logged in', function(){
-
 		cy.task('getToken').then((token) => {
 			//cy.visit( Cypress.env('baseUrl') +  '?token=' + token + '&maillogindebug=1');
 			cy.visit( Cypress.env('baseUrl') +  '?token=' + token );
 		});
-
 		cy.get('button.navbar-toggle').click()
 		cy.get('li.login-mobile-profile a').should('have.length', 6)
 	});
