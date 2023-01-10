@@ -7,18 +7,6 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         cy.clearWordPressCookies();
     });
 
-    it( 'checks the check for cookie bar and dismisses it.', function(){
-        cy.visit( Cypress.env('loginUrl') );
-        cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/sign-in' );
-
-        cy.get('#cookie-law-info-bar').should("be.visible"
-        );
-        cy.get('#wt-cli-accept-all-btn').click();
-        cy.get('#cookie-law-info-bar').should(
-            "not.be.visible"
-        );
-    });
-
     it( 'registers via the from the front end form.', function(){
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
 
@@ -44,7 +32,7 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         cy.get('input#user-segment0').should('be.checked' );
         cy.get('input#user-segment0').click()
         cy.get('input#user-segment0').should('not.be.checked' );
-        cy.get('#wt-cli-accept-all-btn').click();
+
         cy.get('input.subscribe-btn').scrollIntoView().click();
         cy.wait('@ajaxPost');
         cy.get('.toast-message')
