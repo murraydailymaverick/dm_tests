@@ -5,7 +5,7 @@ describe('Visit urls on front end and ensure elements exist', () => {
 		cy.visit( Cypress.env('articleUrl'));
 
 		//cy.get('.main-article-container .hero .feed_item a.feed_link').click();
-		//cy.url().should('contain', Cypress.env('baseUrl') + 'article/')
+		//cy.url().should('contain', Cypress.env('baseUrl') + '/article/')
 
 		//masthead
 		cy.get('.masthead-intro').should('have.length', 1)
@@ -89,7 +89,7 @@ describe('Visit urls on front end and ensure elements exist', () => {
 
 	it('tests the scorpio page on Desktop', () => {
 		cy.viewport(1280, 1024);
-		cy.visit( Cypress.env('baseUrl') + 'section/scorpio/')
+		cy.visit( Cypress.env('baseUrl') + '/section/scorpio/')
 
 		//masthead
 		cy.get('.masthead-intro').should('have.length', 1)

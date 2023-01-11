@@ -40,7 +40,7 @@ context( 'Create a new user via the API and ads a user meta' , function () {
     /*
         it( 'tests the set cookie process and logout', function(){
             cy.intercept(  'POST', '/cdn-cgi/challenge-platform/h/b/flow/ov1/*').as('CDNChallenge');
-            cy.intercept( Cypress.env('baseUrl') + 'dm-admin/?action=logout&redirect_to=*').as('LogoutRequest');
+            cy.intercept( Cypress.env('baseUrl') + '/dm-admin/?action=logout&redirect_to=*').as('LogoutRequest');
             cy.clearWordPressCookies();
             cy.setWordPressCookies('subscriber');
             cy.visit(Cypress.env('baseUrl'));

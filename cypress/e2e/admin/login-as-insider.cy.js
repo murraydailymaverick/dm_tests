@@ -34,7 +34,7 @@ context( 'Login as an admin, create a new insider via subscriptions' , function 
 
 	it( 'Logs in with a token and checks that you are logged in', function(){
 		cy.task('getToken').then((token) => {
-			//cy.visit( Cypress.env('baseUrl') +  '?token=' + token + '&maillogindebug=1');
+
 			cy.visit( Cypress.env('baseUrl') +  '?token=' + token );
 		});
 		cy.get('button.navbar-toggle').click()
