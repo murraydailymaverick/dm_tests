@@ -6,6 +6,7 @@
   "scripts": {
     "test": "npx cypress run --browser chrome --spec 'cypress/integration/examples/ultraFastGrid.spec.js'",
     "cypress:open": "node_modules/.bin/cypress open --config-file dev.cypress.config.js",
+    "cypress:delete_subscriber": "node_modules/.bin/cypress run --spec cypress/e2e/functional/delete-subscriber.cy.js --config-file dev.cypress.config.js",
     "cypress:applitools": "node_modules/.bin/cypress run --spec cypress/e2e/applitools/*.js --config-file prod.cypress.config.js",
     "cypress:functional": "node_modules/.bin/cypress run --spec cypress/e2e/functional/*.js --config-file local.cypress.config.js",
     "cypress:f": "node_modules/.bin/cypress run --spec cypress/e2e/functional/*.js --config-file local.cypress.config.js"

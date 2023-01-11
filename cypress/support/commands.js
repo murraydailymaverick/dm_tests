@@ -157,11 +157,16 @@ Cypress.Commands.add("deleteUser", (user) => {
     cy.get('#search-submit').click();
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
     cy.get('.email a').should('contain', user.email);
+   // cy.log('found user '+user.email);
     cy.get('div.row-actions').invoke('attr', 'style', 'left: 0').should('have.attr', 'style', 'left: 0');
     cy.get('a.submitdelete').click();
+    cy.wait(1000);
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
-    //cy.get('#delete_option0').click();
+    cy.wait(1000);
+    cy.get('#delete_option0').check();
+    cy.wait(1000);
     cy.get('#submit').click();
+   // cy.log('Delete conf submit ');
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
 });
 

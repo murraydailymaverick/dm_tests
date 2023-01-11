@@ -1,6 +1,7 @@
 # dm_tests
 a repo to hold the DM tests.
 `npm run cypress:open`
+`npm run cypress:delete_subscriber`
 
 ## cookies
 The admin logins work on setting cookies to bypass the login process and cloud flair authentication - 
