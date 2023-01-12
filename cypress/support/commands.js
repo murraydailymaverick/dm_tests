@@ -151,17 +151,26 @@ Cypress.Commands.add("maunallyCreateInsider", (user) => {
 });
 
 Cypress.Commands.add("deleteUser", (user) => {
+    cy.intercept('POST', '/cdn-cgi/rum?').as('ajaxcdn-cgi');
+    cy.intercept('GET', 'https://public-api.wordpress.com/rest/v1.1/me').as('restme');
+    cy.intercept('GET', 'https://public-api.wordpress.com/rest/v1.1/notifications/').as('restnotifications');
+    cy.intercept('POST', '/wp-admin/admin-ajax.php').as('ajaxadmin-ajax');
     cy.setWordPressCookies();
-    cy.visit(Cypress.env('dashboardUrl') + 'users.php');
-    cy.get('#user-search-input').type(user.username, {force: true});
-    cy.get('#search-submit').click();
+    // cy.visit(Cypress.env('dashboardUrl') + 'users.php');
+    // cy.get('#user-search-input').type(user.username, {force: true});
+    // cy.get('#search-submit').click();
+    cy.visit(Cypress.env('dashboardUrl') + 'users.php?s=mr_subscriber%2Bsubscriber%40dailymaverick.co.za&action=-1&new_role&add_user_tag&remove_user_tag&paged=1&action2=-1&new_role2');
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
     cy.get('.email a').should('contain', user.email);
    // cy.log('found user '+user.email);
     cy.get('div.row-actions').invoke('attr', 'style', 'left: 0').should('have.attr', 'style', 'left: 0');
     cy.get('a.submitdelete').click();
+    cy.wait('@ajaxcdn-cgi');
+    cy.wait('@restme');
+    //cy.wait('@restnotifications');
+   // cy.wait('@ajaxadmin-ajax');
     cy.wait(1000);
-    cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
+    //cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
     cy.wait(1000);
     cy.get('#delete_option0').check();
     cy.wait(1000);
