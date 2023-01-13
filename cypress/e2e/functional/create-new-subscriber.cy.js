@@ -7,9 +7,6 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         cy.clearWordPressCookies();
     });
 
-    after(function () {
-        cy.deleteUser(subscriber);
-    });
 
     it( 'registers via the from the front end form.', function(){
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
@@ -126,6 +123,10 @@ context( 'Create a new user via the API and ads a user meta' , function () {
        // cy.get("#your-profile > p:nth-child(36)").should('contain.text', 'testing');
 
 
+    });
+
+    it( 'deletes a User', function(){
+        cy.deleteUser(subscriber);
     });
 
 });
