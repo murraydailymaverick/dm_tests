@@ -10,7 +10,7 @@ context( 'Create a new user via the API and ads a user meta' , function () {
     it( 'registers via the from the front end form.', function(){
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
         cy.intercept('POST',  '/?wc-ajax=checkout&elementor_page_id=').as('ajaxelementor_page_id');
-
+        cy.intercept('POST', 'https://sandbox.payfast.co.za/eng/method/WalletFunds/*').as('ajaxWalletFunds');
         cy.visit( Cypress.env('baseUrl') +'/insider-block-example/?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
 
         cy.get('.components-button-group .components-button').click();
@@ -30,6 +30,7 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         cy.wait(5000);
         cy.location('host').should( 'contain', 'payfast' );
         cy.get('#pay-with-wallet').click();
+        cy.wait('@ajaxWalletFunds');
         cy.wait(5000);
        // cy.location('pathname').should( 'contain', '/maverick-portal/' );
         cy.location('pathname').should( 'contain', '/manage-membership/' );
@@ -53,7 +54,7 @@ context( 'Create a new user via the API and ads a user meta' , function () {
     });
 
     it( 'deletes a User', function(){
-        cy.deleteUser(subscriber);
+       // cy.deleteUser(subscriber);
     });
 
 
