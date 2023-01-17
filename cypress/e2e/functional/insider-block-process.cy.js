@@ -31,7 +31,8 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         cy.location('host').should( 'contain', 'payfast' );
         cy.get('#pay-with-wallet').click();
         cy.wait(5000);
-        cy.location('pathname').should( 'contain', '/maverick-portal/' );
+       // cy.location('pathname').should( 'contain', '/maverick-portal/' );
+        cy.location('pathname').should( 'contain', '/manage-membership/' );
         // cy.wait('@ajaxPost');
         // cy.wait(2000);
         //
