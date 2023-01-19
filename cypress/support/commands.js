@@ -160,12 +160,12 @@ Cypress.Commands.add("deleteUser", (user) => {
     // cy.get('#user-search-input').type(user.email, {force: true});
     // cy.get('#search-submit').click();
     cy.visit(Cypress.env('dashboardUrl') + 'users.php?s=mr_subscriber%40dailymaverick.co.za&action=-1&paged=1');
-    cy.wait(10000);
+    cy.wait(8000);
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
     cy.get('.email a').should('contain', user.email);
     cy.get('div.row-actions').invoke('attr', 'style', 'left: 0; width: 100px;').should('have.attr', 'style', 'left: 0; width: 100px;');
-    cy.wait(1000);
-    cy.get('a.submitdelete').click({ force: true });
+    //cy.wait(1000);
+    cy.get('a.submitdelete').click({ force: true }).wait('5000');
     //cy.wait('@ajaxcdn-cgi');
     //cy.wait('@restme');
     //cy.wait('@restnotifications');
@@ -173,8 +173,7 @@ Cypress.Commands.add("deleteUser", (user) => {
     //cy.wait(10000);
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
     //cy.wait(1000);
-    //cy.get('#delete_option0').click();
-    //cy.wait(1000);
+    cy.get('#delete_option0').click();cy.wait(1000);
     cy.get('#submit').click({ force: true });
    // cy.log('Delete conf submit ');
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');

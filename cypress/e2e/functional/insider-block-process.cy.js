@@ -54,7 +54,7 @@ context( 'Create a new user via the API and ads a user meta' , function () {
     });
 
     it( 'deletes a User', function(){
-       // cy.deleteUser(subscriber);
+        cy.deleteUser(subscriber);
     });
 
 
