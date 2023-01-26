@@ -12,6 +12,7 @@
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 
+import '@percy/cypress'
 
 Cypress.Commands.add("clearWordPressCookies", () => {
     cy.clearCookie('wordpress_a8b94154380982c3184a469b8aa525c6');
