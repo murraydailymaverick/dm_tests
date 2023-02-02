@@ -12,3 +12,7 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v5
+#        with:
+#          build: npm run build
+#          start: npm start
+        #--spec cypress/e2e/functional/*.js, cypress/e2e/admin/*.js
