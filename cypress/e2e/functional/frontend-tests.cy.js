@@ -83,9 +83,7 @@ describe('Visit urls on front end and ensure elements exist', () => {
 
 	})
 
-	it('Tests an elementor page on Desktop', () => {
-		cy.viewport(1280, 1024);
-	});
+
 
 	it('tests the scorpio page on Desktop', () => {
 		cy.viewport(1280, 1024);
