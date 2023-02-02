@@ -6,7 +6,6 @@ local.cypress.config.js
 internal.cypress.config.js
 
 adminUserLoginCookiesFromCypress.json
-dev.adminUserLoginCookiesFromCypress.json
 insiderUserLoginCookiesFromCypress.json
 prod.cypress.config.js
 
@@ -16,5 +15,3 @@ local.readerUserLoginCookiesFromCypress.json
 
 applitools.config.js
 /cypress/screenshots/
-/dev.readerUserLoginCookiesFromCypress.json
-/dev.subscriberUserLoginCookiesFromCypress.json

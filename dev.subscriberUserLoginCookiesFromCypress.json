@@ -1,0 +1,243 @@
+[
+  {
+    "name": "_gali",
+    "value": "user_login",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1673348546,
+    "domain": ".dev.dailymaverick.co.za"
+  },
+  {
+    "name": "vic_loc_error",
+    "value": "desktop__1673349114961",
+    "path": "/sign-in",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1673349114,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "vic_loc_error",
+    "value": "desktop__1673349124989",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1673349124,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "_sotmsid",
+    "value": "0:lcq4i29p:Px7QqJm7yYLKa~aadpsAuZZ662oi8Uoe",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1673350315.840411,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "_gid",
+    "value": "GA1.4.2031291807.1673348525",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1673434925,
+    "domain": ".dev.dailymaverick.co.za"
+  },
+  {
+    "name": "blkbs",
+    "value": "be75b70569c6de9ca41dae0ecbc1b39b__1673948454962",
+    "path": "/sign-in",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1673948454,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "blkbs",
+    "value": "be75b70569c6de9ca41dae0ecbc1b39b__1673948464990",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1673948464,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "_gcl_au",
+    "value": "1.1.419755230.1673348515",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1681124515,
+    "domain": ".dailymaverick.co.za"
+  },
+  {
+    "name": "cookielawinfo-checkbox-necessary",
+    "value": "yes",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1704884514,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "cookielawinfo-checkbox-functional",
+    "value": "no",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1704884514,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "cookielawinfo-checkbox-performance",
+    "value": "no",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1704884514,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "cookielawinfo-checkbox-analytics",
+    "value": "no",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1704884514,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "cookielawinfo-checkbox-advertisement",
+    "value": "no",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1704884514,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "cookielawinfo-checkbox-others",
+    "value": "no",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1704884514,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "viewed_cookie_policy",
+    "value": "yes",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1704884515,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "wp_automatewoo_visitor_726ade251d404c3d0e9dbce87738b2ec",
+    "value": "j3usxk1fmco8s7c38qes",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "expiry": 1704884524.537191,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "vicinity_id",
+    "value": "4b583f56-193e-44f7-a343-76767d6196a8__1733348454956",
+    "path": "/sign-in",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1707908514.956341,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "_ga",
+    "value": "GA1.1.1823080022.1673348513",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1707908515.311892,
+    "domain": ".dailymaverick.co.za"
+  },
+  {
+    "name": "_sotmpid",
+    "value": "0:lcq4i29p:XaKENclUNjSVXpXz59E5p8lUv~xGxox3",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1707908515.840594,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "vicinity_id",
+    "value": "5f170d9a-c10a-43cb-9bc6-b38d03ddd758__1733348464985",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1707908524.985723,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "_ga",
+    "value": "GA1.4.1823080022.1673348513",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1707908525.300665,
+    "domain": ".dev.dailymaverick.co.za"
+  },
+  {
+    "name": "_ga_Y7XD5FHQVG",
+    "value": "GS1.1.1673348512.1.1.1673348525.0.0.0",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1707908525.934245,
+    "domain": ".dailymaverick.co.za"
+  },
+  {
+    "name": "wordpress_sec_726ade251d404c3d0e9dbce87738b2ec",
+    "value": "mr_subscribersubscriber%40dailymaverick.co.za%7C1704884521%7CXk7PpmJpGvRtIw7wT148kZjAdEOh8xFUhPKMmJk0TTX%7C90da883ec5c8d9e3cec46ca7d4f9cceaf5e3e2d539548ec793d524536f9c4af2",
+    "path": "/wp-content/plugins",
+    "secure": true,
+    "httpOnly": true,
+    "domain": "dev.dailymaverick.co.za",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "wordpress_sec_726ade251d404c3d0e9dbce87738b2ec",
+    "value": "mr_subscribersubscriber%40dailymaverick.co.za%7C1704884521%7CXk7PpmJpGvRtIw7wT148kZjAdEOh8xFUhPKMmJk0TTX%7C90da883ec5c8d9e3cec46ca7d4f9cceaf5e3e2d539548ec793d524536f9c4af2",
+    "path": "/wp-admin",
+    "secure": true,
+    "httpOnly": true,
+    "domain": "dev.dailymaverick.co.za",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "wordpress_logged_in_726ade251d404c3d0e9dbce87738b2ec",
+    "value": "mr_subscribersubscriber%40dailymaverick.co.za%7C1704884521%7CXk7PpmJpGvRtIw7wT148kZjAdEOh8xFUhPKMmJk0TTX%7C75a0a4a5f984278cdd282d09bbbe1a543e7ec126a6ba3f84eb30627ef8576eb7",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true,
+    "domain": "dev.dailymaverick.co.za",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "wp_automatewoo_session_started",
+    "value": "1",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "revengine_browser_id",
+    "value": "9480679e3b8aca330dd2bc487545f56a9c904b3e",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "domain": "revengine-tracker.remp.dailymaverick.co.za"
+  }
+]
