@@ -1,6 +1,8 @@
 # dm_tests
 a repo to hold the DM tests.
 `npm run cypress:open`
+`npm run cypress:open_local`
+`npm run cypress:open_internal`
 `npm run cypress:delete_subscriber`
 
 ## The Percy Project for dev.dailymaverick.co.za
@@ -36,7 +38,8 @@ or
 the configuration fie is for the git hub actions using secrets
 `$(npm bin)/cypress open` or `npx cypress open` and test as per https://docs.cypress.io/guides/end-to-end-testing/testing-your-app
 By default we use the dev environment to test off. 
-Pointing to a internal configuration file `$(npm bin)/cypress open --config-file internal.cypress.config.js`
+Pointing to a internal configuration file
+`$(npm bin)/cypress open --config-file internal.cypress.config.js`
 Pointing to a local configuration file `$(npm bin)/cypress open --config-file local.cypress.config.js`
 E2E and chrome
 
