@@ -1,7 +1,7 @@
 context( 'Create a new user via the API and ads a user meta' , function () {
 
     var users = Cypress.env('users');
-    var subscriber = users.subscriber;
+    var insider = users.insider;
 
     before(function () {
         cy.clearWordPressCookies();
@@ -16,10 +16,10 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         cy.get('.components-button-group .components-button').click();
         cy.get('.hero-submit-button.selected').click();
         cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/checkout/' );
-        cy.get('input#billing_first_name').type(subscriber.firstname);
-        cy.get('input#billing_last_name').type(subscriber.lastname);
-        cy.get('input#account_username').type(subscriber.email);
-        cy.get('input#account_password').type(subscriber.pw);
+        cy.get('input#billing_first_name').type(insider.firstname);
+        cy.get('input#billing_last_name').type(insider.lastname);
+        cy.get('input#account_username').type(insider.email);
+        cy.get('input#account_password').type(insider.pw);
         cy.get('.woocommerce-terms-and-conditions-checkbox-text').click();
         cy.get('#place_order').click();
 
@@ -54,7 +54,7 @@ context( 'Create a new user via the API and ads a user meta' , function () {
     });
 
     it( 'deletes a User', function(){
-        cy.deleteUser(subscriber);
+        cy.deleteUser(insider);
     });
 
 
@@ -63,10 +63,10 @@ context( 'Create a new user via the API and ads a user meta' , function () {
     // it( 'checks the new users data and delete the user', function(){
     //     cy.setWordPressCookies('admin');
     //     cy.visit(Cypress.env('dashboardUrl') + 'users.php');
-    //     cy.get('#user-search-input').type(subscriber.username, {force: true});
+    //     cy.get('#user-search-input').type(insider.username, {force: true});
     //     cy.get('#search-submit').click();
     //     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
-    //     cy.get('.email a').should('contain', subscriber.email);
+    //     cy.get('.email a').should('contain', insider.email);
     //     cy.get('div.row-actions').invoke('attr', 'style', 'left: 0').should('have.attr', 'style', 'left: 0');
     //     cy.get('div.row-actions > .edit').click();
     //     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'user-edit.php').then((pathname) => {

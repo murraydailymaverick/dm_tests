@@ -160,7 +160,8 @@ Cypress.Commands.add("deleteUser", (user) => {
     // cy.visit(Cypress.env('dashboardUrl') + 'users.php');
     // cy.get('#user-search-input').type(user.email, {force: true});
     // cy.get('#search-submit').click();
-    cy.visit(Cypress.env('dashboardUrl') + 'users.php?s=mr_subscriber%40dailymaverick.co.za&action=-1&paged=1');
+
+    cy.visit(Cypress.env('dashboardUrl') + 'users.php?s='+ encodeURIComponent(user.email) +'&action=-1&paged=1');
     cy.wait(8000);
     cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
     cy.get('.email a').should('contain', user.email);
