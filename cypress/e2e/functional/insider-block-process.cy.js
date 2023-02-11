@@ -11,7 +11,7 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
         cy.intercept('POST',  '/?wc-ajax=checkout&elementor_page_id=').as('ajaxelementor_page_id');
         cy.intercept('POST', 'https://sandbox.payfast.co.za/eng/method/WalletFunds/*').as('ajaxWalletFunds');
-        cy.visit( Cypress.env('baseUrl') +'/insider-block-example/?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+        cy.visit( Cypress.env('baseUrl') +'/support-daily-maverick/?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
 
         cy.get('.components-button-group .components-button').click();
         cy.get('.hero-submit-button.selected').click();
@@ -50,7 +50,7 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         //     'choose': window.jQuery( '#subscription-checkout-holder' ).data( 'choose' ),
         //     'deviceType': _self.getDeviceDetails().deviceType,
         //     'referralURL': _self.getReferrerUrl(),
-
+        cy.getWordPressCookies('insider');
     });
 
     it( 'deletes a User', function(){
