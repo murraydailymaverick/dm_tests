@@ -45,7 +45,7 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         cy.get('a.btn-full').should('have.attr', 'href').and('include', '/insider/').then((href) => {
             cy.visit( Cypress.env('baseUrl') + href)
             cy.location('pathname').should( 'contain', '/insider/' );
-            cy.getWordPressCookies('reader');
+            //cy.getWordPressCookies('subscriber');
         })
     });
 

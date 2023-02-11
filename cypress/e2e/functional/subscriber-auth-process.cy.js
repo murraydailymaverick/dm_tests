@@ -28,13 +28,9 @@ context( 'Create a new user via the API and ads a user meta' , function () {
 
         cy.location('pathname').should('eq', '/');
 
-        cy.getWordPressCookies('subscriber');//set the cookies for further tests
+        //cy.getWordPressCookies('subscriber');//set the cookies for further tests
 
-        cy.get('button.navbar-toggle').click()
-        cy.get('li.login-mobile-profile a').should('have.length', 6)
-        cy.get('li.login-mobile-profile a.profile-link').should('contain.text', subscriber.username).click();
-        cy.get('ul.mobile-social-wrap li.login-mobile-profile ul.dropdown-menu li').should('have.length', 7);
-
+        cy.checkLoggedIn(subscriber);
 
     });
     /*

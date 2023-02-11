@@ -56,6 +56,14 @@ Cypress.Commands.add("manualWordPressAdminLogin", () => {
     cy.get('h1').contains('Dashboard');
 });
 
+Cypress.Commands.add("checkLoggedIn", (user) => {
+    cy.get('button.navbar-toggle').click()
+    cy.get('li.login-mobile-profile a').should('have.length', 6)
+    cy.get('li.login-mobile-profile a.profile-link').should('contain.text', user.username).click();
+    cy.get('ul.mobile-social-wrap li.login-mobile-profile ul.dropdown-menu li').should('have.length', 7);
+
+});
+
 //
 //
 // -- This is a child command --
@@ -167,7 +175,7 @@ Cypress.Commands.add("deleteUser", (user) => {
     cy.get('.email a').should('contain', user.email);
     cy.get('div.row-actions').invoke('attr', 'style', 'left: 0; width: 100px;').should('have.attr', 'style', 'left: 0; width: 100px;');
     //cy.wait(1000);
-    cy.get('a.submitdelete').click({ force: true }).wait('5000');
+    cy.get('a.submitdelete').click({ force: true }).wait(5000);
     //cy.wait('@ajaxcdn-cgi');
     //cy.wait('@restme');
     //cy.wait('@restnotifications');
