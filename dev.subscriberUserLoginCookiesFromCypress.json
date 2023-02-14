@@ -234,5 +234,14 @@
     "secure": false,
     "httpOnly": false,
     "domain": "revengine-tracker.remp.dailymaverick.co.za"
+  },
+  {
+    "name": "cf_clearance",
+    "value": "9zpfLbiRhrIeuW6QTa6YHYUqjmazODN9f7KYKRbfJAU-1673356380-0-150",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true,
+    "expiry": 1694008686.084523,
+    "domain": "dev.dailymaverick.co.za"
   }
 ]
