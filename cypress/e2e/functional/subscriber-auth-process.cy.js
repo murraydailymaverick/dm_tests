@@ -16,22 +16,10 @@ context( 'Create a new user via the API and ads a user meta' , function () {
     });
 
     it( 'logs in as existing user.', function(){
-        cy.intercept('POST', Cypress.env('dashboardUrl') + 'admin-ajax.php').as('ajaxPost');
-        cy.visit( Cypress.env('loginUrl') );
-        //cy.get('#nav a:first').click();
-        //cy.get('ul.nav-tabs li a[href="#register"]').click();
-        cy.get('input#sign_user_email').type(subscriber.email);
-        cy.get('input#user_password').type(subscriber.pw);
-        cy.get('input#remember_me').click();
-        cy.get('input[name=user_login]').click();
-        cy.wait('@ajaxPost');
-
+        cy.manualLogIn(subscriber);
         cy.location('pathname').should('eq', '/');
-
-        //cy.getWordPressCookies('subscriber');//set the cookies for further tests
-
+        cy.getWordPressCookies('subscriber');//set the cookies for further tests
         cy.checkLoggedIn(subscriber);
-
     });
     /*
         it( 'tests the set cookie process and logout', function(){
