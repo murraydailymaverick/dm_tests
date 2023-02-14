@@ -61,7 +61,18 @@ Cypress.Commands.add("checkLoggedIn", (user) => {
     cy.get('li.login-mobile-profile a').should('have.length', 6)
     cy.get('li.login-mobile-profile a.profile-link').should('contain.text', user.username).click();
     cy.get('ul.mobile-social-wrap li.login-mobile-profile ul.dropdown-menu li').should('have.length', 7);
+});
 
+Cypress.Commands.add("manualLogIn", (user) => {
+    cy.intercept('POST', Cypress.env('dashboardUrl') + 'admin-ajax.php').as('ajaxPost');
+    cy.visit( Cypress.env('loginUrl') );
+    //cy.get('#nav a:first').click();
+    //cy.get('ul.nav-tabs li a[href="#register"]').click();
+    cy.get('input#sign_user_email').type(user.email);
+    cy.get('input#user_password').type(user.pw);
+    cy.get('input#remember_me').click();
+    cy.get('input[name=user_login]').click();
+    cy.wait('@ajaxPost');
 });
 
 //

@@ -4,36 +4,30 @@ describe('tests teh commenting funcitons', () => {
     var insider = users.insider;
 
 
-    // it('tests an commenting if logged out', () => {
-    //     cy.visit(Cypress.env('articleUrl'));
-    //     cy.get('.comment-opinion').contains('verybody has an opinion but not everyone has the knowledge and the experience to contribute meaningfully to a discussion. That’s what we want from our members. Help us learn with your expertise and insights on articles that we publish. We encourage different, respectful viewpoints to further our understanding of the world. View our comments policy')
-    // })
-    // it('tests an commenting if subscriber logged in', () => {
-    //     cy.setWordPressCookies('subscriber');
-    //     cy.get('.footer').scrollIntoView()
-    //     cy.checkLoggedIn(subscriber);
-    //     cy.visit(Cypress.env('articleUrl'));
-    //     cy.get('.comment-opinion').contains('verybody has an opinion but not everyone has the knowledge and the experience to contribute meaningfully to a discussion. That’s what we want from our members. Help us learn with your expertise and insights on articles that we publish. We encourage different, respectful viewpoints to further our understanding of the world. View our comments policy')
-    // })
+    it('tests an commenting if logged out', () => {
+        cy.visit(Cypress.env('articleUrl'));
+        cy.get('.comment-opinion').contains('verybody has an opinion but not everyone has the knowledge and the experience to contribute meaningfully to a discussion. That’s what we want from our members. Help us learn with your expertise and insights on articles that we publish. We encourage different, respectful viewpoints to further our understanding of the world. View our comments policy')
+    })
 
-    // it( 'logs in as existing user.', function(){
-    //     cy.intercept('POST', Cypress.env('dashboardUrl') + 'admin-ajax.php').as('ajaxPost');
-    //     cy.visit( Cypress.env('loginUrl') );
-    //     //cy.get('#nav a:first').click();
-    //     //cy.get('ul.nav-tabs li a[href="#register"]').click();
-    //     cy.get('input#sign_user_email').type(insider.email);
-    //     cy.get('input#user_password').type(insider.pw);
-    //     cy.get('input#remember_me').click();
-    //     cy.get('input[name=user_login]').click();
-    //     cy.wait('@ajaxPost');
-    //
-    //     //cy.location('pathname').should('eq', '/');
-    //
-    //     cy.getWordPressCookies('insider');//set the cookies for further tests
-    //
-    //    // cy.checkLoggedIn(insider);
-    //
-    // });
+    it( 'logs in as existing subscriber.', function(){
+        cy.manualLogIn(subscriber);
+        cy.getWordPressCookies('subscriber');//set the cookies for further tests
+        // cy.checkLoggedIn(insider);
+    });
+
+    it('tests an commenting if subscriber logged in', () => {
+        cy.setWordPressCookies('subscriber');
+        cy.get('.footer').scrollIntoView()
+        cy.checkLoggedIn(subscriber);
+        cy.visit(Cypress.env('articleUrl'));
+        cy.get('.comment-opinion').contains('verybody has an opinion but not everyone has the knowledge and the experience to contribute meaningfully to a discussion. That’s what we want from our members. Help us learn with your expertise and insights on articles that we publish. We encourage different, respectful viewpoints to further our understanding of the world. View our comments policy')
+    })
+
+    it( 'logs in as existing insider.', function(){
+        cy.manualLogIn(insider);
+        cy.getWordPressCookies('insider');//set the cookies for further tests
+       // cy.checkLoggedIn(insider);
+    });
 
     it('tests an commenting if insider logged in', () => {
         cy.intercept('POST', Cypress.env('baseUrl') + '/wp-json/dmc/v1/comments').as('ajaxCommentsPost');
