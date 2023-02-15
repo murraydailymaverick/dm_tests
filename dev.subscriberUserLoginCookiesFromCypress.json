@@ -1,76 +1,102 @@
 [
   {
     "name": "_gali",
-    "value": "dm_register_newsletter",
+    "value": "user_login",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1676116467,
+    "expiry": 1676363294,
     "domain": ".dev.dailymaverick.co.za"
   },
   {
     "name": "vic_loc_error",
-    "value": "desktop__1676117041259",
-    "path": "/insider",
+    "value": "desktop__1676363867181",
+    "path": "/opinionista/2022-06-30-after-zondo-the-national-prosecuting-authority-dare-not-fail-the-nation",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1676117041,
+    "expiry": 1676363867,
     "domain": "dev.dailymaverick.co.za"
   },
   {
     "name": "_sotmsid",
-    "value": "0:ldzwg2fi:P4ALk6t1zJTE0YhQH89BciJsmCHcPqQu",
+    "value": "0:le3zekj0:4f0dtEs8R3WTsYB_Rfi~9YmSUlYcX2Pw",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1676118231.524119,
+    "expiry": 1676365063.600737,
     "domain": "dev.dailymaverick.co.za"
   },
   {
     "name": "charitable_session",
-    "value": "f07a2413efa22a2223804c7658301369||86400||82800",
-    "path": "/insider",
+    "value": "ec0c54dfdfc4e3fc8704a54ea1b35dc2||86400||82800",
+    "path": "/sign-in",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1676202841,
+    "expiry": 1676449661,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "charitable_session",
+    "value": "0491f9233f598bb6fc969fd150061800||86400||82800",
+    "path": "/opinionista/2022-06-30-after-zondo-the-national-prosecuting-authority-dare-not-fail-the-nation",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1676449667,
     "domain": "dev.dailymaverick.co.za"
   },
   {
     "name": "_gid",
-    "value": "GA1.4.1705893047.1676116442",
+    "value": "GA1.4.821939517.1676363268",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1676202841,
+    "expiry": 1676449667,
     "domain": ".dev.dailymaverick.co.za"
   },
   {
     "name": "blkbs",
-    "value": "8e822a7eaff05fb7362c1a002dfec3f6__1676716381259",
-    "path": "/insider",
+    "value": "8e822a7eaff05fb7362c1a002dfec3f6__1676963207182",
+    "path": "/opinionista/2022-06-30-after-zondo-the-national-prosecuting-authority-dare-not-fail-the-nation",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1676716381,
+    "expiry": 1676963207,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "DM_MEMBERSHIP_ACTIVE",
+    "value": "1",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1676968067.060868,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "_pc_DM_MEMBERSHIP_STATUS",
+    "value": "active",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1676968067.060881,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "_pc_DM_MEMBERSHIP_ID",
+    "value": "1526376",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1676968067.060896,
     "domain": "dev.dailymaverick.co.za"
   },
   {
     "name": "_gcl_au",
-    "value": "1.1.1325730277.1676116429",
+    "value": "1.1.1131299041.1676363262",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1683892428,
+    "expiry": 1684139262,
     "domain": ".dailymaverick.co.za"
-  },
-  {
-    "name": "_fbp",
-    "value": "fb.2.1676116441616.1655481972",
-    "path": "/",
-    "secure": false,
-    "httpOnly": false,
-    "expiry": 1683892441,
-    "domain": ".dailymaverick.co.za",
-    "sameSite": "lax"
   },
   {
     "name": "cookielawinfo-checkbox-necessary",
@@ -78,7 +104,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1707652428,
+    "expiry": 1707899261,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -87,7 +113,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1707652428,
+    "expiry": 1707899261,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -96,7 +122,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1707652428,
+    "expiry": 1707899261,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -105,7 +131,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1707652428,
+    "expiry": 1707899261,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -114,7 +140,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1707652428,
+    "expiry": 1707899261,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -123,16 +149,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1707652428,
-    "domain": "dev.dailymaverick.co.za"
-  },
-  {
-    "name": "viewed_cookie_policy",
-    "value": "yes",
-    "path": "/",
-    "secure": false,
-    "httpOnly": false,
-    "expiry": 1707652431,
+    "expiry": 1707899261,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -141,83 +158,89 @@
     "path": "/",
     "secure": true,
     "httpOnly": false,
-    "expiry": 1707652440.80717,
+    "expiry": 1707899267.060716,
     "domain": "dev.dailymaverick.co.za"
   },
   {
-    "name": "wordpress_sec_726ade251d404c3d0e9dbce87738b2ec",
-    "value": "mr_subscriber%40dailymaverick.co.za%7C1707652434%7CcraCc9ZaeZYoi3mT2CzfOEHy54PJIufHjyBon2qd9ND%7C2087bb650d34b0f350922947209b37e42a47af2fc394c5dbc90fc0639803c1ea",
-    "path": "/wp-content/plugins",
-    "secure": true,
-    "httpOnly": true,
-    "expiry": 1707695634.968895,
-    "domain": "dev.dailymaverick.co.za",
-    "sameSite": "no_restriction"
+    "name": "viewed_cookie_policy",
+    "value": "yes",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1707899268,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "_ga",
+    "value": "GA1.1.332252464.1676363262",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1710923262.030434,
+    "domain": ".dailymaverick.co.za"
+  },
+  {
+    "name": "_sotmpid",
+    "value": "0:le3zekj0:BP09xd6pJO~CBlIjRrWzUgyNsXrbgXS~",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1710923263.60084,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "vicinity_id",
+    "value": "5fd7d77a-6277-4c07-8b7e-462a511fe09b__1736363207175",
+    "path": "/opinionista/2022-06-30-after-zondo-the-national-prosecuting-authority-dare-not-fail-the-nation",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1710923267.175403,
+    "domain": "dev.dailymaverick.co.za"
+  },
+  {
+    "name": "_ga",
+    "value": "GA1.4.332252464.1676363262",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1710923267.761176,
+    "domain": ".dev.dailymaverick.co.za"
+  },
+  {
+    "name": "_ga_Y7XD5FHQVG",
+    "value": "GS1.1.1676363258.1.1.1676363268.0.0.0",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1710923268.270443,
+    "domain": ".dailymaverick.co.za"
   },
   {
     "name": "wordpress_sec_726ade251d404c3d0e9dbce87738b2ec",
-    "value": "mr_subscriber%40dailymaverick.co.za%7C1707652434%7CcraCc9ZaeZYoi3mT2CzfOEHy54PJIufHjyBon2qd9ND%7C2087bb650d34b0f350922947209b37e42a47af2fc394c5dbc90fc0639803c1ea",
-    "path": "/",
+    "value": "mr_subscriber%40dailymaverick.co.za%7C1707899264%7C42NWY4KPz5nOXWlf3mAgdInbwvYRqu3HcXVjVpBDOcR%7C15a29ce3f41cdfc1e2a021b37d3aa5cec60b6c12188e4a85159b91c958667123",
+    "path": "/wp-content/plugins",
     "secure": true,
     "httpOnly": true,
-    "expiry": 1707695634.968982,
     "domain": "dev.dailymaverick.co.za",
     "sameSite": "no_restriction"
   },
   {
     "name": "wordpress_logged_in_726ade251d404c3d0e9dbce87738b2ec",
-    "value": "mr_subscriber%40dailymaverick.co.za%7C1707652434%7CcraCc9ZaeZYoi3mT2CzfOEHy54PJIufHjyBon2qd9ND%7C072266b5ba17e4e5e5728b8bd59830714efa174bc983640d90b3fc96974ae6bb",
+    "value": "mr_subscriber%40dailymaverick.co.za%7C1707899264%7C42NWY4KPz5nOXWlf3mAgdInbwvYRqu3HcXVjVpBDOcR%7C83a5006de689dcfbabb9afd67636ed857e392fa38d705093858b2a177b347feb",
     "path": "/wp-admin",
     "secure": true,
     "httpOnly": true,
-    "expiry": 1707695634.969018,
     "domain": "dev.dailymaverick.co.za",
     "sameSite": "no_restriction"
   },
   {
-    "name": "_ga",
-    "value": "GA1.1.717086198.1676116429",
+    "name": "wordpress_sec_726ade251d404c3d0e9dbce87738b2ec",
+    "value": "mr_subscriber%40dailymaverick.co.za%7C1707899264%7C42NWY4KPz5nOXWlf3mAgdInbwvYRqu3HcXVjVpBDOcR%7C15a29ce3f41cdfc1e2a021b37d3aa5cec60b6c12188e4a85159b91c958667123",
     "path": "/",
-    "secure": false,
-    "httpOnly": false,
-    "expiry": 1710676428.976378,
-    "domain": ".dailymaverick.co.za"
-  },
-  {
-    "name": "_sotmpid",
-    "value": "0:ldzwg2fi:U44P_doVgOx8q7ibQ70rbqcZSktduOrU",
-    "path": "/",
-    "secure": false,
-    "httpOnly": false,
-    "expiry": 1710676431.524304,
-    "domain": "dev.dailymaverick.co.za"
-  },
-  {
-    "name": "vicinity_id",
-    "value": "9f76ea64-8635-4ecc-897a-ee9bbdc70556__1736116381253",
-    "path": "/insider",
-    "secure": false,
-    "httpOnly": false,
-    "expiry": 1710676441.253723,
-    "domain": "dev.dailymaverick.co.za"
-  },
-  {
-    "name": "_ga",
-    "value": "GA1.4.717086198.1676116429",
-    "path": "/",
-    "secure": false,
-    "httpOnly": false,
-    "expiry": 1710676441.574988,
-    "domain": ".dev.dailymaverick.co.za"
-  },
-  {
-    "name": "_ga_Y7XD5FHQVG",
-    "value": "GS1.1.1676116428.1.1.1676116442.0.0.0",
-    "path": "/",
-    "secure": false,
-    "httpOnly": false,
-    "expiry": 1710676442.01772,
-    "domain": ".dailymaverick.co.za"
+    "secure": true,
+    "httpOnly": true,
+    "domain": "dev.dailymaverick.co.za",
+    "sameSite": "no_restriction"
   },
   {
     "name": "wp_automatewoo_session_started",
@@ -229,19 +252,10 @@
   },
   {
     "name": "revengine_browser_id",
-    "value": "4a75527b93715e4c6d4da382b7701e3ab854f6d6",
+    "value": "8cd51b48a552c557d3b034e3788418bf7230e5fb",
     "path": "/",
     "secure": false,
     "httpOnly": false,
     "domain": "revengine-tracker.remp.dailymaverick.co.za"
-  },
-  {
-    "name": "cf_clearance",
-    "value": "9zpfLbiRhrIeuW6QTa6YHYUqjmazODN9f7KYKRbfJAU-1673356380-0-150",
-    "path": "/",
-    "secure": true,
-    "httpOnly": true,
-    "expiry": 1694008686.084523,
-    "domain": "dev.dailymaverick.co.za"
   }
 ]

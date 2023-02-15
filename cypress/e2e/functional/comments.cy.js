@@ -1,4 +1,4 @@
-describe('tests teh commenting funcitons', () => {
+describe('tests the commenting functions', () => {
     var users = Cypress.env('users');
     var subscriber = users.subscriber;
     var insider = users.insider;
