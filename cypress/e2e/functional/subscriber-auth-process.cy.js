@@ -60,7 +60,7 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         cy.wait('@ajaxPost');
         //forgot password doesn't need recpatcha on dev?
         cy.get('form#wp_pass_reset ').should('contain.text', 'If a matching account was found, you will receive an email with password reset instructions. Please check your spam folder if you do not receive an email'); //p.response-message
-
+//https://www.dailymaverick.co.za/dm-admin/?action=rp&key=IL91aoQuzlRCXjR7Ope7&login=info@leadfundi.com&wp_lang=en_US
     });
 
 });
