@@ -5,52 +5,52 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1677657424,
+    "expiry": 1678094894,
     "domain": ".dev.dailymaverick.co.za"
   },
   {
     "name": "_sotmsid",
-    "value": "0:lepdw9ts:vW9pXdAvxhEOV0mwt6jj7o~9AcKiGdvi",
+    "value": "0:lewmcscd:f0BgcLDGfYBNBV8rL4iATz5AEXaMEIM9",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1677659193.860903,
+    "expiry": 1678096664.512358,
     "domain": "dev.dailymaverick.co.za"
   },
   {
     "name": "_ain_cid",
-    "value": "1677657399013.38524041.98449233",
+    "value": "1678094869386.283773439.98649263",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1677659199,
+    "expiry": 1678096669,
     "domain": "dev.dailymaverick.co.za"
   },
   {
     "name": "charitable_session",
-    "value": "6db4cb41d1df516f9908a5a1035ff793||86400||82800",
+    "value": "d5b024e1d452e8d73459d856e0faf688||86400||82800",
     "path": "/sign-in",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1677743791,
+    "expiry": 1678181262,
     "domain": "dev.dailymaverick.co.za"
   },
   {
     "name": "charitable_session",
-    "value": "869fa45e3cee65bbc3f9a7efd863eee9||86400||82800",
+    "value": "69c1c14ea46b7db29931a79ac82864c7||86400||82800",
     "path": "/opinionista/2022-06-30-after-zondo-the-national-prosecuting-authority-dare-not-fail-the-nation",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1677743798,
+    "expiry": 1678181268,
     "domain": "dev.dailymaverick.co.za"
   },
   {
     "name": "_gid",
-    "value": "GA1.4.1691602371.1677657399",
+    "value": "GA1.4.514431204.1678094869",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1677743799,
+    "expiry": 1678181269,
     "domain": ".dev.dailymaverick.co.za"
   },
   {
@@ -59,7 +59,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1678262198.163696,
+    "expiry": 1678699668.873672,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -68,7 +68,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1678262198.163708,
+    "expiry": 1678699668.873682,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -77,16 +77,16 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1678262198.163722,
+    "expiry": 1678699668.873693,
     "domain": "dev.dailymaverick.co.za"
   },
   {
     "name": "_gcl_au",
-    "value": "1.1.1761078127.1677657392",
+    "value": "1.1.1946081781.1678094863",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1685433392,
+    "expiry": 1685870863,
     "domain": ".dailymaverick.co.za"
   },
   {
@@ -95,7 +95,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1709193392,
+    "expiry": 1709630862,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -104,7 +104,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1709193392,
+    "expiry": 1709630862,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -113,7 +113,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1709193392,
+    "expiry": 1709630862,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -122,7 +122,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1709193392,
+    "expiry": 1709630862,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -131,7 +131,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1709193392,
+    "expiry": 1709630862,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -140,7 +140,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1709193392,
+    "expiry": 1709630862,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -149,7 +149,7 @@
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1709193393,
+    "expiry": 1709630863,
     "domain": "dev.dailymaverick.co.za"
   },
   {
@@ -158,57 +158,57 @@
     "path": "/",
     "secure": true,
     "httpOnly": false,
-    "expiry": 1709193398.163583,
+    "expiry": 1709630868.873561,
     "domain": "dev.dailymaverick.co.za"
   },
   {
     "name": "_ga",
-    "value": "GA1.1.1451713098.1677657389",
+    "value": "GA1.1.2027899969.1678094859",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1712217389.398418,
+    "expiry": 1712654859.028669,
     "domain": ".dailymaverick.co.za"
   },
   {
     "name": "_sotmpid",
-    "value": "0:lepdw9ts:fYyWYsSa7whp8oNdT~AbSzFK8eJedqtH",
+    "value": "0:lewmcscd:qXwzLaNxci0ysdYDPwkDYLzzY43Wu04l",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1712217393.860968,
+    "expiry": 1712654864.512416,
     "domain": "dev.dailymaverick.co.za"
   },
   {
     "name": "_ain_uid",
-    "value": "1677657399013.933615371.4746196",
+    "value": "1678094869386.299149370.7787747",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1712217399.013551,
+    "expiry": 1712654869.386888,
     "domain": "dev.dailymaverick.co.za"
   },
   {
     "name": "_ga",
-    "value": "GA1.4.1451713098.1677657389",
+    "value": "GA1.4.2027899969.1678094859",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1712217399.133626,
+    "expiry": 1712654869.394124,
     "domain": ".dev.dailymaverick.co.za"
   },
   {
     "name": "_ga_Y7XD5FHQVG",
-    "value": "GS1.1.1677657392.1.1.1677657399.0.0.0",
+    "value": "GS1.1.1678094863.1.1.1678094869.0.0.0",
     "path": "/",
     "secure": false,
     "httpOnly": false,
-    "expiry": 1712217399.30129,
+    "expiry": 1712654869.395679,
     "domain": ".dailymaverick.co.za"
   },
   {
     "name": "wordpress_sec_726ade251d404c3d0e9dbce87738b2ec",
-    "value": "mr_subscriber%40dailymaverick.co.za%7C1709193395%7CMysYINp0dfwg7U2LdmeMOaweK5BMFb1rkw2ZQqLeqFz%7Cca74da3fb91027f1b04b170e4590d6fee91c11efb82c6d149999b9fe991f4713",
+    "value": "mr_subscriber%40dailymaverick.co.za%7C1709630866%7CMHWBIdIZYS85faXRxBeyMI5WplvJTLYjHbanimVDLfN%7Cabe541e1ae21430636c4cbe80d5b7c9ddde0152e377f040261ca7a0227d2580d",
     "path": "/wp-content/plugins",
     "secure": true,
     "httpOnly": true,
@@ -217,7 +217,7 @@
   },
   {
     "name": "wordpress_logged_in_726ade251d404c3d0e9dbce87738b2ec",
-    "value": "mr_subscriber%40dailymaverick.co.za%7C1709193395%7CMysYINp0dfwg7U2LdmeMOaweK5BMFb1rkw2ZQqLeqFz%7Cc07e46b9902e59b97ae332ea29193c095c72c2ac260308eb7fb3ce7e8cd285f1",
+    "value": "mr_subscriber%40dailymaverick.co.za%7C1709630866%7CMHWBIdIZYS85faXRxBeyMI5WplvJTLYjHbanimVDLfN%7Caf1be169a24d8f99b597351405d692a3e88dbe80a94d44c052b6f541c0ed1961",
     "path": "/wp-admin",
     "secure": true,
     "httpOnly": true,
@@ -226,7 +226,7 @@
   },
   {
     "name": "wordpress_sec_726ade251d404c3d0e9dbce87738b2ec",
-    "value": "mr_subscriber%40dailymaverick.co.za%7C1709193395%7CMysYINp0dfwg7U2LdmeMOaweK5BMFb1rkw2ZQqLeqFz%7Cca74da3fb91027f1b04b170e4590d6fee91c11efb82c6d149999b9fe991f4713",
+    "value": "mr_subscriber%40dailymaverick.co.za%7C1709630866%7CMHWBIdIZYS85faXRxBeyMI5WplvJTLYjHbanimVDLfN%7Cabe541e1ae21430636c4cbe80d5b7c9ddde0152e377f040261ca7a0227d2580d",
     "path": "/",
     "secure": true,
     "httpOnly": true,
@@ -243,7 +243,7 @@
   },
   {
     "name": "revengine_browser_id",
-    "value": "0ae7b36a75315c257cc623b5ae7968745ff9144c",
+    "value": "4a4913566f35034417db84ea64417a06773f8cad",
     "path": "/",
     "secure": false,
     "httpOnly": false,
@@ -251,7 +251,7 @@
   },
   {
     "name": "ARRAffinity",
-    "value": "09d99ae618e352553131cf0036efb03e2202dca6ac82e360483d3481cd8517f0",
+    "value": "c2dc5cdfd83d18a581d6889c06f1e64b4cf50672e89dc41e380fd2aab9a84769",
     "path": "/",
     "secure": true,
     "httpOnly": true,
@@ -259,7 +259,7 @@
   },
   {
     "name": "ARRAffinitySameSite",
-    "value": "09d99ae618e352553131cf0036efb03e2202dca6ac82e360483d3481cd8517f0",
+    "value": "c2dc5cdfd83d18a581d6889c06f1e64b4cf50672e89dc41e380fd2aab9a84769",
     "path": "/",
     "secure": true,
     "httpOnly": true,
