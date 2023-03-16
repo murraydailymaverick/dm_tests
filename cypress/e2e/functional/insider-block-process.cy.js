@@ -13,7 +13,7 @@ context( 'Create a new user via the API and ads a user meta' , function () {
         cy.intercept('POST', 'https://sandbox.payfast.co.za/eng/method/WalletFunds/*').as('ajaxWalletFunds');
         cy.visit( Cypress.env('baseUrl') +'/support-daily-maverick/?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
 
-        cy.get('.components-button-group .components-button').click();
+        cy.get('.components-button-group .components-button:first-child').click();
         cy.get('.hero-submit-button.selected').click();
         cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/checkout/' );
         cy.get('input#billing_first_name').type(insider.firstname);
