@@ -7,7 +7,9 @@ a repo to hold the DM tests.
 
 ## The Percy Project for dev.dailymaverick.co.za
 [percy.io](https://percy.io/9f297d8f/https-dev.dailymaverick.co.za-)
-
+open up the terminal. get token from https://percy.io/9f297d8f/https-dev.dailymaverick.co.za-/settings
+`export PERCY_TOKEN=<your token here>`
+`npm run cypress:percy`
 
 ## cookies
 The admin logins work on setting cookies to bypass the login process and cloud flair authentication - 
@@ -34,7 +36,7 @@ this refers to a script in package.json using the local config file.
 or 
 `$(npm bin)/cypress open --config-file dev.cypress.config.js`
 
-##Cypress 
+## Cypress 
 the configuration fie is for the git hub actions using secrets
 `$(npm bin)/cypress open` or `npx cypress open` and test as per https://docs.cypress.io/guides/end-to-end-testing/testing-your-app
 By default we use the dev environment to test off. 
