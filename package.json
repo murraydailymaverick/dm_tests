@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx cypress run --browser chrome --spec 'cypress/integration/examples/ultraFastGrid.spec.js'",
-    "cypress:percy": "percy exec -- cypress run --spec cypress/e2e/percy/frontend-tests.cy.js --config-file dev.cypress.config.js ",
+    "cypress:percy": "percy exec -- cypress run --spec cypress/e2e/percy/frontend-tests.cy.js,cypress/e2e/percy/elementor-pages.cy.js --config-file dev.cypress.config.js ",
     "cypress:open": "node_modules/.bin/cypress open --config-file dev.cypress.config.js",
     "cypress:open_local": "node_modules/.bin/cypress open --config-file local.cypress.config.js",
     "cypress:open_internal": "node_modules/.bin/cypress open --config-file internal.cypress.config.js",
