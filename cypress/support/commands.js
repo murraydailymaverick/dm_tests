@@ -171,6 +171,19 @@ Cypress.Commands.add("maunallyCreateInsider", (user) => {
 });
 
 Cypress.Commands.add("deleteUser", (user) => {
+    cy.request({
+        method: 'POST',
+        url: Cypress.env('baseUrl')+'/wp-json/dm_rest_api/v1/users/delete',
+        auth: {
+            'bearer': Cypress.env('authtoken')
+        },
+        body: {
+            email: user.email
+        },
+    })
+})
+
+Cypress.Commands.add("OlddeleteUser", (user) => {
     //cy.intercept('POST', '/cdn-cgi/rum?').as('ajaxcdn-cgi');
     //cy.intercept('GET', 'https://public-api.wordpress.com/rest/v1.1/me').as('restme');
     //cy.intercept('GET', 'https://public-api.wordpress.com/rest/v1.1/notifications/').as('restnotifications');
