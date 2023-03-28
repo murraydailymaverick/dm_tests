@@ -17,7 +17,7 @@ jobs:
         run: echo "$GITHUB_SHA"
       - name: Decrypt GPG file
         uses: actions/checkout@v2
-        run: gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.GPG_PASSPHRASE }}" --output  ${GITHUB_WORKSPACE}/adminUserLoginCookiesFromCypress.json ${GITHUB_WORKSPACE}/adminUserLoginCookiesFromCypress.json.gpg
+        run: gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.GPG_PASSPHRASE }}" --output  ${GITHUB_WORKSPACE}/dev.adminUserLoginCookiesFromCypress.json ${GITHUB_WORKSPACE}/dev.adminUserLoginCookiesFromCypress.json.gpg
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
