@@ -1,4 +1,5 @@
 node_modules
+ignore
 .idea
 cypress.config.js
 dev.cypress.config.js
@@ -17,6 +18,19 @@ internal.insiderUserLoginCookiesFromCypress.json
 internal.adminUserLoginCookiesFromCypress.json
 internal.readerUserLoginCookiesFromCypress.json
 internal.subscriberUserLoginCookiesFromCypress.json
+
+dev.insiderUserLoginCookiesFromCypress.json
+dev.subscriberUserLoginCookiesFromCypress.json
+dev.readerUserLoginCookiesFromCypress.json
+
+local.subscriberUserLoginCookiesFromCypress.json
+adminUserLoginCookiesFromCypress.json
+dev.adminUserLoginCookiesFromCypress.json
+dev.insiderUserLoginCookiesFromCypress.json
+dev.readerUserLoginCookiesFromCypress.json
+dev.subscriberUserLoginCookiesFromCypress.json
+dev.adminUserLoginCookiesFromCypress.json
+local.subscriberUserLoginCookiesFromCypress.json
 
 applitools.config.js
 /cypress/screenshots/
