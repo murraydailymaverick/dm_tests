@@ -57,10 +57,11 @@ Cypress.Commands.add("manualWordPressAdminLogin", () => {
 });
 
 Cypress.Commands.add("checkLoggedIn", (user) => {
-    cy.get('button.navbar-toggle').click()
-    cy.get('li.login-mobile-profile a').should('have.length', 6)
-    cy.get('li.login-mobile-profile a.profile-link').should('contain.text', user.username).click();
-    cy.get('ul.mobile-social-wrap li.login-mobile-profile ul.dropdown-menu li').should('have.length', 7);
+    cy.get('button.navbar-toggle-right').click()
+    cy.get('.mail_login_engine li a').should('have.length', 5)
+    cy.get('.mail_login_engine h4').should('have.length', 3)
+    cy.get('.mail_login_engine h3').should('contain.text', user.username).click();
+
 });
 
 Cypress.Commands.add("manualLogIn", (user) => {
