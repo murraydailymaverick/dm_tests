@@ -81,9 +81,10 @@ describe('tests the commenting functions', () => {
         cy.get('input#user-segment0').should('not.be.checked' );
         cy.get('input.subscribe-btn').scrollIntoView().click();
         cy.wait('@ajaxPost');
-        cy.get('.toast-message').should('be.visible' )//.should('have.text', 'Newsletter Preferences updated' );
-        cy.get('span.heading-step').should( "have.text", "Step 3 of 3" );
-        cy.get('a.btn-full').should('have.attr', 'href').and('include', '/insider/').then((href) => {
+        cy.get('.toast-message').should('be.visible' ).should('have.text', 'Newsletter Preferences updated' );
+        cy.get('.toast-close-button').click();
+        //cy.get('span.heading-step').should( "have.text", "Step 3 of 3" );
+        cy.get('a.btn-blue').should('have.attr', 'href').and('include', '/insider/').then((href) => {
             cy.visit( Cypress.env('baseUrl') + href)
             cy.location('pathname').should( 'contain', '/insider/' );
             cy.getWordPressCookies('subscriber');
