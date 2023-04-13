@@ -117,10 +117,7 @@ describe('tests the commenting functions', () => {
         cy.get('input#first_name').should("have.value",subscriber.firstname);
 
 
-        //Membership Details
 
-        //Ad Preference
-      //  cy.get('.adfree-toggle-check').should( "have.length", 1 );
 
         //Newsletter Preferences
        // cy.get('input#tbp_user_firstname').should("have.value",subscriber.firstname);
@@ -131,7 +128,6 @@ describe('tests the commenting functions', () => {
         //Email Alerts
         cy.get('.email-preferences').should( "have.length", 6 );
 
-        //check the membership page
 
     });
 
@@ -159,14 +155,28 @@ describe('tests the commenting functions', () => {
         //cy.wait(1000)
         cy.location('host').should( 'contain', 'payfast' );
         cy.get('#pay-with-wallet').click();
+        cy.wait(8000);
         cy.wait('@ajaxWalletFunds');
-        cy.wait(50000);
+
         cy.location('pathname').should( 'contain', 'membership-thank-you' );
         cy.get('.proceed-btn').click();
 
+
+        //check the membership page
         cy.location('pathname').should( 'contain', '/manage-membership/' );
         cy.get('#membership-details > div:nth-child(1) > div.col-md-7.col-xs-9').should('contain.text', '200' );
         cy.get('#membership-details > div:nth-child(3) > div.col-md-6.col-xs-6.subscription-status').should('contain.text', 'Active' );
+
+        cy.visit( Cypress.env('baseUrl')+'/edit-my-profile/');
+        cy.location('pathname').should( 'contain', '/edit-my-profile/' );
+        cy.wait('@ajaxPost');
+        //Membership Details
+        cy.get('#Membership_Details').should( "have.length", 1 );
+        cy.get('#manage-membership-holder .btn-blue').should( "have.length", 5 );
+
+        //Ad Preference
+        cy.get('.adfree-toggle-check').should( "have.length", 1 );
+
     });
 
 
@@ -283,8 +293,9 @@ describe('tests the commenting functions', () => {
         cy.wait(5000);
         cy.location('host').should( 'contain', 'payfast' );
         cy.get('#pay-with-wallet').click();
-        cy.wait('@ajaxWalletFunds');
         cy.wait(8000);
+        cy.wait('@ajaxWalletFunds');
+
         // cy.location('pathname').should( 'contain', '/maverick-portal/' );
         cy.location('pathname').should( 'contain', '/manage-membership/' );
         // cy.wait('@ajaxPost');
