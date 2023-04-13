@@ -48,6 +48,7 @@ Cypress.Commands.add("manualWordPressAdminLogin", () => {
     //cy.clearWordPressCookies();
     cy.visit(Cypress.env('users').admin.adminLoginUrl);
     // if(Cypress.env('dev')==='dev'){
+    // if(Cypress.env('dev')==='dev'){
     //     cy.get( '.jetpack-sso-toggle .wpcom' ).click();
     // }
     cy.get('#user_login').wait(200).type(Cypress.env('users').admin.username, {force: true});
@@ -57,11 +58,12 @@ Cypress.Commands.add("manualWordPressAdminLogin", () => {
 });
 
 Cypress.Commands.add("checkLoggedIn", (user) => {
-    cy.get('button.navbar-toggle-right').click()
-    cy.get('.mail_login_engine li a').should('have.length', 5)
-    cy.get('.mail_login_engine h4').should('have.length', 3)
-    cy.get('.mail_login_engine h3').should('contain.text', user.username).click();
-
+    //scroll
+    cy.get('.footer').scrollIntoView().click();
+    cy.get('button.navbar-toggle-right').click();
+    cy.get('.mail_login_engine li a').should('have.length', 5);
+    cy.get('.mail_login_engine h4').should('have.length', 3);
+    cy.get('.mail_login_engine h3').should('contain.text', user.username);
 });
 
 Cypress.Commands.add("manualLogIn", (user) => {
