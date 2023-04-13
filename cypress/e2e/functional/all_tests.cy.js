@@ -138,7 +138,8 @@ describe('tests the commenting functions', () => {
     it( 'logs in as a subscriber, goes to the /insider signup and pays via sandbox. Checks active status', function(){
         cy.intercept('POST', '/ossc-api/create-order/').as('ajaxCreateOrder');
         cy.intercept('POST', '/ossc-api/generate-payment-gateway-signature/').as('ajaxCreateSignature');
-        cy.intercept('POST', 'https://sandbox.payfast.co.za/eng/method/WalletFunds/*').as('ajaxWalletFunds');
+        cy.intercept('POST', '**/eng/method/WalletFunds/*').as('ajaxWalletFunds');
+        //cy.intercept('POST', 'https://sandbox.payfast.co.za/eng/method/WalletFunds/*').as('ajaxWalletFunds');
         cy.setWordPressCookies('subscriber');
         cy.visit(Cypress.env('baseUrl'));
         cy.get('.footer').scrollIntoView();
@@ -155,8 +156,9 @@ describe('tests the commenting functions', () => {
         //cy.wait(1000)
         cy.location('host').should( 'contain', 'payfast' );
         cy.get('#pay-with-wallet').click();
-        cy.wait(8000);
+
         cy.wait('@ajaxWalletFunds');
+        cy.wait(50000);
 
         cy.location('pathname').should( 'contain', 'membership-thank-you' );
         cy.get('.proceed-btn').click();
@@ -276,7 +278,8 @@ describe('tests the commenting functions', () => {
     it( 'registers a new insider via the insider gutenburg block, pays via payfast.', function(){
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
         cy.intercept('POST',  '/?wc-ajax=checkout&elementor_page_id=').as('ajaxelementor_page_id');
-        cy.intercept('POST', 'https://sandbox.payfast.co.za/eng/method/WalletFunds/*').as('ajaxWalletFunds');
+      //  cy.intercept('POST', 'https://sandbox.payfast.co.za/eng/method/WalletFunds/*').as('ajaxWalletFunds');
+        cy.intercept('POST', '**/eng/method/WalletFunds/*').as('ajaxWalletFunds');
         //todo test the utm tags
         cy.visit( Cypress.env('baseUrl') +'/support-daily-maverick/?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
         cy.get('.components-button-group .components-button:first-child').click();
@@ -293,9 +296,9 @@ describe('tests the commenting functions', () => {
         cy.wait(5000);
         cy.location('host').should( 'contain', 'payfast' );
         cy.get('#pay-with-wallet').click();
-        cy.wait(8000);
-        cy.wait('@ajaxWalletFunds');
 
+        cy.wait('@ajaxWalletFunds');
+        cy.wait(50000);
         // cy.location('pathname').should( 'contain', '/maverick-portal/' );
         cy.location('pathname').should( 'contain', '/manage-membership/' );
         // cy.wait('@ajaxPost');
