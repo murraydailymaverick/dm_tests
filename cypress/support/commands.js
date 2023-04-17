@@ -14,6 +14,15 @@
 
 import '@percy/cypress'
 
+Cypress.Commands.add("authWithCredentials", (url = '') => {
+    cy.visit(url, {
+        auth: {
+            username: 'dmdev',
+            password: 'D@ily168!'
+        }
+    })
+});
+
 Cypress.Commands.add("clearWordPressCookies", () => {
     cy.clearCookie('wordpress_a8b94154380982c3184a469b8aa525c6');
     cy.clearCookie('wordpress_a8b94154380982c3184a469b8aa525c6');
