@@ -4,12 +4,11 @@ describe('tests the commenting functions', () => {
     var insider = users.insider;
 
     before(function () {
-        cy.authWithCredentials(Cypress.env('authUrl'));
         cy.clearWordPressCookies();
     });
 
     beforeEach(function () {
-
+        cy.authWithCredentials(Cypress.env('authUrl'));
     });
 
     // it( 'checks the check for cookie bar and dismisses it.', function(){
