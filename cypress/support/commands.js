@@ -14,15 +14,24 @@
 
 import '@percy/cypress'
 
-Cypress.Commands.add("authWithCredentials", (url = '') => {
-     cy.visit(url);
-    // cy.visit(url, {
-    //     auth: {
-    //         username: 'dmdev',
-    //         password: 'D@ily168!'
-    //     }
-    // })
+Cypress.Commands.overwrite('visit',  (originalFn, url, options) => {
+    options = options || {}
+    options.auth = {
+        username: Cypress.env('credentials').username,
+        password: Cypress.env('credentials').password
+    }
+    return originalFn(url, options);
 });
+
+
+// Cypress.Commands.add("authWithCredentials", (url = '') => {
+//     cy.visit(url, {
+//         auth: {
+//             username: credentials,
+//             password: 'D@ily168!'
+//         }
+//     })
+// });
 
 Cypress.Commands.add("clearWordPressCookies", () => {
     cy.clearCookie('wordpress_a8b94154380982c3184a469b8aa525c6');
@@ -184,16 +193,17 @@ Cypress.Commands.add("maunallyCreateInsider", (user) => {
 });
 
 Cypress.Commands.add("deleteUser", (user) => {
-    cy.request({
-        method: 'POST',
-        url: Cypress.env('baseUrl')+'/wp-json/dm_rest_api/v1/users/delete',
-        auth: {
-            'bearer': Cypress.env('authtoken')
-        },
-        body: {
-            email: user.email
-        },
-    })
+    let options = {}
+    options.auth = {
+        username: Cypress.env('credentials').username,
+        password: Cypress.env('credentials').password
+    }
+    options.body = {
+        email: user.email
+    }
+    options.method = 'POST';
+    options.url = Cypress.env('baseUrl')+'/wp-json/dm_rest_api/v1/users/delete';
+    cy.request( options );
 })
 
 Cypress.Commands.add("OlddeleteUser", (user) => {

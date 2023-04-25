@@ -7,9 +7,9 @@ describe('tests the commenting functions', () => {
         cy.clearWordPressCookies();
     });
 
-    beforeEach(function () {
-        cy.authWithCredentials(Cypress.env('authUrl'));
-    });
+    // beforeEach(function () {
+    //     cy.authWithCredentials(Cypress.env('authUrl'));
+    // });
 
     // it( 'checks the check for cookie bar and dismisses it.', function(){
     //     cy.visit( Cypress.env('loginUrl') );
