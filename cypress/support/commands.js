@@ -194,15 +194,16 @@ Cypress.Commands.add("maunallyCreateInsider", (user) => {
 
 Cypress.Commands.add("deleteUser", (user) => {
     let options = {}
+    options.method = 'POST';
+    options.url = Cypress.env('baseUrl')+'/wp-json/dm_rest_api/v1/users/delete';
     options.auth = {
         username: Cypress.env('credentials').username,
         password: Cypress.env('credentials').password
     }
     options.body = {
-        email: user.email
+        email: user.email,
+        authorization: Cypress.env('authtoken')
     }
-    options.method = 'POST';
-    options.url = Cypress.env('baseUrl')+'/wp-json/dm_rest_api/v1/users/delete';
     cy.request( options );
 })
 
