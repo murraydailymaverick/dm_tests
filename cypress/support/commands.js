@@ -207,6 +207,21 @@ Cypress.Commands.add("deleteUser", (user) => {
     cy.request( options );
 })
 
+Cypress.Commands.add("setCode", (user) => {
+    let options = {}
+    options.method = 'GET';
+    options.url = Cypress.env('baseUrl')+'/wp-json/dm_rest_api/v1/set_test_code';
+    options.auth = {
+        username: Cypress.env('credentials').username,
+        password: Cypress.env('credentials').password
+    }
+    options.body = {
+        email: user.email,
+        authorization: Cypress.env('authtoken')
+    }
+    cy.request( options );
+})
+
 Cypress.Commands.add("OlddeleteUser", (user) => {
     //cy.intercept('POST', '/cdn-cgi/rum?').as('ajaxcdn-cgi');
     //cy.intercept('GET', 'https://public-api.wordpress.com/rest/v1.1/me').as('restme');

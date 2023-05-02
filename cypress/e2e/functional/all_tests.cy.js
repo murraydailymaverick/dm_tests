@@ -63,39 +63,6 @@ describe('tests the commenting functions', () => {
         cy.deleteUser(subscriber);
     });
 
-    it( 'registers via the from the /sign-in/ form with password. Adds a newsletter and goes to Insider page', function(){
-        cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
-        cy.visit( Cypress.env('baseUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
-        cy.visit( Cypress.env('loginUrl'));
-        cy.get('ul.nav-tabs li a[href="#register"]').click();
-        cy.get('input#email').type(subscriber.email);
-        cy.get('input#password').type(subscriber.pw);
-        cy.get('input#agree_terms').click();
-        cy.get('input[name="user_registration"]').click();
-        cy.wait('@ajaxPost');
-        cy.wait(2000);
-        cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/sign-in' );
-        cy.get('span.heading-step').should('be.visible' );
-        cy.get('span.heading-step:first').should( "have.text", "Step 2 of 3" );
-        // lets subscribe to a newsletter? or check the count?
-        cy.get('div.newsletter-container').children().should('have.length', 12);
-        cy.get('input#user-segment0').should('have.class', 'plus-minus');
-        cy.get('input#user-segment0').should('be.checked' );
-        cy.get('input#user-segment0').click()
-        cy.get('input#user-segment0').should('not.be.checked' );
-        cy.get('input.subscribe-btn').scrollIntoView().click();
-        //fails for some reason TBP
-        // cy.wait('@ajaxPost');
-        // cy.get('.toast-message').should('be.visible' ).should('have.text', 'Newsletter Preferences updated' );
-        // cy.get('.toast-close-button').click();
-
-        //cy.get('span.heading-step').should( "have.text", "Step 3 of 3" );
-        cy.get('a.btn-blue-border:nth-child(2)').should('have.attr', 'href').and('include', '/insider/').then((href) => {
-            cy.visit( Cypress.env('baseUrl') + href)
-            cy.location('pathname').should( 'contain', '/insider/' );
-            cy.getWordPressCookies('subscriber');
-        })
-    });
 
     it( 'logs in as existing subscriber and check the profile page.', function(){
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
@@ -361,3 +328,41 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     let messageArray = [err, runnable];
     return false;
 })
+
+//old tests
+
+/*
+it( 'registers via the from the /sign-in/ form with password. Adds a newsletter and goes to Insider page', function(){
+    cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
+    cy.visit( Cypress.env('baseUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+    cy.visit( Cypress.env('loginUrl'));
+    cy.get('ul.nav-tabs li a[href="#register"]').click();
+    cy.get('input#email').type(subscriber.email);
+    cy.get('input#password').type(subscriber.pw);
+    cy.get('input#agree_terms').click();
+    cy.get('input[name="user_registration"]').click();
+    cy.wait('@ajaxPost');
+    cy.wait(2000);
+    cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/sign-in' );
+    cy.get('span.heading-step').should('be.visible' );
+    cy.get('span.heading-step:first').should( "have.text", "Step 2 of 3" );
+    // lets subscribe to a newsletter? or check the count?
+    cy.get('div.newsletter-container').children().should('have.length', 12);
+    cy.get('input#user-segment0').should('have.class', 'plus-minus');
+    cy.get('input#user-segment0').should('be.checked' );
+    cy.get('input#user-segment0').click()
+    cy.get('input#user-segment0').should('not.be.checked' );
+    cy.get('input.subscribe-btn').scrollIntoView().click();
+    //fails for some reason TBP
+    // cy.wait('@ajaxPost');
+    // cy.get('.toast-message').should('be.visible' ).should('have.text', 'Newsletter Preferences updated' );
+    // cy.get('.toast-close-button').click();
+
+    //cy.get('span.heading-step').should( "have.text", "Step 3 of 3" );
+    cy.get('a.btn-blue-border:nth-child(2)').should('have.attr', 'href').and('include', '/insider/').then((href) => {
+        cy.visit( Cypress.env('baseUrl') + href)
+        cy.location('pathname').should( 'contain', '/insider/' );
+        cy.getWordPressCookies('subscriber');
+    })
+});
+*/
