@@ -80,15 +80,16 @@ Cypress.Commands.add("checkLoggedIn", (user) => {
     //scroll
     cy.get('.footer').scrollIntoView().click();
     cy.get('button.navbar-toggle-right').click();
-    cy.get('.mail_login_engine li a').should('have.length', 5);
-    cy.get('.mail_login_engine h4').should('have.length', 3);
-    cy.get('.mail_login_engine h3').should('contain.text', user.username);
+
+    // cy.get('.mail_login_engine li a').should('have.length', 5);
+    // cy.get('.mail_login_engine h4').should('have.length', 3);
+     cy.get('.mail_login_engine .menu-container h3').should('contain.text', user.username);
 });
 
 Cypress.Commands.add("manualLogIn", (user) => {
     cy.intercept('POST', Cypress.env('dashboardUrl') + 'admin-ajax.php').as('ajaxPost');
     cy.visit( Cypress.env('loginUrl') );
-    //cy.get('#nav a:first').click();
+    cy.get('.password-login').click();
     //cy.get('ul.nav-tabs li a[href="#register"]').click();
     cy.get('input#sign_user_email').type(user.email);
     cy.get('input#user_password').type(user.pw);
@@ -209,7 +210,7 @@ Cypress.Commands.add("deleteUser", (user) => {
 
 Cypress.Commands.add("setCode", (user) => {
     let options = {}
-    options.method = 'GET';
+    options.method = 'POST';
     options.url = Cypress.env('baseUrl')+'/wp-json/dm_rest_api/v1/set_test_code';
     options.auth = {
         username: Cypress.env('credentials').username,

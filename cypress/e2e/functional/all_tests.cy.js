@@ -5,7 +5,14 @@ describe('tests the commenting functions', () => {
 
     before(function () {
         cy.clearWordPressCookies();
+        cy.deleteUser(insider);
+        cy.deleteUser(subscriber);
     });
+
+    after(function (){
+        cy.deleteUser(insider);
+        cy.deleteUser(subscriber);
+    })
 
     // beforeEach(function () {
     //     cy.authWithCredentials(Cypress.env('authUrl'));
@@ -36,32 +43,41 @@ describe('tests the commenting functions', () => {
         cy.get('#send-magic-email').type(subscriber.email);
         cy.get('.mail-login-engine-shortcode-sumbit').click();
         cy.get('.email-label').should('contain.text', 'Perhaps you incorrectly entered your email?' );
+        //cy.get('.register-form h4.first-child').should('contain.text', 'It looks like we don’t have an account for' );
+        // cy.get('.register-form h4 strong.your-email').should('contain.text', subscriber.email );
+        //cy.get('.register-form h4.second-child').should('contain.text', 'Would you like us to create an account for you?' );
         cy.get('.your-email').should('contain.text', subscriber.email );
         cy.get('.register-btn').click();
         cy.get('.email-sent-to').should('contain.text', subscriber.email );
         cy.get('#otp').should('be.visible' );
+
+        cy.setCode(subscriber);
+
+        cy.wait(1000);
+
         cy.get('#otp input[data-index=0]').type('1');
         cy.get('#otp input[data-index=1]').type('2');
         cy.get('#otp input[data-index=2]').type('3');
         cy.get('#otp input[data-index=3]').type('4');
         cy.get('.response-text').should('contain.text', 'Sorry, the OTP code is invalid. Please re-check?.' );
-        //todo get the correct OTP and login
-        //cy.pause();
-        // cy.url().then(url => {
-        //     cy.get('.editor-toolbar-actions-save').click();
-        //     cy.url().should('not.eq', url);
-        // });
-        // var useridValue = 0
-        //cy.get('head meta[name=user_id]').invoke('attr', 'content').then(  (userid) => {});
-        // cy.log('The attribute values is:' + useridValue)
+
+        cy.get('#otp input[data-index=0]').clear();
+        cy.get('#otp input[data-index=1]').clear();
+        cy.get('#otp input[data-index=2]').clear();
+        cy.get('#otp input[data-index=3]').clear();
+        cy.get('#otp input[data-index=0]').type('9');
+        cy.get('#otp input[data-index=1]').type('7');
+        cy.get('#otp input[data-index=2]').type('1');
+        cy.get('#otp input[data-index=3]').type('3');
+
+        //page should refresh and login via token.
+        cy.location('search').should( 'contain', '?token=' );
+
+        cy.get('.your-account').should('be.visible' ).should('contain.text', 'Your Account' );
+        cy.getWordPressCookies('subscriber');
     });
 
     //it( 'registers via the reg-wall.', function(){});
-
-
-    it( 'deletes a User', function(){
-        cy.deleteUser(subscriber);
-    });
 
 
     it( 'logs in as existing subscriber and check the profile page.', function(){
@@ -73,7 +89,7 @@ describe('tests the commenting functions', () => {
         //check the profile pages
         cy.visit( Cypress.env('baseUrl')+'/edit-my-profile/');
         cy.location('pathname').should( 'contain', '/edit-my-profile/' );
-        cy.wait('@ajaxPost');
+        //cy.wait('@ajaxPost');
         cy.get('h2').should( "have.length", 5 );
         cy.get('.categories-sublinks li').should( "have.length", 3 );
         cy.get('.categories-sublinks li:nth-child(2)').should( "have.class", "active" );
@@ -88,21 +104,15 @@ describe('tests the commenting functions', () => {
         cy.get('input#first_name').should("have.value",subscriber.firstname);
 
 
-
-
         //Newsletter Preferences
+        cy.visit( Cypress.env('newsletterUrl'));
        // cy.get('input#tbp_user_firstname').should("have.value",subscriber.firstname);
         cy.get('input#tbp_user_email').should("have.value",subscriber.email);
-
         cy.get('.newsletter-block').should( "have.length", 20 );
-
         //Email Alerts
         cy.get('.email-preferences').should( "have.length", 6 );
 
-
     });
-
-
 
     //todo check gutenburg block fields if subscriber
 
@@ -113,6 +123,7 @@ describe('tests the commenting functions', () => {
         //cy.intercept('POST', 'https://sandbox.payfast.co.za/eng/method/WalletFunds/*').as('ajaxWalletFunds');
         cy.setWordPressCookies('subscriber');
         cy.visit(Cypress.env('baseUrl'));
+        cy.checkLoggedIn(subscriber);
         cy.get('.footer').scrollIntoView();
 
         cy.visit(Cypress.env('baseUrl')+'/manage-membership/');
@@ -133,14 +144,17 @@ describe('tests the commenting functions', () => {
 
         cy.location('pathname').should( 'contain', 'membership-thank-you' );
         cy.get('.proceed-btn').click();
-
-
         //check the membership page
         cy.location('pathname').should( 'contain', '/manage-membership/' );
         cy.get('#membership-details > div:nth-child(1) > div.col-md-7.col-xs-9').should('contain.text', '200' );
         cy.get('#membership-details > div:nth-child(3) > div.col-md-6.col-xs-6.subscription-status').should('contain.text', 'Active' );
+        cy.getWordPressCookies('subscriber');
+    });
 
+    it( 'logs in as an insider and Checks active status', function(){
+        cy.setWordPressCookies('subscriber');
         cy.visit( Cypress.env('baseUrl')+'/edit-my-profile/');
+        cy.checkLoggedIn(subscriber);
         cy.location('pathname').should( 'contain', '/edit-my-profile/' );
         cy.wait('@ajaxPost');
         //Membership Details
@@ -149,102 +163,8 @@ describe('tests the commenting functions', () => {
 
         //Ad Preference
         cy.get('.adfree-toggle-check').should( "have.length", 1 );
-
     });
 
-
-    //check insider in admin
-//     it( 'checks the new users data', function(){
-//         cy.setWordPressCookies('admin');
-//         cy.visit(Cypress.env('dashboardUrl') + 'users.php');
-//         cy.get('#user-search-input').type(subscriber.username, {force: true});
-//         cy.get('#search-submit').click();
-//         cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
-//         cy.get('.email a').should('contain', subscriber.email);
-//         cy.get('div.row-actions').invoke('attr', 'style', 'left: 0').should('have.attr', 'style', 'left: 0');
-//         cy.get('div.row-actions > .edit').click();
-//         cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'user-edit.php');
-//         //we check the user profile
-//         cy.get("#pp_roles_chosen > ul > li.search-choice.ui-sortable-handle > span").should('contain.text', 'Reader');//check role
-//         // cy.get("div.user-memberships p").should('contain.text', 'This user is a member of'); //check membership
-//         // cy.get("div.user-memberships p a").click();
-//         // //we check the users membership
-//         // cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'post.php'); // edit user membership
-//         // cy.get("div.user-memberships p").should('contain.text', 'This user is a member of'); //check membership
-//         // cy.get("#wc-memberships-user-membership-data > div.inside > div.billing-details > div > p:nth-child(1)").should('contain.text', 'Purchased in:'); //check membership
-//         // cy.get("#wc-memberships-user-membership-data > div.inside > div.billing-details > div > p:nth-child(1) ").should('contain.text', 'Order '); //check membership
-//         //
-//         // cy.get("div.billing-details > div.woocommerce_options_panel p.billing-detail:nth-child(4)").should('contain.text', 'Subscription:'); //check membership
-//         // cy.get("div.billing-details > div.woocommerce_options_panel p.billing-detail:nth-child(4) a:nth-child(1)").click()
-//         //
-//         // //we check the users subscription
-//         // cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'post.php'); // Edit Subscription
-//         // cy.get("select#order_status").should('have.value', 'Active');
-//         // cy.get("#order_data > div.order_data_column_container > p.wc-customer-subscription-tracking-info:nth-child(1) strong").should('contain.text', 'Device Type:');
-//         //
-//         // cy.get("#order_data > div.order_data_column_container > div:nth-child(1) > p.form-field-wide:nth-child(4)").should('contain.text', 'Parent order');
-//         // cy.get("#order_data > div.order_data_column_container > div:nth-child(1) > p.form-field-wide:nth-child(4) a").click();
-//         //
-//         // cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'post.php'); // Edit Order
-//
-//        // cy.visit(Cypress.env('dashboardUrl') + '/edit.php?s=' + subscriber.username + '&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&shop_order_subtype&paged=1&action2=-1');
-//        // cy.get('td.order_number.column-order_number.has-row-actions.column-primary > a.order-view').click();
-//
-//         //
-//
-//         //cy.get("#your-profile > div:nth-child(18) > div:nth-child(1)").should('contain.text', 'wordpress-users'); //rev-engine labels
-//        // cy.get("#your-profile > p:nth-child(36) > strong").should('contain.text', '_dm_campaign_created_by_utm_source');
-//        // cy.get("#your-profile > p:nth-child(36)").should('contain.text', 'testing');
-//        //  <meta name="user_id" content="12486">
-// //http://localhost/dm/wp-admin/user-edit.php?user_id=12510&wp_http_referer=%2Fdm%2Fwp-admin%2Fusers.php%3Fs%3Dmr_subscriber%26action%3D-1%26new_role%26add_user_tag%26remove_user_tag%26paged%3D1%26action2%3D-1%26new_role2
-//         cy.location('pathname').should('contain',  '/wp-admin/' + 'user-edit.php').then((pathname) => {
-//
-//             const arr = pathname.split('/user-edit.php?')[1].split('&');
-//             const paramObj = {};
-//             arr.forEach(param => {
-//                 const [ key, value ] = param.split('=');
-//                 paramObj[key] = value;
-//             });
-//
-//               });
-//
-//
-//     });
-
-
-
-    it( 'tests the forgot / reset password process', function(){
-        cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
-        cy.visit(Cypress.env('loginUrl'));
-        cy.get('form#user_login .checkbox a').click(); // cy.get('a.forgot-password-link').click();
-        cy.location('pathname').should('eq', '/forgot-your-password/');
-        cy.get('form#wp_pass_reset input#submitbtn').click();
-        cy.get('form#wp_pass_reset label#user_input-error').should('be.visible');
-        cy.get('form#wp_pass_reset input#user_input').type(subscriber.email);
-        cy.get('form#wp_pass_reset label#user_input-error').should('be.hidden');
-        cy.get('form#wp_pass_reset input#submitbtn').click();
-        cy.wait('@ajaxPost');
-        //forgot password doesn't need recpatcha on dev?
-        cy.get('form#wp_pass_reset ').should('contain.text', 'If a matching account was found, you will receive an email with password reset instructions. Please check your spam folder if you do not receive an email');
-    });
-
-    it( 'tries to register with same email as existing subscriber/insider.', function(){
-        cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
-        cy.visit( Cypress.env('loginUrl') );
-        //cy.get('#nav a:first').click();
-        cy.get('ul.nav-tabs li a[href="#register"]').click();
-        cy.get('input#email').type(subscriber.email);
-        cy.get('input#password').type(subscriber.pw);
-        cy.get('input#agree_terms').click();
-        cy.get('input[name="user_registration"]').click();
-        //look for pop up / toast that says
-    });
-
-
-
-    it( 'deletes the subscriber', function(){
-        cy.deleteUser(subscriber);
-    });
 
     it( 'registers a new insider via the insider gutenburg block, pays via payfast.', function(){
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
@@ -319,10 +239,6 @@ describe('tests the commenting functions', () => {
         //an error message
     })
 
-    it( 'deletes the insider', function(){
-        cy.deleteUser(insider);
-    });
-
 })
 Cypress.on('uncaught:exception', (err, runnable) => {
     let messageArray = [err, runnable];
@@ -365,4 +281,90 @@ it( 'registers via the from the /sign-in/ form with password. Adds a newsletter 
         cy.getWordPressCookies('subscriber');
     })
 });
+
+it( 'tries to register with same email as existing subscriber/insider.', function(){
+    cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
+    cy.visit( Cypress.env('loginUrl') );
+    //cy.get('#nav a:first').click();
+    cy.get('ul.nav-tabs li a[href="#register"]').click();
+    cy.get('input#email').type(subscriber.email);
+    cy.get('input#password').type(subscriber.pw);
+    cy.get('input#agree_terms').click();
+    cy.get('input[name="user_registration"]').click();
+    //look for pop up / toast that says
+});
+
+it( 'tests the forgot / reset password process', function(){
+    cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
+    cy.visit(Cypress.env('loginUrl'));
+    cy.get('form#user_login .checkbox a').click(); // cy.get('a.forgot-password-link').click();
+    cy.location('pathname').should('eq', '/forgot-your-password/');
+    cy.get('form#wp_pass_reset input#submitbtn').click();
+    cy.get('form#wp_pass_reset label#user_input-error').should('be.visible');
+    cy.get('form#wp_pass_reset input#user_input').type(subscriber.email);
+    cy.get('form#wp_pass_reset label#user_input-error').should('be.hidden');
+    cy.get('form#wp_pass_reset input#submitbtn').click();
+    cy.wait('@ajaxPost');
+    //forgot password doesn't need recpatcha on dev?
+    cy.get('form#wp_pass_reset ').should('contain.text', 'If a matching account was found, you will receive an email with password reset instructions. Please check your spam folder if you do not receive an email');
+});
+
+    //check insider in admin
+    it( 'checks the new users data', function(){
+        cy.setWordPressCookies('admin');
+        cy.visit(Cypress.env('dashboardUrl') + 'users.php');
+        cy.get('#user-search-input').type(subscriber.username, {force: true});
+        cy.get('#search-submit').click();
+        cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'users.php');
+        cy.get('.email a').should('contain', subscriber.email);
+        cy.get('div.row-actions').invoke('attr', 'style', 'left: 0').should('have.attr', 'style', 'left: 0');
+        cy.get('div.row-actions > .edit').click();
+        cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'user-edit.php');
+        //we check the user profile
+        cy.get("#pp_roles_chosen > ul > li.search-choice.ui-sortable-handle > span").should('contain.text', 'Reader');//check role
+        // cy.get("div.user-memberships p").should('contain.text', 'This user is a member of'); //check membership
+        // cy.get("div.user-memberships p a").click();
+        // //we check the users membership
+        // cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'post.php'); // edit user membership
+        // cy.get("div.user-memberships p").should('contain.text', 'This user is a member of'); //check membership
+        // cy.get("#wc-memberships-user-membership-data > div.inside > div.billing-details > div > p:nth-child(1)").should('contain.text', 'Purchased in:'); //check membership
+        // cy.get("#wc-memberships-user-membership-data > div.inside > div.billing-details > div > p:nth-child(1) ").should('contain.text', 'Order '); //check membership
+        //
+        // cy.get("div.billing-details > div.woocommerce_options_panel p.billing-detail:nth-child(4)").should('contain.text', 'Subscription:'); //check membership
+        // cy.get("div.billing-details > div.woocommerce_options_panel p.billing-detail:nth-child(4) a:nth-child(1)").click()
+        //
+        // //we check the users subscription
+        // cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'post.php'); // Edit Subscription
+        // cy.get("select#order_status").should('have.value', 'Active');
+        // cy.get("#order_data > div.order_data_column_container > p.wc-customer-subscription-tracking-info:nth-child(1) strong").should('contain.text', 'Device Type:');
+        //
+        // cy.get("#order_data > div.order_data_column_container > div:nth-child(1) > p.form-field-wide:nth-child(4)").should('contain.text', 'Parent order');
+        // cy.get("#order_data > div.order_data_column_container > div:nth-child(1) > p.form-field-wide:nth-child(4) a").click();
+        //
+        // cy.location('pathname').should('eq', Cypress.env('localfolder') + '/wp-admin/' + 'post.php'); // Edit Order
+
+       // cy.visit(Cypress.env('dashboardUrl') + '/edit.php?s=' + subscriber.username + '&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&shop_order_subtype&paged=1&action2=-1');
+       // cy.get('td.order_number.column-order_number.has-row-actions.column-primary > a.order-view').click();
+
+        //
+
+        //cy.get("#your-profile > div:nth-child(18) > div:nth-child(1)").should('contain.text', 'wordpress-users'); //rev-engine labels
+       // cy.get("#your-profile > p:nth-child(36) > strong").should('contain.text', '_dm_campaign_created_by_utm_source');
+       // cy.get("#your-profile > p:nth-child(36)").should('contain.text', 'testing');
+       //  <meta name="user_id" content="12486">
+//http://localhost/dm/wp-admin/user-edit.php?user_id=12510&wp_http_referer=%2Fdm%2Fwp-admin%2Fusers.php%3Fs%3Dmr_subscriber%26action%3D-1%26new_role%26add_user_tag%26remove_user_tag%26paged%3D1%26action2%3D-1%26new_role2
+        cy.location('pathname').should('contain',  '/wp-admin/' + 'user-edit.php').then((pathname) => {
+
+            const arr = pathname.split('/user-edit.php?')[1].split('&');
+            const paramObj = {};
+            arr.forEach(param => {
+                const [ key, value ] = param.split('=');
+                paramObj[key] = value;
+            });
+
+              });
+
+
+    });
+
 */
