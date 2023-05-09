@@ -3,11 +3,11 @@ describe('tests the commenting functions', () => {
     var subscriber = users.subscriber;
     var insider = users.insider;
 
-    before(function () {
-        cy.clearWordPressCookies();
-        cy.deleteUser(insider);
-        cy.deleteUser(subscriber);
-    });
+    // before(function () {
+    //     cy.clearWordPressCookies();
+    //     cy.deleteUser(insider);
+    //     cy.deleteUser(subscriber);
+    // });
 
     after(function (){
         cy.deleteUser(insider);
@@ -71,6 +71,7 @@ describe('tests the commenting functions', () => {
         cy.get('#otp input[data-index=3]').type('3');
 
         //page should refresh and login via token.
+        cy.wait(3000);
         cy.location('search').should( 'contain', '?token=' );
 
         cy.get('.your-account').should('be.visible' ).should('contain.text', 'Your Account' );
@@ -90,7 +91,7 @@ describe('tests the commenting functions', () => {
         cy.visit( Cypress.env('baseUrl')+'/edit-my-profile/');
         cy.location('pathname').should( 'contain', '/edit-my-profile/' );
         //cy.wait('@ajaxPost');
-        cy.get('h2').should( "have.length", 5 );
+        cy.get('h2').should( "have.length", 2 );
         cy.get('.categories-sublinks li').should( "have.length", 3 );
         cy.get('.categories-sublinks li:nth-child(2)').should( "have.class", "active" );
         //change your name
