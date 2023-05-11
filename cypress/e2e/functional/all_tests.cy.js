@@ -6,7 +6,7 @@ describe('test frikkingeverthing', () => {
     before(function () {
      //   cy.clearWordPressCookies();
      //   cy.deleteUser(insider);
-        cy.deleteUser(subscriber);
+     //   cy.deleteUser(subscriber);
     });
 
     after(function (){
