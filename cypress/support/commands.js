@@ -63,18 +63,23 @@ Cypress.Commands.add("setWordPressCookies", (role = 'admin') => {
         });
 });
 
-Cypress.Commands.add("manualWordPressAdminLogin", () => {
+Cypress.Commands.add("updatePayfastOrder", (payment_id) => {
 
     let options = {}
-    options.method = 'POST';
-    options.url = Cypress.env('baseUrl')+'/wp-json/dm_rest_api/v1/users/delete';
+    options.method = 'GET';
+    options.url = Cypress.env('baseUrl')+'/wp-json/wc/v3/orders/'+payment_id;
     options.auth = {
-        username: Cypress.env('credentials').username,
-        password: Cypress.env('credentials').password
+        username: Cypress.env('wp_credentials').username,
+        password: Cypress.env('wp_credentials').password
     }
-    options.body = { m_payment_id : 'SuperUnique1', pf_payment_id : '1089250', payment_status : 'COMPLETE', item_name : 'test+product', item_description : '', amount_gross : 200.00, amount_fee : -4.60, amount_net : 195.40, custom_str1 : '', custom_str2 : '', custom_str3 : '', custom_str4 : '', custom_str5 : '', custom_int1 : '', custom_int2 : '', custom_int3 : '', custom_int4 : '', custom_int5 : '', name_first : '', name_last : '', email_address : '', merchant_id : '10012577', signature : 'ad8e7685c9522c24365d7ccea8cb3db7'};
+    cy.request( options ).as('retrievedOrder');
+    cy.get('@retrievedOrder').should((response) => {
+        //expect(response.body).to.have.length(500)
+        expect(response.body).to.have.property('status')
+        //expect(response).to.have.property('headers')
+        //expect(response).to.have.property('duration')
+    })
 
-    cy.request( options );
 });
 
 Cypress.Commands.add("manualWordPressAdminLogin", () => {
