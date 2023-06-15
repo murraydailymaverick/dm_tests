@@ -100,12 +100,14 @@ Cypress.Commands.add("checkLoggedIn", (user) => {
      cy.get('.mail_login_engine .menu-container h3').should('contain.text', user.username);
 });
 
-Cypress.Commands.add("manualLogIn", (user) => {
+Cypress.Commands.add("manualLogIn", (user, underscore=false) => {
     cy.intercept('POST', Cypress.env('dashboardUrl') + 'admin-ajax.php').as('ajaxPost');
     cy.visit( Cypress.env('loginUrl') );
     cy.get('.password-login').click();
     //cy.get('ul.nav-tabs li a[href="#register"]').click();
-    cy.get('input#sign_user_email').type(user.email);
+    var useremail = user.email;
+    if(underscore) { useremail = user._email }
+    cy.get('input#sign_user_email').type(useremail);
     cy.get('input#user_password').type(user.pw);
     cy.get('input#remember_me').click();
     cy.get('input[name=user_login]').click();
@@ -207,7 +209,7 @@ Cypress.Commands.add("maunallyCreateInsider", (user) => {
 
 });
 
-Cypress.Commands.add("deleteUser", (user) => {
+Cypress.Commands.add("deleteUser", (user, underscore=false) => {
     let options = {}
     options.method = 'POST';
     options.url = Cypress.env('baseUrl')+'/wp-json/dm_rest_api/v1/users/delete';
@@ -215,8 +217,10 @@ Cypress.Commands.add("deleteUser", (user) => {
         username: Cypress.env('credentials').username,
         password: Cypress.env('credentials').password
     }
+    var useremail = user.email;
+    if(underscore) { useremail = user._email }
     options.body = {
-        email: user.email,
+        email: useremail,
         authorization: Cypress.env('authtoken')
     }
     cy.request( options );
