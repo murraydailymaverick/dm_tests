@@ -3,14 +3,15 @@ describe('tests the commenting functions', () => {
     var subscriber = users.subscriber;
     var insider = users.insider;
 
-
-    it( 'sends an itn to the site', function(){
-        cy.updatePayfastOrder('1640405');
+    before(function () {
+           cy.clearWordPressCookies();
+          // cy.deleteUser(subscriber);
     });
 
-    // it( 'deletes a User', function(){
+    // after(function (){
     //     cy.deleteUser(subscriber);
-    // });
+    // })
+
 
 })
 Cypress.on('uncaught:exception', (err, runnable) => {
