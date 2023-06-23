@@ -119,6 +119,52 @@ Cypress.Commands.add("manualLogIn", (user, underscore=false) => {
     cy.wait('@ajaxPost');
 });
 
+Cypress.Commands.add("loggedOutRegistersUsesOTPToLogin", (user, underscore=false) => {
+    cy.intercept('POST', Cypress.env('baseUrl') + '/wp-json/dm_rest_api/v1/validate_code').as('validateCode');
+    cy.get('#send-magic-email').type(user.email);
+    cy.get('.mail-login-engine-shortcode-sumbit').click();
+    cy.get('.email-label').should('contain.text', 'Perhaps you entered your email incorrectly?' );
+    cy.get('.your-email').should('contain.text', user.email );
+    cy.get('.register-btn').click();
+    cy.wait(2000);
+    cy.get('#otp').should('be.visible' );
+    cy.setCode(user);
+    cy.get('#otp input[data-index=0]').type('9');
+    cy.get('#otp input[data-index=1]').type('7');
+    cy.get('#otp input[data-index=2]').type('1');
+    cy.get('#otp input[data-index=3]').type('3');
+    cy.wait('@validateCode');
+    cy.location('search').should( 'contain', '?token=' );
+});
+
+Cypress.Commands.add("loggedOutUsesOTPToLogin", (user, underscore=false) => {
+    cy.intercept('POST', Cypress.env('baseUrl') + '/wp-json/dm_rest_api/v1/validate_code').as('validateCode');
+    cy.get('#send-magic-email').type(user.email);
+    cy.get('.mail-login-engine-shortcode-sumbit').click();
+    cy.get('.email-sent-to').should('contain.text', user.email );
+    cy.get('#otp').should('be.visible' );
+    cy.setCode(user);
+    cy.get('#otp input[data-index=0]').type('9');
+    cy.get('#otp input[data-index=1]').type('7');
+    cy.get('#otp input[data-index=2]').type('1');
+    cy.get('#otp input[data-index=3]').type('3');
+    cy.wait('@validateCode');
+    cy.location('search').should( 'contain', '?token=' );
+});
+
+Cypress.Commands.add("populateDebitForm", (user) => {
+    //debit form
+    cy.get('input[name="billing_first_name"]').clear().type(user.firstname);
+    cy.get('input[name="billing_last_name"]').clear().type(user.lastname);
+    cy.get('label[for="revio_paymenttype_debicheck"]').click();
+    cy.get('input[name="PaycePhoneNumber"]').type(user.tel);
+    cy.get('input[name="SAIdNumber"]').type(user.IDNumber);
+    cy.get('select[name="PayceBank"]').select('FNB');
+    cy.get('input[name="PayceAccount"]').type('1234567890');
+    cy.get('input[name="terms"]').click();
+
+});
+
 //
 //
 // -- This is a child command --

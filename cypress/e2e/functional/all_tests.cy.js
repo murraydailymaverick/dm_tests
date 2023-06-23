@@ -126,46 +126,19 @@ describe('test frikkingeverthing', () => {
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/?wc-ajax=checkout').as('ajaxCheckoutPost');
         cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
-        cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks th R200 value
-        cy.wait(1000);
+        cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks the R200 value
 
         //checkout login
         cy.location('pathname').should( 'contain', 'checkout' );
-        cy.get('#send-magic-email').type(subscriber.email);
-        cy.get('.mail-login-engine-shortcode-sumbit').click();
-        cy.get('.email-label').should('contain.text', 'Perhaps you entered your email incorrectly?' );
-        cy.get('.your-email').should('contain.text', subscriber.email );
-        cy.get('.register-btn').click();
-        cy.wait(2000);
-        cy.get('#otp').should('be.visible' );
-        cy.setCode(subscriber);
-        cy.wait(2000);
 
-        cy.get('#otp input[data-index=0]').type('9');
-        cy.get('#otp input[data-index=1]').type('7');
-        cy.get('#otp input[data-index=2]').type('1');
-        cy.get('#otp input[data-index=3]').type('3');
+        cy.loggedOutRegistersUsesOTPToLogin(subscriber);
 
-
-        cy.wait(3000);
-        //page should refresh and login via token.
-        cy.location('pathname').should( 'contain', 'checkout' );
-        cy.location('search').should( 'contain', '?token=' );
         //debit form
-        cy.get('input[name="billing_first_name"]').clear().type(subscriber.firstname);
-        cy.get('input[name="billing_last_name"]').clear().type(subscriber.lastname);
-        cy.get('label[for="revio_paymenttype_debicheck"]').click();
-        cy.get('input[name="PaycePhoneNumber"]').type(subscriber.tel);
-        cy.get('input[name="SAIdNumber"]').type(subscriber.IDNumber);
-        cy.get('select[name="PayceBank"]').select('FNB');
-        cy.get('input[name="PayceAccount"]').type('1234567890');
-        cy.get('input[name="terms"]').click();
+        cy.populateDebitForm(subscriber);
         cy.get('button[name="woocommerce_checkout_place_order"]').click();
 
-        // cy.wait('@ajaxCheckoutPost');
         cy.wait(5000);
-        // cy.wait('@ajaxPost');
-        cy.wait(1000); // initial wait
+
         //cy.task("waitForServerResponse", { server_url:  Cypress.env('dashboardUrl') + '/admin-ajax.php' });
 
         cy.get('div.debicheck-modal').should('have.class', 'open' );
@@ -184,37 +157,15 @@ describe('test frikkingeverthing', () => {
         cy.viewport(1440, 1024);
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
         cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
-        cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks th R200 value
-        cy.wait(1000);
+        cy.get('.different-amount form.benefits-form button').should('contain.text', '150').click(); //clicks th R200 value
 
-        //checkout login
         cy.location('pathname').should( 'contain', 'checkout' );
-        cy.get('#send-magic-email').type(subscriber.email);
-        cy.get('.mail-login-engine-shortcode-sumbit').click();
-        cy.get('.email-sent-to').should('contain.text', subscriber.email );
-        cy.get('#otp').should('be.visible' );
-        cy.setCode(subscriber);
-        cy.wait(2000);
+        cy.loggedOutUsesOTPToLogin( subscriber );
 
-        cy.get('#otp input[data-index=0]').type('9');
-        cy.get('#otp input[data-index=1]').type('7');
-        cy.get('#otp input[data-index=2]').type('1');
-        cy.get('#otp input[data-index=3]').type('3');
-
-
-        cy.wait(3000);
         //page should refresh and login via token.
         cy.location('pathname').should( 'contain', 'checkout' );
-        cy.location('search').should( 'contain', '?token=' );
-        //debit form
-        cy.get('input[name="billing_first_name"]').clear().type(subscriber.firstname);
-        cy.get('input[name="billing_last_name"]').clear().type(subscriber.lastname);
-        cy.get('label[for="revio_paymenttype_debicheck"]').click();
-        cy.get('input[name="PaycePhoneNumber"]').type(subscriber.tel);
-        cy.get('input[name="SAIdNumber"]').type(subscriber.IDNumber);
-        cy.get('select[name="PayceBank"]').select('FNB');
-        cy.get('input[name="PayceAccount"]').type('1234567890');
-        cy.get('input[name="terms"]').click();
+
+        cy.populateDebitForm(subscriber);
         cy.get('button[name="woocommerce_checkout_place_order"]').click();
 
         cy.wait(2000);
@@ -222,12 +173,10 @@ describe('test frikkingeverthing', () => {
         cy.get('div.debicheck-modal h2').should('contain.text', 'Waiting for authentication' );
         cy.wait(5000);
         cy.get('div.debicheck-modal h2').should('contain.text', 'Transaction Successful' );
-        cy.wait(10000);
+        cy.wait(30000);
         cy.location('pathname').should( 'contain', 'manage-membership' );
 
         cy.getWordPressCookies('subscriber');
-        //cy.get('.your-account').should('be.visible' ).should('contain.text', 'Your Account' );
-
     });
 
     it( 'existing session login and changes the amount, checks out via DebiCheck', function(){
@@ -242,15 +191,7 @@ describe('test frikkingeverthing', () => {
         //checkout login
         cy.location('pathname').should( 'contain', 'checkout' );
 
-        //debit form
-        cy.get('input[name="billing_first_name"]').clear().type(subscriber.firstname);
-        cy.get('input[name="billing_last_name"]').clear().type(subscriber.lastname);
-        cy.get('label[for="revio_paymenttype_debicheck"]').click();
-        cy.get('input[name="PaycePhoneNumber"]').type(subscriber.tel);
-        cy.get('input[name="SAIdNumber"]').type(subscriber.IDNumber);
-        cy.get('select[name="PayceBank"]').select('FNB');
-        cy.get('input[name="PayceAccount"]').type('1234567890');
-        cy.get('input[name="terms"]').click();
+        cy.populateDebitForm(subscriber);
         cy.get('button[name="woocommerce_checkout_place_order"]').click();
 
         cy.wait(2000);
