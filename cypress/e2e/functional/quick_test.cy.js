@@ -24,13 +24,12 @@ describe('some quick tests', () => {
         //cy.getWordPressCookies('subscriber');
         //page should refresh and login via token.
         cy.location('pathname').should( 'contain', 'checkout' );
-        cy.chooseCreditCardForm( subscriber );
+        // cy.chooseCreditCardForm( subscriber );
+        // cy.get('button[name="woocommerce_checkout_place_order"]').click();
+        // cy.fillCreditCardForm(subscriber);
+        cy.populateDebitForm(subscriber);
         cy.get('button[name="woocommerce_checkout_place_order"]').click();
-
-
-
-        cy.fillCreditCardForm(subscriber);
-
+        cy.debiCheckModalWait();
 
     });
 

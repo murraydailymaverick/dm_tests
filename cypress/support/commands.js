@@ -152,7 +152,7 @@ Cypress.Commands.add("loggedOutUsesOTPToLogin", (user, underscore=false) => {
     cy.location('search').should( 'contain', '?token=' );
 });
 
-Cypress.Commands.add("populateDebitForm", (user) => {
+Cypress.Commands.add("populateDebitForm", (user, success=true) => {
     //debit form
     cy.get('input[name="billing_first_name"]').clear().type(user.firstname);
     cy.get('input[name="billing_last_name"]').clear().type(user.lastname);
@@ -160,7 +160,12 @@ Cypress.Commands.add("populateDebitForm", (user) => {
     cy.get('input[name="PaycePhoneNumber"]').type(user.tel);
     cy.get('input[name="SAIdNumber"]').type(user.IDNumber);
     cy.get('select[name="PayceBank"]').select('FNB');
-    cy.get('input[name="PayceAccount"]').type('1234567890');
+    if(success){
+        cy.get('input[name="PayceAccount"]').type('560001234');
+    } else {
+        cy.get('input[name="PayceAccount"]').type('910000001');
+    }
+
     cy.get('input[name="terms"]').click();
 });
 
