@@ -162,9 +162,48 @@ Cypress.Commands.add("populateDebitForm", (user) => {
     cy.get('select[name="PayceBank"]').select('FNB');
     cy.get('input[name="PayceAccount"]').type('1234567890');
     cy.get('input[name="terms"]').click();
-
 });
 
+Cypress.Commands.add("debiCheckModalWait", (user) => {
+    cy.wait(2000);
+    cy.get('div.debicheck-modal').should('have.class', 'open' );
+    cy.get('div.debicheck-modal h2').should('contain.text', 'Waiting for authentication' );
+    //cy.task("waitForServerResponse", { server_url:  Cypress.env('dashboardUrl') + '/admin-ajax.php' });
+    cy.wait(20000);
+    cy.get('div.debicheck-modal h2').should('contain.text', 'Transaction Successful' );
+    cy.wait(10000);
+    cy.location('pathname').should( 'contain', 'manage-membership' );
+});
+
+Cypress.Commands.add("chooseCreditCardForm", (user) => {
+    //Credit form
+    cy.get('input[name="billing_first_name"]').clear().type(user.firstname);
+    cy.get('input[name="billing_last_name"]').clear().type(user.lastname);
+    cy.get('label[for="revio_paymenttype_creditcard"]').click();
+    cy.get('input[name="terms"]').click();
+});
+
+Cypress.Commands.add("fillCreditCardForm", (user) => {
+    cy.location('host').should( 'contain', 'payments.revio' );
+    cy.intercept('GET','standard.paystack.co/charge/*').as('payCharge');
+    cy.intercept('GET','standard.paystack.co/p/*').as('pay');
+    // Credit Card form
+    // 4444 3333 2222 1111 - non-3D Secure card
+    // 5555 5555 5555 4444 - 3D Secure card
+    // any cardholder name
+    // any expiry larger or equal to the current month/year
+    // CVC = 123
+    // For a failed payment, please change the CVC or expiration date.
+    //cy.get('input[name="card_number"]').clear().type('4444333322221111');
+    cy.get('input[name="card_number"]').clear().type('5555555555554444');
+    cy.get('input[name="cardholder_name"]').clear().type('test user'+user.lastname);
+    cy.get('input[name="expires"]').clear().type('1025');
+    cy.get('input[name="cvc"]').clear().type('123');
+    cy.get('button.submit_button').click();
+    // cy.wait('@payCharge');
+    // cy.wait('@pay');
+    cy.location('host').should( 'contain', Cypress.env('domain') );
+});
 //
 //
 // -- This is a child command --
