@@ -6,7 +6,7 @@ describe('some quick tests', () => {
     before(function () {
            //cy.clearWordPressCookies();
           // cy.deleteUser(subscriber);
-          cy.setWordPressCookies('subscriber');
+         // cy.setWordPressCookies('subscriber');
     });
 
     after(function (){
@@ -20,7 +20,7 @@ describe('some quick tests', () => {
         cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks the R200 value
 
         cy.location('pathname').should( 'contain', 'checkout' );
-        //cy.loggedOutUsesOTPToLogin( subscriber );
+        cy.loggedOutUsesOTPToLogin( subscriber );
         //cy.getWordPressCookies('subscriber');
         //page should refresh and login via token.
         cy.location('pathname').should( 'contain', 'checkout' );
@@ -30,6 +30,7 @@ describe('some quick tests', () => {
         cy.populateDebitForm(subscriber);
         cy.get('button[name="woocommerce_checkout_place_order"]').click();
         cy.debiCheckModalWait();
+        cy.checkWhySignUpModal();
 
     });
 

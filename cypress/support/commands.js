@@ -176,7 +176,7 @@ Cypress.Commands.add("debiCheckModalWait", (user) => {
     //cy.task("waitForServerResponse", { server_url:  Cypress.env('dashboardUrl') + '/admin-ajax.php' });
     cy.wait(20000);
     cy.get('div.debicheck-modal h2').should('contain.text', 'Transaction Successful' );
-    cy.wait(10000);
+    cy.wait(40000);
     cy.location('pathname').should( 'contain', 'manage-membership' );
 });
 
@@ -208,6 +208,18 @@ Cypress.Commands.add("fillCreditCardForm", (user) => {
     // cy.wait('@payCharge');
     // cy.wait('@pay');
     cy.location('host').should( 'contain', Cypress.env('domain') );
+});
+
+Cypress.Commands.add("checkWhySignUpModal", (user) => {
+    //woocommerce-additional-fields modal
+    cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPostcheckWhySignUpModal');
+    cy.get('div.woocommerce-additional-fields').should('be.visible');
+    cy.get('#whyQuestionsModalLabel').should('contain.text', 'Why did you sign up for Maverick Insider?');
+    cy.get('.wc-radios input[value="0"]').click();
+    cy.get('.wc-radios input[value="4"]').click();
+    cy.get('button#submitWhyQuestions').click();
+    cy.wait('@ajaxPostcheckWhySignUpModal');
+    cy.get('div.woocommerce-additional-fields').should('be.hidden');
 });
 //
 //
