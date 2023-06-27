@@ -212,6 +212,7 @@ Cypress.Commands.add("fillCreditCardForm", (user) => {
 
 Cypress.Commands.add("checkWhySignUpModal", (user) => {
     //woocommerce-additional-fields modal
+    cy.wait('1000');
     cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPostcheckWhySignUpModal');
     cy.get('div.woocommerce-additional-fields').should('be.visible');
     cy.get('#whyQuestionsModalLabel').should('contain.text', 'Why did you sign up for Maverick Insider?');

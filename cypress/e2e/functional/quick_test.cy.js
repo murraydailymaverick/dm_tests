@@ -21,7 +21,7 @@ describe('some quick tests', () => {
 
         cy.location('pathname').should( 'contain', 'checkout' );
         cy.loggedOutUsesOTPToLogin( subscriber );
-        //cy.getWordPressCookies('subscriber');
+        cy.getWordPressCookies('subscriber');
         //page should refresh and login via token.
         cy.location('pathname').should( 'contain', 'checkout' );
         // cy.chooseCreditCardForm( subscriber );
