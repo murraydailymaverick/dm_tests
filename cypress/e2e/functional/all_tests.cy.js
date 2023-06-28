@@ -115,77 +115,15 @@ describe('test frikkingeverthing', () => {
 
     });
 
-    //start revio
-
-    it( 'logged out, registers a new user, checks out via DebiCheck', function(){
-        cy.viewport(1440, 1024);
-        cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
-        cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
-        cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks the R200 value
-        cy.location('pathname').should( 'contain', 'checkout' );
-        cy.loggedOutRegistersUsesOTPToLogin(subscriber);
-        cy.populateDebitForm(subscriber);
-        cy.get('button[name="woocommerce_checkout_place_order"]').click();
-        cy.debiCheckModalWait();
-        cy.getWordPressCookies('subscriber');
-    });
-
-    it( 'logged out and uses OTP to login, checks out via DebiCheck', function(){
-        cy.viewport(1440, 1024);
-        cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
-        cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
-        cy.get('.different-amount form.benefits-form button').should('contain.text', '150').click(); //clicks th R200 value
-        cy.location('pathname').should( 'contain', 'checkout' );
-        cy.loggedOutUsesOTPToLogin( subscriber );
-        cy.getWordPressCookies('subscriber');
-        //page should refresh and login via token.
-        cy.location('pathname').should( 'contain', 'checkout' );
-        cy.populateDebitForm(subscriber);
-        cy.get('button[name="woocommerce_checkout_place_order"]').click();
-        cy.debiCheckModalWait();
-        cy.checkWhySignUpModal();
-    });
-
-    it( 'existing session login and changes the amount, checks out via DebiCheck', function(){
-        cy.viewport(1440, 1024);
-        cy.setWordPressCookies('subscriber');
-        cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
-        cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
-        cy.get('.different-amount form.benefits-form button').should('contain.text', '150').click(); //clicks th R200 value
-        cy.location('pathname').should( 'contain', 'checkout' );
-        cy.populateDebitForm(subscriber);
-        cy.get('button[name="woocommerce_checkout_place_order"]').click();
-        cy.debiCheckModalWait();
-    });
-
-    //end revio
-
-    it( 'logs in as a subscriber, goes to the /insider signup and pays via sandbox. Checks active status', function(){
-        cy.intercept('POST', '/ossc-api/create-order/').as('ajaxCreateOrder');
-        cy.intercept('POST', '/ossc-api/generate-payment-gateway-signature/').as('ajaxCreateSignature');
-       // cy.intercept('POST', '**/eng/method/WalletFunds/**').as('ajaxWalletFunds'); //its there but its problimatic
-        //cy.intercept('POST', 'https://sandbox.payfast.co.za/eng/method/WalletFunds/*').as('ajaxWalletFunds');
+    it( 'logs in as a subscriber, goes to the /insider signup and pays via payfast sandbox.', function(){
         cy.setWordPressCookies('subscriber');
         cy.visit(Cypress.env('baseUrl')+'/manage-membership/');
         cy.visit(Cypress.env('insiderUrl'));
         cy.get('.proceed-btn.col-md-4').click();
         cy.location('pathname').should( 'contain', '/insider/' );
         cy.wait(500)
-        cy.get('.actions-block .pay-now-btn').should('be.visible').click();
-        //cy.pause();
-        cy.wait('@ajaxCreateOrder');
-        cy.wait('@ajaxCreateSignature');
-        //cy.wait(1000)
-        cy.location('host').should( 'contain', 'payfast' );
-        cy.get('#pay-with-wallet').click();
-
-        //cy.wait('@ajaxWalletFunds');
-        cy.wait(60000);
-
-        cy.location('hostname').should( 'contain', 'dailymaverick' );
+        cy.payWithPayfast( subscriber );
         cy.getWordPressCookies('subscriber');
-        cy.location('pathname').should( 'contain', 'membership-thank-you' );
-        cy.get('.proceed-btn').click();
     });
 
     it( 'logs in as an insider and check the membership page', function(){

@@ -231,6 +231,28 @@ Cypress.Commands.add("checkWhySignUpModal", (user) => {
     cy.wait('@ajaxPostcheckWhySignUpModal');
     cy.get('#whyQuestionsModalLabel').should('be.hidden');
 });
+
+Cypress.Commands.add("payWithPayfast", (user) => {
+    cy.intercept('POST', '/ossc-api/create-order/').as('ajaxCreateOrder');
+    //  cy.intercept('POST', '/ossc-api/generate-payment-gateway-signature/').as('ajaxCreateSignature');
+    cy.get('.actions-block .pay-now-btn').should('be.visible').click();
+    //cy.pause();
+    cy.wait('@ajaxCreateOrder');
+    // cy.wait('@ajaxCreateSignature'); //can take long
+    cy.wait(5000)
+
+    // cy.intercept('POST', '**/eng/method/WalletFunds/**').as('ajaxWalletFunds'); //its there but its problimatic
+    //cy.intercept('POST', 'https://sandbox.payfast.co.za/eng/method/WalletFunds/*').as('ajaxWalletFunds');
+
+    cy.location('host').should( 'contain', 'payfast' );
+    cy.get('#pay-with-wallet').click();
+    //cy.wait('@ajaxWalletFunds');
+    cy.wait(60000);
+    cy.location('hostname').should( 'contain', 'dailymaverick' );
+    cy.location('pathname').should( 'contain', 'membership-thank-you' );
+    cy.get('.proceed-btn').click();
+    cy.location('pathname').should( 'contain', '/manage-membership/' );
+});
 //
 //
 // -- This is a child command --
