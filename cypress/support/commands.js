@@ -95,6 +95,15 @@ Cypress.Commands.add("manualWordPressAdminLogin", () => {
     cy.get('h1').contains('Dashboard');
 });
 
+Cypress.Commands.add("dismissCookieConcent", () => {
+    cy.wait(500);
+    cy.get('#cookie-law-info-bar').should("be.visible");
+    cy.get('#wt-cli-accept-all-btn').click();
+    cy.get('#cookie-law-info-bar').should(
+        "not.be.visible"
+    );
+});
+
 Cypress.Commands.add("checkLoggedIn", (user) => {
     //scroll
     cy.get('.footer').scrollIntoView().click();

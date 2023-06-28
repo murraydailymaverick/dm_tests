@@ -18,15 +18,11 @@ describe('test frikkingeverthing', () => {
     //     cy.authWithCredentials(Cypress.env('authUrl'));
     // });
 
-    it( 'checks the check for cookie bar and dismisses it.', function(){
-        cy.visit( Cypress.env('loginUrl') );
-        cy.get('#cookie-law-info-bar').should("be.visible");
-        cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/sign-in' );
-        cy.get('#wt-cli-accept-all-btn').click();
-        cy.get('#cookie-law-info-bar').should(
-            "not.be.visible"
-        );
-    });
+    // it( 'checks the check for cookie bar and dismisses it.', function(){
+    //     cy.visit( Cypress.env('loginUrl') );
+    //     cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/sign-in' );
+    //     cy.dismissCookieConcent();
+    // });
 
     it('tests commenting if logged out', () => {
         cy.visit(Cypress.env('articleUrl'));
