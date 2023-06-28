@@ -134,15 +134,17 @@ describe('test frikkingeverthing', () => {
         cy.get('#membership-details > div:nth-child(3) > div.col-md-6.col-xs-6.subscription-status').should('contain.text', 'Active' );
     });
 
-    it( 'logs in as an insider and Checks active status', function(){
+    it( 'logs in and Checks active status', function(){
         cy.setWordPressCookies('subscriber'); // is now an insider
         cy.visit( Cypress.env('baseUrl')+'/edit-my-profile/');
         cy.location('pathname').should( 'contain', '/edit-my-profile/' );
-        cy.wait('@ajaxPost');
+
         //Membership Details
         cy.get('#Membership_Details').should( "have.length", 1 );
         cy.get('#manage-membership-holder .btn-blue').should( "have.length", 5 );
-
+        //newsletterUrl
+        cy.visit( Cypress.env('newsletterUrl'));
+        cy.wait('@ajaxPost');
         //Ad Preference
         cy.get('.adfree-toggle-check').should( "have.length", 1 );
     });
