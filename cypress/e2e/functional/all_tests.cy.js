@@ -141,12 +141,13 @@ describe('test frikkingeverthing', () => {
         cy.get('.different-amount form.benefits-form button').should('contain.text', '150').click(); //clicks th R200 value
         cy.location('pathname').should( 'contain', 'checkout' );
         cy.loggedOutUsesOTPToLogin( subscriber );
+        cy.getWordPressCookies('subscriber');
         //page should refresh and login via token.
         cy.location('pathname').should( 'contain', 'checkout' );
         cy.populateDebitForm(subscriber);
         cy.get('button[name="woocommerce_checkout_place_order"]').click();
         cy.debiCheckModalWait();
-        cy.getWordPressCookies('subscriber');
+        cy.checkWhySignUpModal();
     });
 
     it( 'existing session login and changes the amount, checks out via DebiCheck', function(){
