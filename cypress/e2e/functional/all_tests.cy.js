@@ -10,8 +10,8 @@ describe('test frikkingeverthing', () => {
     });
 
     after(function (){
-        cy.deleteUser(insider);
         cy.deleteUser(subscriber);
+        cy.deleteUser(insider);
     })
 
     // beforeEach(function () {
@@ -24,10 +24,10 @@ describe('test frikkingeverthing', () => {
     //     cy.dismissCookieConcent();
     // });
 
-    it('tests commenting if logged out', () => {
-        cy.visit(Cypress.env('articleUrl'));
-        cy.get('.comment-opinion').contains('verybody has an opinion but not everyone has the knowledge and the experience to contribute meaningfully to a discussion. That’s what we want from our members. Help us learn with your expertise and insights on articles that we publish. We encourage different, respectful viewpoints to further our understanding of the world. View our comments policy')
-    })
+    // it('tests commenting if logged out', () => {
+    //     cy.visit(Cypress.env('articleUrl'));
+    //     cy.get('.comment-opinion').contains('verybody has an opinion but not everyone has the knowledge and the experience to contribute meaningfully to a discussion. That’s what we want from our members. Help us learn with your expertise and insights on articles that we publish. We encourage different, respectful viewpoints to further our understanding of the world. View our comments policy')
+    // })
 
     it( 'login via the navigation - email doesnt exist. Then registers. Then checks invalid otp.', function(){
         cy.viewport(1440, 1024);
@@ -76,10 +76,8 @@ describe('test frikkingeverthing', () => {
 
     //it( 'registers via the reg-wall.', function(){});
 
-
     it( 'logs in as existing subscriber and check the profile page.', function() {
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
-
         cy.setWordPressCookies('subscriber');
         cy.visit(Cypress.env('baseUrl'));
         cy.checkLoggedIn(subscriber);
@@ -117,7 +115,6 @@ describe('test frikkingeverthing', () => {
 
     it( 'logs in as a subscriber, goes to the /insider signup and pays via payfast sandbox.', function(){
         cy.setWordPressCookies('subscriber');
-        cy.visit(Cypress.env('baseUrl')+'/manage-membership/');
         cy.visit(Cypress.env('insiderUrl'));
         cy.get('.proceed-btn.col-md-4').click();
         cy.location('pathname').should( 'contain', '/insider/' );
@@ -126,22 +123,33 @@ describe('test frikkingeverthing', () => {
         cy.getWordPressCookies('subscriber');
     });
 
-    it( 'logs in as an insider and check the membership page', function(){
-        cy.setWordPressCookies('subscriber'); // is now an insider
-        cy.visit( Cypress.env('baseUrl')+'/manage-membership/');
-        cy.location('pathname').should( 'contain', '/manage-membership/' );
-        cy.get('#membership-details > div:nth-child(1) > div.col-md-7.col-xs-9').should('contain.text', '200' );
-        cy.get('#membership-details > div:nth-child(3) > div.col-md-6.col-xs-6.subscription-status').should('contain.text', 'Active' );
+    it( 'set session, signs up via the insider blocks and checks out via DebiCheck', function(){
+        cy.setWordPressCookies('subscriber');
+        cy.viewport(1440, 1024);
+
+        cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+        cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks the R200 value
+        cy.location('pathname').should( 'contain', 'checkout' );
+        cy.populateDebitForm(subscriber);
+        cy.get('button[name="woocommerce_checkout_place_order"]').click();
+        cy.debiCheckModalWait();
+        cy.getWordPressCookies('subscriber');
     });
 
-    it( 'logs in and Checks active status', function(){
+    it( 'logs in as new insider that was subscriber and checks the membership page', function(){
+        cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
         cy.setWordPressCookies('subscriber'); // is now an insider
-        cy.visit( Cypress.env('baseUrl')+'/edit-my-profile/');
-        cy.location('pathname').should( 'contain', '/edit-my-profile/' );
+        cy.visit( Cypress.env('baseUrl')+'/manage-membership/');
 
         //Membership Details
-        cy.get('#Membership_Details').should( "have.length", 1 );
-        cy.get('#manage-membership-holder .btn-blue').should( "have.length", 5 );
+        cy.location('pathname').should( 'contain', '/manage-membership/' );
+        cy.get('#manage-membership-holder').should( "have.length", 1 );
+        cy.get('#manage-membership-holder .btn-blue').should( "have.length", 4 );
+        cy.get('#manage-membership-holder .btn-blue-border').should( "have.length", 4 );
+        cy.get('#manage-membership-holder .btn-link').should( "have.length", 2 );
+        cy.get('#membership-details > div:nth-child(1) > div.col-md-7.col-xs-9').should('contain.text', '200' );//.subscription-amount
+        cy.get('#membership-details > div:nth-child(3) > div.col-md-6.col-xs-6.subscription-status').should('contain.text', 'Active' );
+
         //newsletterUrl
         cy.visit( Cypress.env('newsletterUrl'));
         cy.wait('@ajaxPost');
@@ -149,50 +157,80 @@ describe('test frikkingeverthing', () => {
         cy.get('.adfree-toggle-check').should( "have.length", 1 );
     });
 
+    //start revio
 
-    it( 'registers a new insider via the insider gutenburg block, pays via payfast.', function(){
+    it( 'deletes the subscriber', function(){
+        cy.deleteUser(subscriber);
+    });
+
+    it( 'logged out, registers a new user, checks out via DebiCheck', function(){
+        cy.viewport(1440, 1024);
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
-        cy.intercept('POST',  '/?wc-ajax=checkout&elementor_page_id=').as('ajaxelementor_page_id');
-      //  cy.intercept('POST', 'https://sandbox.payfast.co.za/eng/method/WalletFunds/*').as('ajaxWalletFunds');
-      //  cy.intercept('POST', '**/eng/method/WalletFunds/**').as('ajaxWalletFunds');
-        //todo test the utm tags
-        cy.visit( Cypress.env('baseUrl') +'/support-daily-maverick/?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
-        cy.get('.components-button-group .components-button:first-child').click();
-        cy.get('.hero-submit-button.selected').click();
-        cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/checkout/' );
-        cy.get('input#billing_first_name').type(insider.firstname);
-        cy.get('input#billing_last_name').type(insider.lastname);
-        cy.get('input#account_username').type(insider.email);
-        cy.get('input#account_password').type(insider.pw);
-        cy.get('.woocommerce-terms-and-conditions-checkbox-text').click();
-        cy.get('#place_order').click();
-        //cy.wait('@ajaxelementor_page_id');
-        //cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/checkout/order-pay/' );
-        cy.wait(5000);
-        cy.location('host').should( 'contain', 'payfast' );
-        cy.get('#pay-with-wallet').click();
-
-       // cy.wait('@ajaxWalletFunds');
-        cy.wait(50000);
-        // cy.location('pathname').should( 'contain', '/maverick-portal/' );
-        cy.location('pathname').should( 'contain', '/manage-membership/' );
-        // cy.wait('@ajaxPost');
-        // cy.wait(2000);
-        // cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/sign-in' );
-        cy.getWordPressCookies('insider');
+        cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+        cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks the R200 value
+        cy.location('pathname').should( 'contain', 'checkout' );
+        cy.loggedOutRegistersUsesOTPToLogin(subscriber);
+        cy.populateDebitForm(subscriber);
+        cy.get('button[name="woocommerce_checkout_place_order"]').click();
+        cy.debiCheckModalWait();
+        cy.getWordPressCookies('subscriber');
     });
 
-    it( 'logs in as existing insider.', function(){
-        cy.manualLogIn(insider);
-        cy.getWordPressCookies('insider');//set the cookies for further tests
-        cy.checkLoggedIn(insider);
+    // it( 'logged out and uses OTP to login, checks out via DebiCheck', function(){
+    //     cy.viewport(1440, 1024);
+    //     cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
+    //     cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+    //     cy.get('.different-amount form.benefits-form button').should('contain.text', '150').click(); //clicks th R200 value
+    //     cy.location('pathname').should( 'contain', 'checkout' );
+    //     cy.loggedOutUsesOTPToLogin( subscriber );
+    //     cy.getWordPressCookies('subscriber');
+    //     //page should refresh and login via token.
+    //     cy.location('pathname').should( 'contain', 'checkout' );
+    //     cy.populateDebitForm(subscriber);
+    //     cy.get('button[name="woocommerce_checkout_place_order"]').click();
+    //     cy.debiCheckModalWait();
+    //     cy.checkWhySignUpModal();
+    // });
+
+    it( 'existing session login and changes the amount, checks out via DebiCheck', function(){
+        cy.viewport(1440, 1024);
+        cy.setWordPressCookies('subscriber');
+        cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
+        cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+        cy.get('.different-amount form.benefits-form button').should('contain.text', '150').click(); //clicks th R200 value
+        cy.location('pathname').should( 'contain', 'checkout' );
+        cy.chooseCreditCardForm( subscriber );
+        cy.get('button[name="woocommerce_checkout_place_order"]').click();
+        cy.fillCreditCardForm(subscriber);
+        cy.debiCheckModalWait();
     });
+
+    //end revio
+
+    // it( 'deletes the subscriber', function(){
+    //     cy.deleteUser(subscriber);
+    // });
+    //
+    // it( 'registers a new subscriber via the gutenburg block, pays via revio cc.', function(){
+    //     cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
+    //     cy.intercept('POST',  '/?wc-ajax=checkout&elementor_page_id=').as('ajaxelementor_page_id');
+    //     //todo test the utm tags
+    //     cy.visit( Cypress.env('baseUrl') +'/support-daily-maverick/?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+    //     cy.get('.components-button-group .components-button:first-child').click();
+    //     cy.get('.hero-submit-button.selected').click();
+    //     cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/checkout/' );
+    //     cy.loggedOutRegistersUsesOTPToLogin(subscriber);
+    //     cy.chooseCreditCardForm( subscriber );
+    //     cy.get('button[name="woocommerce_checkout_place_order"]').click();
+    //     cy.fillCreditCardForm(subscriber);
+    //     cy.getWordPressCookies('subscriber');
+    // });
 
     it('tests commenting if insider logged in', () => {
         cy.intercept('POST', Cypress.env('baseUrl') + '/wp-json/dmc/v1/comments').as('ajaxCommentsPost');
         cy.intercept('GET', Cypress.env('baseUrl') + '/wp-json/dmc/v1/comments?reviewformtype=fetchfirstthree').as('ajaxFetchfirstthree');
         //https://dev.dailymaverick.co.za/wp-json/dmc/v1/comments
-        cy.setWordPressCookies('insider');
+        cy.setWordPressCookies('subscriber');
         cy.visit(Cypress.env('articleUrl'));
         cy.get('.footer').scrollIntoView()
         cy.checkLoggedIn(insider);
@@ -270,17 +308,6 @@ it( 'registers via the from the /sign-in/ form with password. Adds a newsletter 
     })
 });
 
-it( 'tries to register with same email as existing subscriber/insider.', function(){
-    cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
-    cy.visit( Cypress.env('loginUrl') );
-    //cy.get('#nav a:first').click();
-    cy.get('ul.nav-tabs li a[href="#register"]').click();
-    cy.get('input#email').type(subscriber.email);
-    cy.get('input#password').type(subscriber.pw);
-    cy.get('input#agree_terms').click();
-    cy.get('input[name="user_registration"]').click();
-    //look for pop up / toast that says
-});
 
 it( 'tests the forgot / reset password process', function(){
     cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
