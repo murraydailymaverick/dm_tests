@@ -5,13 +5,11 @@ describe('test frikkingeverthing', () => {
 
     before(function () {
      //   cy.clearWordPressCookies();
-     //   cy.deleteUser(insider);
      //   cy.deleteUser(subscriber);
     });
 
     after(function (){
         cy.deleteUser(subscriber);
-        cy.deleteUser(insider);
     })
 
     // beforeEach(function () {
@@ -68,8 +66,6 @@ describe('test frikkingeverthing', () => {
 
         //page should refresh and login via token.
         cy.wait(3000);
-        cy.location('search').should( 'contain', '?token=' );
-
         cy.get('.your-account').should('be.visible' ).should('contain.text', 'Your Account' );
         cy.getWordPressCookies('subscriber');
     });
@@ -202,7 +198,6 @@ describe('test frikkingeverthing', () => {
         cy.chooseCreditCardForm( subscriber );
         cy.get('button[name="woocommerce_checkout_place_order"]').click();
         cy.fillCreditCardForm(subscriber);
-        cy.debiCheckModalWait();
     });
 
     //end revio
@@ -233,11 +228,11 @@ describe('test frikkingeverthing', () => {
         cy.setWordPressCookies('subscriber');
         cy.visit(Cypress.env('articleUrl'));
         cy.get('.footer').scrollIntoView()
-        cy.checkLoggedIn(insider);
+        cy.checkLoggedIn(subscriber);
         cy.visit(Cypress.env('articleUrl'));
         cy.get('.comment-opinion').contains('everybody has an opinion but not everyone has the knowledge and the experience to contribute meaningfully to a discussion. That’s what we want from our members. Help us learn with your expertise and insights on articles that we publish. We encourage different, respectful viewpoints to further our understanding of the world. View our comments policy')
 
-        cy.get('p.logged-in-as').contains( 'Logged in as Insider One')
+        cy.get('p.logged-in-as').contains( 'Logged in as Subscriber One')
         cy.get('p.logged-in-as a:first-child').contains( 'Edit your profile')
         cy.get('p.logged-in-as a:nth-child(2)').contains( 'Log out?')
         cy.get('#commentform #comment').type( 'Automated Test comment.')

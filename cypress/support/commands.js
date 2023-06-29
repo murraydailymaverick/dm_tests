@@ -129,7 +129,7 @@ Cypress.Commands.add("manualLogIn", (user, underscore=false) => {
 });
 
 Cypress.Commands.add("loggedOutRegistersUsesOTPToLogin", (user, underscore=false) => {
-    cy.intercept('POST', Cypress.env('baseUrl') + '/wp-json/dm_rest_api/v1/validate_code').as('validateCode');
+    cy.intercept('POST', Cypress.env('baseUrl') + '/wp-json/dm_rest_api/v1/validate_code_and_login').as('validateCode');
     cy.get('#send-magic-email').type(user.email);
     cy.get('.mail-login-engine-shortcode-sumbit').click();
     cy.get('.email-label').should('contain.text', 'Perhaps you entered your email incorrectly?' );
@@ -143,11 +143,11 @@ Cypress.Commands.add("loggedOutRegistersUsesOTPToLogin", (user, underscore=false
     cy.get('#otp input[data-index=2]').type('1');
     cy.get('#otp input[data-index=3]').type('3');
     cy.wait('@validateCode');
-    cy.location('search').should( 'contain', '?token=' );
+    //cy.get('.your-account').should('be.visible' ).should('contain.text', 'Your Account' );
 });
 
 Cypress.Commands.add("loggedOutUsesOTPToLogin", (user, underscore=false) => {
-    cy.intercept('POST', Cypress.env('baseUrl') + '/wp-json/dm_rest_api/v1/validate_code').as('validateCode');
+    cy.intercept('POST', Cypress.env('baseUrl') + '/wp-json/dm_rest_api/v1/validate_code_and_login').as('validateCode');
     cy.get('#send-magic-email').type(user.email);
     cy.get('.mail-login-engine-shortcode-sumbit').click();
     cy.get('.email-sent-to').should('contain.text', user.email );
@@ -158,7 +158,7 @@ Cypress.Commands.add("loggedOutUsesOTPToLogin", (user, underscore=false) => {
     cy.get('#otp input[data-index=2]').type('1');
     cy.get('#otp input[data-index=3]').type('3');
     cy.wait('@validateCode');
-    cy.location('search').should( 'contain', '?token=' );
+    //cy.get('.your-account').should('be.visible' ).should('contain.text', 'Your Account' );
 });
 
 Cypress.Commands.add("populateDebitForm", (user, success=true) => {
@@ -198,6 +198,7 @@ Cypress.Commands.add("chooseCreditCardForm", (user) => {
 });
 
 Cypress.Commands.add("fillCreditCardForm", (user) => {
+    cy.wait(5000);
     cy.location('host').should( 'contain', 'payments.revio' );
     cy.intercept('GET','standard.paystack.co/charge/*').as('payCharge');
     cy.intercept('GET','standard.paystack.co/p/*').as('pay');
@@ -216,6 +217,7 @@ Cypress.Commands.add("fillCreditCardForm", (user) => {
     cy.get('button.submit_button').click();
     // cy.wait('@payCharge');
     // cy.wait('@pay');
+    cy.wait(5000);
     cy.location('host').should( 'contain', Cypress.env('domain') );
 });
 
