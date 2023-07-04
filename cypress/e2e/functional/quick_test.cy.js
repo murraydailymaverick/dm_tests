@@ -22,9 +22,9 @@ describe('some quick tests', () => {
 
 
 
-    // it( 'sends an itn to the site', function(){
-    //     cy.updatePayfastOrder('1640405');
-    // });
+    it( 'sends an itn to the site', function(){
+        cy.wpRequest(Cypress.env('baseUrl')+'/wp-json/wc/v3/orders/1640405');
+    });
 
 })
 Cypress.on('uncaught:exception', (err, runnable) => {

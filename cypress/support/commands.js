@@ -63,11 +63,11 @@ Cypress.Commands.add("setWordPressCookies", (role = 'admin') => {
         });
 });
 
-Cypress.Commands.add("updatePayfastOrder", (payment_id) => {
+Cypress.Commands.add("wpRequest", (requestURL) => {
 
     let options = {}
     options.method = 'GET';
-    options.url = Cypress.env('baseUrl')+'/wp-json/wc/v3/orders/'+payment_id;
+    options.url = requestURL;
     options.auth = {
         username: Cypress.env('wp_credentials').username,
         password: Cypress.env('wp_credentials').password
