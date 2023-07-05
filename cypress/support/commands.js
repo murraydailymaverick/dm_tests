@@ -379,8 +379,58 @@ Cypress.Commands.add("setCode", (user) => {
         email: user.email,
         authorization: Cypress.env('authtoken')
     }
-    cy.request( options );
+    cy.request( options ).as('setCodeRequest');
+    cy.get('@setCodeRequest').should((response) => {
+
+    })
 })
+
+Cypress.Commands.add("checkSubscriptionAndOrder", (user, type) => {
+    let options = {}
+    options.method = 'POST';
+    options.url = Cypress.env('baseUrl')+'/wp-json/dm_rest_api/v1/set_test_code';
+    options.auth = {
+        username: Cypress.env('credentials').username,
+        password: Cypress.env('credentials').password
+    }
+    options.body = {
+        email: user.email,
+        authorization: Cypress.env('authtoken')
+    }
+    cy.request( options ).as('setCodeRequest').then( (response) => {
+        expect(response.body.subscriptions).to.have.property('parent_id');
+        expect(response.body.subscriptions).to.have.property('customer_id');
+        expect(response.body.subscriptions.billing.first_name).to.eq(user.firstname)
+        expect(response.body.subscriptions.schedule_next_payment).to.have.property('date');
+        //expect(response.body.subscriptions.meta_data.ossc_inflation).to.have.property('key');//multiple keys
+        expect(response.body).to.have.property('token');
+        expect(response.body.user.data).to.have.property('user_email');
+        expect(response.body).to.have.property('meta');
+       // cy.wrap(response.body.user.data.user_email).as('user_email')
+       // cy.wrap(response.body.meta).as('meta')
+       // cy.wrap(response.body.token).as('token')
+        cy.wrap(response.body.subscriptions.parent_id).as('order_id')
+    });
+
+    cy.get('@order_id').then(order_id => {
+        let options = {}
+        options.method = 'GET';
+        options.url = Cypress.env('baseUrl')+'/wp-json/wc/v3/orders/'+order_id;
+        options.auth = {
+            username: Cypress.env('wp_credentials').username,
+            password: Cypress.env('wp_credentials').password
+        }
+        cy.request( options ).as('retrievedOrder');
+        cy.get('@retrievedOrder').should((response) => {
+            expect(response.body).to.have.property('status')
+            expect(response.body).to.have.property('meta_data')
+            expect(response.body.status).to.eq(type.status)
+            expect(response.body.total).to.eq(type.amount)
+            expect(response.body.payment_method).to.eq(type.payment_method)
+        })
+    });
+
+});
 
 Cypress.Commands.add("OlddeleteUser", (user) => {
     //cy.intercept('POST', '/cdn-cgi/rum?').as('ajaxcdn-cgi');
