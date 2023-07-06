@@ -146,7 +146,7 @@ describe('test frikkingeverthing', () => {
         cy.deleteUser(subscriber);
     });
 
-    it( 'logged out, registers a new user, checks out via DebiCheck', function(){
+    it( 'logged out, registers a new user, checks out via revio DebiCheck', function(){
         cy.clearWordPressCookies();
         cy.viewport(1440, 1024);
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
@@ -180,7 +180,7 @@ describe('test frikkingeverthing', () => {
     //     cy.checkWhySignUpModal();
     // });
 
-    it( 'existing session login and changes the amount, checks out via DebiCheck', function(){
+    it( 'existing session, existing subscription, chooses different amount, checks out via revio CreditCard', function(){
         cy.viewport(1440, 1024);
         cy.setWordPressCookies('subscriber');
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');

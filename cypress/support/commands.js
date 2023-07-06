@@ -410,6 +410,7 @@ Cypress.Commands.add("checkSubscriptionAndOrder", (user, type) => {
        // cy.wrap(response.body.meta).as('meta')
        // cy.wrap(response.body.token).as('token')
         cy.wrap(response.body.subscriptions.parent_id).as('order_id')
+        cy.writeFile( 'test_info/user_'+response.body.user.data.ID + '_subscriptions.json', response.body.subscriptions);
     });
 
     cy.get('@order_id').then(order_id => {
@@ -420,14 +421,14 @@ Cypress.Commands.add("checkSubscriptionAndOrder", (user, type) => {
             username: Cypress.env('wp_credentials').username,
             password: Cypress.env('wp_credentials').password
         }
-        cy.request( options ).as('retrievedOrder');
-        cy.get('@retrievedOrder').should((response) => {
+        cy.request( options ).as('retrievedOrder').then((response) => {
             expect(response.body).to.have.property('status')
             expect(response.body).to.have.property('meta_data')
             expect(response.body.status).to.eq(type.status)
             expect(response.body.total).to.eq(type.amount)
             expect(response.body.payment_method).to.eq(type.payment_method)
-        })
+            cy.writeFile( 'test_info/order_'+order_id+'.json', response.body);
+        });
     });
 
 });

@@ -1,5 +1,6 @@
 node_modules
 ignore
+test_info
 .idea
 cypress.config.js
 dev.cypress.config.js
