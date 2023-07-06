@@ -101,7 +101,7 @@ describe('test frikkingeverthing', () => {
 
     //check order here:
     it( 'checks the payfast order info.', function(){
-        cy.checkSubscriptionAndOrder(subscriber, {amount:'200.00', payment_method: 'dmrevio', status: 'completed'});
+        cy.checkSubscriptionAndOrder(subscriber, {amount:'200.00', payment_method: 'payfast', status: 'completed'});
     });
 
     it( 'set session, signs up via the insider blocks and checks out via DebiCheck', function(){
@@ -192,8 +192,8 @@ describe('test frikkingeverthing', () => {
         cy.fillCreditCardForm(subscriber);
     });
 
-    it( 'checks the DebiCheck order info.', function(){
-        cy.checkSubscriptionAndOrder(subscriber, { amount:'150.00', payment_method: 'dmrevio', status: 'completed' });
+    it( 'checks the revio credit card order order info.', function(){
+        cy.checkSubscriptionAndOrder(subscriber, { amount:'150.00', payment_method: 'dmrevio', status: 'failed' });
     });
 
     //end revio

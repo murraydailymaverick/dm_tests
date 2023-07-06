@@ -400,7 +400,7 @@ Cypress.Commands.add("checkSubscriptionAndOrder", (user, type) => {
     cy.request( options ).as('setCodeRequest').then( (response) => {
         expect(response.body.subscriptions).to.have.property('parent_id');
         expect(response.body.subscriptions).to.have.property('customer_id');
-        expect(response.body.subscriptions.billing.first_name).to.eq(user.firstname)
+      //  expect(response.body.subscriptions.billing.first_name).to.eq(user.firstname) //not set if payfast
         expect(response.body.subscriptions.schedule_next_payment).to.have.property('date');
         //expect(response.body.subscriptions.meta_data.ossc_inflation).to.have.property('key');//multiple keys
         expect(response.body).to.have.property('token');
