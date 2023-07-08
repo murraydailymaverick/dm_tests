@@ -180,6 +180,24 @@ describe('test frikkingeverthing', () => {
     //     cy.checkWhySignUpModal();
     // });
 
+    it( 'OTP login, existing subscription, chooses different amount, checks out via revio CreditCard', function(){
+        cy.viewport(1440, 1024);
+        cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
+        cy.visit( Cypress.env('baseUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+        cy.get('a.login-button').click();
+        cy.loggedOutUsesOTPToLogin(subscriber);
+        cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+        cy.get('.different-amount form.benefits-form button').should('contain.text', '150').click(); //clicks th R200 value
+        cy.location('pathname').should( 'contain', 'checkout' );
+        cy.chooseCreditCardForm( subscriber );
+        cy.get('button[name="woocommerce_checkout_place_order"]').click();
+        cy.fillCreditCardForm(subscriber);
+    });
+
+    it( 'checks the revio credit card order order info.', function(){
+        cy.checkSubscriptionAndOrder(subscriber, { amount:'150.00', payment_method: 'dmrevio', status: 'failed' });
+    });
+
     it( 'existing session, existing subscription, chooses different amount, checks out via revio CreditCard', function(){
         cy.viewport(1440, 1024);
         cy.setWordPressCookies('subscriber');
