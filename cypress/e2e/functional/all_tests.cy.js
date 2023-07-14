@@ -111,7 +111,6 @@ describe('test frikkingeverthing', () => {
         cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks the R200 value
         cy.location('pathname').should( 'contain', 'checkout' );
         cy.populateDebitForm(subscriber);
-        cy.get('button[name="woocommerce_checkout_place_order"]').click();
         cy.debiCheckModalWait();
         cy.getWordPressCookies('subscriber');
     });
@@ -155,7 +154,6 @@ describe('test frikkingeverthing', () => {
         cy.location('pathname').should( 'contain', 'checkout' );
         cy.loggedOutRegistersUsesOTPToLogin(subscriber);
         cy.populateDebitForm(subscriber);
-        cy.get('button[name="woocommerce_checkout_place_order"]').click();
         cy.debiCheckModalWait();
         cy.getWordPressCookies('subscriber');
     });
@@ -175,7 +173,6 @@ describe('test frikkingeverthing', () => {
     //     //page should refresh and login via token.
     //     cy.location('pathname').should( 'contain', 'checkout' );
     //     cy.populateDebitForm(subscriber);
-    //     cy.get('button[name="woocommerce_checkout_place_order"]').click();
     //     cy.debiCheckModalWait();
     //     cy.checkWhySignUpModal();
     // });

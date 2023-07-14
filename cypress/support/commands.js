@@ -178,12 +178,13 @@ Cypress.Commands.add("populateDebitForm", (user, success=true) => {
     cy.get('input[name="terms"]').click();
 });
 
-Cypress.Commands.add("debiCheckModalWait", (user) => {
+Cypress.Commands.add("debiCheckModalWait", () => {
+    cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php' ).as('ajaxAuthenticationWait');
+    cy.get('button[name="woocommerce_checkout_place_order"]').click();
     cy.wait(2000);
     cy.get('div.debicheck-modal').should('have.class', 'open' );
     cy.get('div.debicheck-modal h2').should('contain.text', 'Waiting for authentication' );
-    //cy.task("waitForServerResponse", { server_url:  Cypress.env('dashboardUrl') + '/admin-ajax.php' });
-    cy.wait(20000);
+    cy.wait(20000);//Timed out retrying after 30000ms: cy.wait() timed out waiting 30000ms for the 1st response to the route: ajaxAuthenticationWait. No response ever occurred.
     cy.get('div.debicheck-modal h2').should('contain.text', 'Transaction Successful' );
     cy.wait(40000);
     cy.location('pathname').should( 'contain', 'manage-membership' );
