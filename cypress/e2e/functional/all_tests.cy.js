@@ -5,11 +5,11 @@ describe('test frikkingeverthing', () => {
 
     before(function () {
      //   cy.clearWordPressCookies();
-     //   cy.deleteUser(subscriber);
+        cy.deleteUser(subscriber);
     });
 
     after(function (){
-        cy.deleteUser(subscriber);
+       // cy.deleteUser(subscriber);
     })
 
     // beforeEach(function () {
@@ -97,6 +97,20 @@ describe('test frikkingeverthing', () => {
         cy.wait(500)
         cy.payWithPayfast( subscriber );
         cy.getWordPressCookies('subscriber');
+    });
+
+    it( 'logs in as the /insider to check the manage-membership page.', function(){
+        cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
+        cy.setWordPressCookies('subscriber');
+        cy.visit(Cypress.env('baseUrl')+'/manage-membership/');
+        cy.location('pathname').should( 'contain', '/manage-membership/' );
+
+        cy.get('#whyQuestionsModal').should("be.visible");
+        cy.get('ul.wc-radios li label').should('have.length', 8);
+        cy.get('ul.wc-radios li label').first().click();
+        cy.get('#submitWhyQuestions').click();
+        cy.wait('@ajaxPost');
+        cy.visit(Cypress.env('baseUrl')+'/manage-membership/');
     });
 
     //check order here:
