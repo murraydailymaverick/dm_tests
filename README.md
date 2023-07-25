@@ -4,6 +4,7 @@ a repo to hold the DM tests.
 `npm run cypress:open_local`
 `npm run cypress:open_internal`
 `npm run cypress:delete_subscriber`
+`npm run cypress:set_otp_subscriber`
 
 ## The Percy Project for dev.dailymaverick.co.za
 [percy.io](https://percy.io/9f297d8f/https-dev.dailymaverick.co.za-)

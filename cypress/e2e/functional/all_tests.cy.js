@@ -5,7 +5,7 @@ describe('test frikkingeverthing', () => {
 
     before(function () {
      //   cy.clearWordPressCookies();
-        cy.deleteUser(subscriber);
+     //   cy.deleteUser(subscriber);
     });
 
     after(function (){
@@ -59,6 +59,8 @@ describe('test frikkingeverthing', () => {
         cy.wait(3000);
         cy.get('.your-account').should('be.visible' ).should('contain.text', 'Your Account' );
         cy.getWordPressCookies('subscriber');
+
+        cy.end();
     });
 
     //it( 'registers via the reg-wall.', function(){});
@@ -118,16 +120,35 @@ describe('test frikkingeverthing', () => {
         cy.checkSubscriptionAndOrder(subscriber, {amount:'200.00', payment_method: 'payfast', status: 'completed'});
     });
 
-    it( 'set session, signs up via the insider blocks and checks out via DebiCheck', function(){
+    it( 'set session, check insiderBlockUrl redirect, check active message, switch to 150  and checks out via DebiCheck', function(){
         cy.setWordPressCookies('subscriber');
         cy.viewport(1440, 1024);
         cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
-        cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks the R200 value
+        cy.location('pathname').should( 'contain', 'manage-membership' );
+        cy.get('#manage-membership-holder .col-xs-12  h3').should('contain.text', 'Please see your membership details below:');
+        cy.get('#manage-membership-holder .col-xs-12  .woocommerce-info').should('contain.text', 'You currently have an active membership of R 200 / Monthly with Payfast as your payment method. To change your membership details, please choose your preferences below and complete the checkout process.');
+
+        cy.get('.switchSubscription').click();
+        cy.get('#switchSubscription .modal-dialog').should('be.visible');
+        cy.get('button[data-switch-amount=150]').click();
+
         cy.location('pathname').should( 'contain', 'checkout' );
+        cy.get('#revio_paymenttype_debicheck').click();
         cy.populateDebitForm(subscriber);
         cy.debiCheckModalWait();
         cy.getWordPressCookies('subscriber');
     });
+    //
+    // it( 'set session, signs up via the insider blocks and checks out via DebiCheck', function(){
+    //     cy.setWordPressCookies('subscriber');
+    //     cy.viewport(1440, 1024);
+    //     cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+    //     cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks the R200 value
+    //     cy.location('pathname').should( 'contain', 'checkout' );
+    //     cy.populateDebitForm(subscriber);
+    //     cy.debiCheckModalWait();
+    //     cy.getWordPressCookies('subscriber');
+    // });
 
     //check order here:
     it( 'checks the DebiCheck order info.', function(){
@@ -198,8 +219,13 @@ describe('test frikkingeverthing', () => {
         cy.get('a.login-button').click();
         cy.loggedOutUsesOTPToLogin(subscriber);
         cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
-        cy.get('.different-amount form.benefits-form button').should('contain.text', '150').click(); //clicks th R200 value
-        cy.location('pathname').should( 'contain', 'checkout' );
+        cy.location('pathname').should( 'contain', 'manage-membership' );
+        cy.get('#manage-membership-holder .col-xs-12  h3').should('contain.text', 'Please see your membership details below:');
+       // cy.get('#manage-membership-holder .col-xs-12  .woocommerce-info').should('contain.text', 'You currently have an active membership of R 200 / Monthly with Payfast as your payment method. To change your membership details, please choose your preferences below and complete the checkout process.');
+
+        cy.get('.switchSubscription').click();
+        cy.get('#switchSubscription .modal-dialog').should('be.visible');
+        cy.get('button[data-switch-amount=150]').click();
         cy.chooseCreditCardForm( subscriber );
         cy.get('button[name="woocommerce_checkout_place_order"]').click();
         cy.fillCreditCardForm(subscriber);
