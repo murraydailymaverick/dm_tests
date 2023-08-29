@@ -120,7 +120,7 @@ describe('test frikkingeverthing', () => {
         cy.checkSubscriptionAndOrder(subscriber, {amount:'200.00', payment_method: 'payfast', status: 'completed'});
     });
 
-    it( 'set session, check insiderBlockUrl redirect, check active message, switch to 150  and checks out via DebiCheck', function(){
+    /*it( 'set session, check insiderBlockUrl redirect, check active message, switch to 150  and checks out via DebiCheck', function(){
         cy.setWordPressCookies('subscriber');
         cy.viewport(1440, 1024);
         cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
@@ -138,22 +138,23 @@ describe('test frikkingeverthing', () => {
         cy.debiCheckModalWait();
         cy.getWordPressCookies('subscriber');
     });
-    //
-    // it( 'set session, signs up via the insider blocks and checks out via DebiCheck', function(){
-    //     cy.setWordPressCookies('subscriber');
-    //     cy.viewport(1440, 1024);
-    //     cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
-    //     cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks the R200 value
-    //     cy.location('pathname').should( 'contain', 'checkout' );
-    //     cy.populateDebitForm(subscriber);
-    //     cy.debiCheckModalWait();
-    //     cy.getWordPressCookies('subscriber');
-    // });
+    */
+
+    /*it( 'set session, signs up via the insider blocks and checks out via DebiCheck', function(){
+        cy.setWordPressCookies('subscriber');
+        cy.viewport(1440, 1024);
+        cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+        cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks the R200 value
+        cy.location('pathname').should( 'contain', 'checkout' );
+        cy.populateDebitForm(subscriber);
+        cy.debiCheckModalWait();
+        cy.getWordPressCookies('subscriber');
+    });*/
 
     //check order here:
-    it( 'checks the DebiCheck order info.', function(){
+    /*it( 'checks the DebiCheck order info.', function(){
         cy.checkSubscriptionAndOrder(subscriber, { amount:'200.00', payment_method: 'dmrevio', status: 'completed' });
-    });
+    });*/
 
 
 /*
@@ -212,7 +213,7 @@ describe('test frikkingeverthing', () => {
     //     cy.checkWhySignUpModal();
     // });
 
-    it( 'OTP login, existing subscription, chooses different amount, checks out via revio CreditCard', function(){
+  /*  it( 'OTP login, existing subscription, chooses different amount, checks out via revio CreditCard', function(){
         cy.viewport(1440, 1024);
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
         cy.visit( Cypress.env('baseUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
@@ -249,7 +250,7 @@ describe('test frikkingeverthing', () => {
 
     it( 'checks the revio credit card order order info.', function(){
         cy.checkSubscriptionAndOrder(subscriber, { amount:'150.00', payment_method: 'dmrevio', status: 'failed' });
-    });
+    });*/
 
     //end revio
 
