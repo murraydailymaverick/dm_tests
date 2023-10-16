@@ -33,7 +33,7 @@ describe('test frikkingeverthing', () => {
         cy.visit( Cypress.env('baseUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
         cy.get('a.login-button').click();
         cy.get('.password-login').should('be.visible' );
-        cy.get('#send-magic-email').type(subscriber.email);
+        cy.get('.send-magic-email').type(subscriber.email);
         cy.get('.mail-login-engine-shortcode-sumbit').click();
         cy.get('.email-label').should('contain.text', 'Perhaps you entered your email incorrectly?' );
         cy.get('.your-email').should('contain.text', subscriber.email );

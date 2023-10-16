@@ -130,7 +130,7 @@ Cypress.Commands.add("manualLogIn", (user, underscore=false) => {
 
 Cypress.Commands.add("loggedOutRegistersUsesOTPToLogin", (user, underscore=false) => {
     cy.intercept('POST', Cypress.env('baseUrl') + '/wp-json/dm_rest_api/v1/validate_code_and_login').as('validateCode');
-    cy.get('#send-magic-email').type(user.email);
+    cy.get('.send-magic-email').type(user.email);
     cy.get('.mail-login-engine-shortcode-sumbit').click();
     cy.get('.email-label').should('contain.text', 'Perhaps you entered your email incorrectly?' );
     cy.get('.your-email').should('contain.text', user.email );
@@ -148,7 +148,7 @@ Cypress.Commands.add("loggedOutRegistersUsesOTPToLogin", (user, underscore=false
 
 Cypress.Commands.add("loggedOutUsesOTPToLogin", (user, underscore=false) => {
     cy.intercept('POST', Cypress.env('baseUrl') + '/wp-json/dm_rest_api/v1/validate_code_and_login').as('validateCode');
-    cy.get('#send-magic-email').type(user.email);
+    cy.get('.send-magic-email').type(user.email);
     cy.get('.mail-login-engine-shortcode-sumbit').click();
     cy.get('.email-sent-to').should('contain.text', user.email );
     cy.get('#otp').should('be.visible' );
