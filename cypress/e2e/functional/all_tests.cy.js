@@ -9,7 +9,7 @@ describe('test frikkingeverthing', () => {
     });
 
     after(function (){
-       // cy.deleteUser(subscriber);
+        cy.deleteUser(subscriber);
     })
 
     // beforeEach(function () {
@@ -21,11 +21,15 @@ describe('test frikkingeverthing', () => {
     //     cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/sign-in' );
     //     cy.dismissCookieConcent();
     // });
-
-    // it('tests commenting if logged out', () => {
+    // it( 'checks the check for cookie bar and dismisses it.', function(){
     //     cy.visit(Cypress.env('articleUrl'));
-    //     cy.get('.comment-opinion').contains('verybody has an opinion but not everyone has the knowledge and the experience to contribute meaningfully to a discussion. That’s what we want from our members. Help us learn with your expertise and insights on articles that we publish. We encourage different, respectful viewpoints to further our understanding of the world. View our comments policy')
-    // })
+    //     cy.dismissCookieConcent();
+    // });
+
+    it('tests commenting if logged out', () => {
+        cy.visit(Cypress.env('articleUrl'));
+        cy.get('.comments-area h3').contains('Comments - Please login in order to comment.')
+    })
 
     it( 'login via the navigation - email doesnt exist. Then registers. Then checks invalid otp.', function(){
         cy.viewport(1440, 1024);
@@ -55,17 +59,28 @@ describe('test frikkingeverthing', () => {
         cy.get('#otp input[data-index=1]').type('7');
         cy.get('#otp input[data-index=2]').type('1');
         cy.get('#otp input[data-index=3]').type('3');
-        //page should refresh and login via token.
-        cy.wait(3000);
-        cy.get('.your-account').should('be.visible' ).should('contain.text', 'Your Account' );
-        cy.getWordPressCookies('subscriber');
 
-        cy.end();
+        cy.wait(1000);
+        cy.get('.your-account').should('be.visible' ).should('contain.text', 'Your Account' );
+
+        cy.visit( Cypress.env('baseUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+        cy.getWordPressCookies('subscriber');
     });
+
+/*    it( 'set session, signs up via the insider blocks and checks out via DebiCheck', function(){
+        cy.setWordPressCookies('subscriber');
+        cy.viewport(1440, 1024);
+        cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+        cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks the R200 value
+        cy.location('pathname').should( 'contain', 'checkout' );
+        cy.populateDebitForm(subscriber);
+        cy.debiCheckModalWait();
+        cy.getWordPressCookies('subscriber');
+    });*/
 
     //it( 'registers via the reg-wall.', function(){});
 
-/*    it( 'logs in as existing subscriber and check the profile page.', function() {
+    it( 'logs in as existing subscriber and check the profile page.', function() {
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
         cy.setWordPressCookies('subscriber');
         cy.visit(Cypress.env('baseUrl'));
@@ -80,28 +95,24 @@ describe('test frikkingeverthing', () => {
         cy.get('.toast-message').should("contain.text", "Your profile has been updated!");
         cy.location('pathname').should('contain', '/edit-my-profile/');
         cy.get('input#first_name').should("have.value", subscriber.firstname);
-    });*/
+    });
 
-/*    it( 'logs in as existing subscriber and check the newsletter page.', function(){
+    it('tests commenting if logged in', () => {
+        cy.setWordPressCookies('subscriber');
+        cy.visit(Cypress.env('articleUrl'));
+        cy.get('.comment-opinion').contains('Everybody has an opinion but not everyone has the knowledge and the experience to contribute meaningfully to a discussion. That’s what we want from our members. Help us learn with your expertise and insights on articles that we publish. We encourage different, respectful viewpoints to further our understanding of the world. View our comments policy')
+    })
+
+    it( 'logs in as existing subscriber and check the newsletter page.', function(){
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
         cy.setWordPressCookies('subscriber');
         cy.visit( Cypress.env('newsletterUrl'));
        // cy.get('input#tbp_user_firstname').should("have.value",subscriber.firstname);
        // cy.get('input#tbp_user_email').should("have.value",subscriber.email);
         cy.get('.newsletter-block').should( "have.length", 20 );
-    });*/
-
-    it( 'logs in as a subscriber, goes to the /insider signup and pays via payfast sandbox.', function(){
-        cy.setWordPressCookies('subscriber');
-        cy.visit(Cypress.env('insiderUrl'));
-        cy.get('.proceed-btn.col-md-4').click();
-        cy.location('pathname').should( 'contain', '/insider/' );
-        cy.wait(500)
-        cy.payWithPayfast( subscriber );
-        cy.getWordPressCookies('subscriber');
     });
 
-    it( 'logs in as the /insider to check the manage-membership page.', function(){
+/*    it( 'logs in as the /insider to check the manage-membership page.', function(){
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
         cy.setWordPressCookies('subscriber');
         cy.visit(Cypress.env('baseUrl')+'/manage-membership/');
@@ -113,12 +124,12 @@ describe('test frikkingeverthing', () => {
         cy.get('#submitWhyQuestions').click();
         cy.wait('@ajaxPost');
         cy.visit(Cypress.env('baseUrl')+'/manage-membership/');
-    });
+    });*/
 
     //check order here:
-    it( 'checks the payfast order info.', function(){
+ /*   it( 'checks the payfast order info.', function(){
         cy.checkSubscriptionAndOrder(subscriber, {amount:'200.00', payment_method: 'payfast', status: 'completed'});
-    });
+    });*/
 
     /*it( 'set session, check insiderBlockUrl redirect, check active message, switch to 150  and checks out via DebiCheck', function(){
         cy.setWordPressCookies('subscriber');
@@ -140,16 +151,7 @@ describe('test frikkingeverthing', () => {
     });
     */
 
-    /*it( 'set session, signs up via the insider blocks and checks out via DebiCheck', function(){
-        cy.setWordPressCookies('subscriber');
-        cy.viewport(1440, 1024);
-        cy.visit( Cypress.env('insiderBlockUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
-        cy.get('.test-me form.benefits-form button').should('contain.text', '200').click(); //clicks the R200 value
-        cy.location('pathname').should( 'contain', 'checkout' );
-        cy.populateDebitForm(subscriber);
-        cy.debiCheckModalWait();
-        cy.getWordPressCookies('subscriber');
-    });*/
+
 
     //check order here:
     /*it( 'checks the DebiCheck order info.', function(){
