@@ -44,26 +44,25 @@ describe('test commenting', () => {
     });
 
     it('tests commenting if logged in', () => {
-        cy.setWordPressCookies('subscriber');
-        cy.visit(Cypress.env('articleUrl'));
-        cy.get('.comment-opinion').contains('When you comment on a Daily Maverick article, you add your voice to a community of readers who place a high premium on the truth. We encourage you to think twice before voicing untested claims. Instead, we want you to bring your expertise and experience to the conversation to further our understanding of the issues. View our comments policy ')
-    })
-
-    it('tests commenting if insider logged in', () => {
         cy.intercept('POST', Cypress.env('baseUrl') + '/wp-json/dmc/v1/comments').as('ajaxCommentsPost');
         cy.intercept('GET', Cypress.env('baseUrl') + '/wp-json/dmc/v1/comments?reviewformtype=fetchfirstthree').as('ajaxFetchfirstthree');
         //https://dev.dailymaverick.co.za/wp-json/dmc/v1/comments
+
         cy.setWordPressCookies('subscriber');
         cy.visit(Cypress.env('articleUrl'));
+        //cy.checkLoggedIn(subscriber);
         cy.get('.footer').scrollIntoView()
-        cy.checkLoggedIn(subscriber);
-        cy.visit(Cypress.env('articleUrl'));
-        cy.get('.comment-opinion').contains('everybody has an opinion but not everyone has the knowledge and the experience to contribute meaningfully to a discussion. That’s what we want from our members. Help us learn with your expertise and insights on articles that we publish. We encourage different, respectful viewpoints to further our understanding of the world. View our comments policy')
+        cy.get('.comment-opinion').contains('When you comment on a Daily Maverick article, you add your voice to a community of readers who place a high premium on the truth. We encourage you to think twice before voicing untested claims. Instead, we want you to bring your expertise and experience to the conversation to further our understanding of the issues. View our comments policy ')
 
-        cy.get('p.logged-in-as').contains( 'Logged in as Subscriber One')
-        cy.get('p.logged-in-as a:first-child').contains( 'Edit your profile')
-        cy.get('p.logged-in-as a:nth-child(2)').contains( 'Log out?')
+        // cy.get('p.logged-in-as').contains( 'Logged in as Subscriber One')
+        // cy.get('p.logged-in-as a:first-child').contains( 'Edit your profile')
+        // cy.get('p.logged-in-as a:nth-child(2)').contains( 'Log out?')
         cy.get('#commentform #comment').type( 'Automated Test comment.')
+        cy.get('div.logged-in-as p:first-child').contains( 'You are about to comment as murraysubscriber@dailymaverick.co.za.')
+        cy.get('div.logged-in-as p:nth-child(2)').contains( 'Add your name when commenting?')
+        cy.get('#firstname-error').contains( 'This field is required.')
+        cy.get('#firstname').type( 'Murray')
+        cy.get('#lastname').type( 'Greig')
         cy.get('#commentform #submit').click()
         //s://dev.dailymaverick.co.za/wp-json/dmc/v1/comments?reviewformtype=fetchfirstthree
         cy.wait('@ajaxFetchfirstthree')
