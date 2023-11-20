@@ -3,6 +3,7 @@ a repo to hold the DM tests.
 `npm run cypress:open` //the dev env
 `npm run cypress:open_local`
 `npm run cypress:open_internal`
+`npm run cypress:internal_delete_subscriber`
 `npm run cypress:delete_subscriber`
 `npm run cypress:set_otp_subscriber`
 

@@ -9,6 +9,7 @@
     "cypress:open": "node_modules/.bin/cypress open --config-file dev.cypress.config.js",
     "cypress:open_local": "node_modules/.bin/cypress open --config-file local.cypress.config.js",
     "cypress:open_internal": "node_modules/.bin/cypress open --config-file internal.cypress.config.js",
+    "cypress:internal_delete_subscriber": "node_modules/.bin/cypress run --spec cypress/e2e/functional/delete-subscriber.cy.js --config-file internal.cypress.config.js",
     "cypress:delete_subscriber": "node_modules/.bin/cypress run --spec cypress/e2e/functional/delete-subscriber.cy.js --config-file dev.cypress.config.js",
     "cypress:set_otp_subscriber": "node_modules/.bin/cypress run --spec cypress/e2e/functional/set-otp-subscriber.cy.js --config-file local.cypress.config.js",
     "cypress:applitools": "node_modules/.bin/cypress run --spec cypress/e2e/applitools/*.js --config-file prod.cypress.config.js",

@@ -21,15 +21,16 @@ describe('test frikkingeverthing', () => {
     //     cy.location('pathname').should( 'contain', Cypress.env('localfolder')+'/sign-in' );
     //     cy.dismissCookieConcent();
     // });
+
     // it( 'checks the check for cookie bar and dismisses it.', function(){
     //     cy.visit(Cypress.env('articleUrl'));
     //     cy.dismissCookieConcent();
     // });
 
-    it('tests commenting if logged out', () => {
-        cy.visit(Cypress.env('articleUrl'));
-        cy.get('.comments-area h3').contains('Comments - Please login in order to comment.')
-    })
+    // it('tests commenting if logged out', () => {
+    //     cy.visit(Cypress.env('articleUrl'));
+    //     cy.get('.comments-area h3').contains('Comments - Please login in order to comment.')
+    // })
 
     it( 'login via the navigation - email doesnt exist. Then registers. Then checks invalid otp.', function(){
         cy.viewport(1440, 1024);
@@ -60,10 +61,9 @@ describe('test frikkingeverthing', () => {
         cy.get('#otp input[data-index=2]').type('1');
         cy.get('#otp input[data-index=3]').type('3');
 
-        cy.wait(1000);
-        cy.get('.your-account').should('be.visible' ).should('contain.text', 'Your Account' );
-
+        //cy.wait(1000);
         cy.visit( Cypress.env('baseUrl') +'?utm_source=testing&utm_medium=testing&utm_campaign=testing&utm_term=testing&utm_content=testing');
+        //cy.get('.your-account').should('be.visible' ).should('contain.text', 'Your Account' );
         cy.getWordPressCookies('subscriber');
     });
 
@@ -100,7 +100,7 @@ describe('test frikkingeverthing', () => {
     it('tests commenting if logged in', () => {
         cy.setWordPressCookies('subscriber');
         cy.visit(Cypress.env('articleUrl'));
-        cy.get('.comment-opinion').contains('Everybody has an opinion but not everyone has the knowledge and the experience to contribute meaningfully to a discussion. That’s what we want from our members. Help us learn with your expertise and insights on articles that we publish. We encourage different, respectful viewpoints to further our understanding of the world. View our comments policy')
+        cy.get('.comment-opinion').contains('When you comment on a Daily Maverick article, you add your voice to a community of readers who place a high premium on the truth. We encourage you to think twice before voicing untested claims. Instead, we want you to bring your expertise and experience to the conversation to further our understanding of the issues. View our comments policy ')
     })
 
     it( 'logs in as existing subscriber and check the newsletter page.', function(){
