@@ -58,10 +58,11 @@ describe('test commenting', () => {
         // cy.get('p.logged-in-as a:first-child').contains( 'Edit your profile')
         // cy.get('p.logged-in-as a:nth-child(2)').contains( 'Log out?')
         cy.get('#commentform #comment').type( 'Automated Test comment.')
-        cy.get('div.logged-in-as p:first-child').contains( 'You are about to comment as murraysubscriber@dailymaverick.co.za.')
-        cy.get('div.logged-in-as p:nth-child(2)').contains( 'Add your name when commenting?')
-        cy.get('#firstname-error').contains( 'This field is required.')
-        cy.get('#firstname').type( 'Murray')
+        cy.get('div.logged-in-as p:first-child').contains( 'You are about to comment as murraysubscriber@dailymaverick.co.za.');
+        cy.get('div.logged-in-as p:nth-child(2)').contains( 'Add your name when commenting?');
+        cy.get('#commentform #submit').click();
+        cy.get('#firstname-error').contains( 'This field is required.');
+        cy.get('#firstname').type( 'Murray');
         cy.get('#lastname').type( 'Greig')
         cy.get('#commentform #submit').click()
         //s://dev.dailymaverick.co.za/wp-json/dmc/v1/comments?reviewformtype=fetchfirstthree
