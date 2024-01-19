@@ -1,8 +1,5 @@
 context( 'Lets test if the elementor pages look consistent' , function () {
 
-    var users = Cypress.env('users');
-    var subscriber = users.subscriber;
-
     it( 'visits a sponsored page', function(){
         cy.visit( Cypress.env('baseUrl') + '/article/2018-06-04-distinctive-sophistication/');
         cy.get('div.titles h4').should('have.text', 'SPONSORED CONTENT')
@@ -20,5 +17,6 @@ context( 'Lets test if the elementor pages look consistent' , function () {
 
 });
 Cypress.on('uncaught:exception', (err, runnable) => {
-    return false
-})
+    let messageArray = [err, runnable];
+    return false;
+});
