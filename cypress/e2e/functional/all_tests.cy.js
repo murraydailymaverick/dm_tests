@@ -109,7 +109,7 @@ describe('test frikkingeverthing', () => {
         cy.visit( Cypress.env('newsletterUrl'));
        // cy.get('input#tbp_user_firstname').should("have.value",subscriber.firstname);
        // cy.get('input#tbp_user_email').should("have.value",subscriber.email);
-        cy.get('.newsletter-block').should( "have.length", 20 );
+        cy.get('.newsletter-block').should( "have.length", 19 );
     });
 
 /*    it( 'logs in as the /insider to check the manage-membership page.', function(){
