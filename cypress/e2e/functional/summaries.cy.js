@@ -17,18 +17,22 @@ describe('tests the summaries page', () => {
         cy.viewport(1440, 1024);
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
         cy.visit( Cypress.env('summariesUrl'));
-        cy.get('.top-read-container .list-item').should('have.length', 46);
-        cy.get('.top-read-container .list-item:first').click();
-        cy.get('.articles-container #article1 article-summary .article-header').should("contain.text", "Ukraine war");
-        cy.get('.top-read-container .list-item:last').click();
-        cy.get('.articles-container #article46 article-summary .article-header').should("contain.text", "small-scale farmers");
+        cy.get('.top-read-container .list-item').should('have.length', Cypress.env('summariesCount'));
+
+        cy.get('.articles-container #article1 .article-summary h2.article-header').should("contain.text", Cypress.env('summariesText1'));
+        cy.get('.articles-container #article3').scrollIntoView().should('be.visible');
+        cy.get('.articles-container #article3 .article-summary h2.article-header').should("contain.text", Cypress.env('summariesText2'));
+        cy.get('.top-read-container .list-item .article-2').parent().should("have.class", "active");
+
+        cy.get('.top-read-container .list-item:last').scrollIntoView().click();
+        cy.get('.articles-container #article'+Cypress.env('summariesCount')+' .article-summary .article-header').should("contain.text", Cypress.env('summariesText3'));
     });
 
-    /*it( 'check the redirect to the summaries page ', function(){
+    it( 'check the redirect to the summaries page ', function(){
         cy.viewport(1440, 1024);
         cy.intercept('POST', Cypress.env('dashboardUrl') + '/admin-ajax.php').as('ajaxPost');
-        cy.visit( Cypress.env('summariesUrlRedirect')).wait(1000).should('eq', Cypress.env('summariesUrl'));
+        cy.visit( Cypress.env('summariesUrlRedirect'));//.wait(1000).should('eq', Cypress.env('summariesUrl'));
         //ursl should be the same
 
-    });*/
+    });
 });
