@@ -1,6 +1,47 @@
 name: Cypress Tests
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+# Allows external webhook trigger
+repository_dispatch:
+  types:
+    - webhook
+
+#Currently supported event types:
+#environment:code:deployed
+
+#{
+#  "type": "environment:code:deployed",
+#  "timestamp": "2024-01-26T22:16:30.000Z",
+#  "data": {
+#    "application": {
+#      "id": 1234,
+#      "name": "example-dot-com"
+#    },
+#    "branch": "develop",
+#    "commit": {
+#      "author": "example-user",
+#      "description": "Example commit message",
+#      "hash": "0abc1234e5af99deadbeefb98765432181e03b1a5b5d69"
+#    },
+#    "deploymentId": 12345678,
+#    "environment": {
+#      "domain": "develop.example.com",
+#      "id": 5678,
+#      "type": "develop"
+#    },
+#    "repo": "wpcomvip/example-dot-com"
+#  }
+#}
 
 jobs:
   cypress-run:
