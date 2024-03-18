@@ -10,9 +10,13 @@ on:
       - main
       - develop
   workflow_dispatch:
-    repository_dispatch:
-      types:
-        - webhook
+#    repository_dispatch:
+#      types:
+#        - webhook
+
+  repository_dispatch:
+  schedule:
+    - cron: '5 12 * * 0'
 
 # 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
 
