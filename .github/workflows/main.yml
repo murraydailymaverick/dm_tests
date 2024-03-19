@@ -57,6 +57,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          build: npm run cypress:f
+          build: npm run cypress:automated
 #          start: npm start
         #--spec cypress/e2e/functional/*.js, cypress/e2e/admin/*.js
