@@ -11,10 +11,6 @@ on:
       - develop
   workflow_dispatch:
   repository_dispatch:
-#    types:
-#      - dispatch_tests
-
-# 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
 
 #"Accept": "application/vnd.github+json"
 #"Authorization": "token {personal token with repo access}"
