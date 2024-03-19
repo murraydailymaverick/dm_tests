@@ -16,7 +16,7 @@
     "cypress:applitools": "node_modules/.bin/cypress run --spec cypress/e2e/applitools/*.js --config-file prod.cypress.config.js",
     "cypress:functional": "node_modules/.bin/cypress run --spec cypress/e2e/functional/*.js --config-file local.cypress.config.js",
     "cypress:f": "node_modules/.bin/cypress run --spec cypress/e2e/functional/*.js --config-file local.cypress.config.js",
-    "cypress:automated": "node_modules/.bin/cypress run --spec cypress/e2e/functional/*.js --config-file cypress.config.js"
+    "cypress:automated": "node_modules/.bin/cypress run --spec cypress/e2e/functional/*.js,cypress/e2e/admin/*.js,cypress/e2e/percy/*.js  --config-file cypress.config.js"
   },
   "author": "Murray Greig",
   "license": "ISC",
