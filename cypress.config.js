@@ -6,8 +6,6 @@ module.exports = defineConfig({
     video: false,
     chromeWebSecurity: false,
     e2e: {
-        // We've imported your old cypress plugins here.
-        // You may want to clean this up later by importing these.
         setupNodeEvents(on, config) {
             on('task', {
                 setToken: (val) => {
@@ -40,7 +38,7 @@ module.exports = defineConfig({
             newsletterUrl: 'https://dev.dailymaverick.co.za/about/newsletter/',
             localfolder: '',
             domain: 'dev.dailymaverick.co.za',
-            //https://dev.dailymaverick.co.za/article/2022-07-04-walking-is-a-state-of-mind-it-can-teach-you-so-much-about-where-you-are/
+
             articleUrl: 'https://dev.dailymaverick.co.za/opinionista/2022-06-30-after-zondo-the-national-prosecuting-authority-dare-not-fail-the-nation/?nocache=1',
 
             articleTemplateNoAds: 'https://dev.dailymaverick.co.za/article/2023-08-23-brics-latest-bloc-agrees-rules-clearing-path-for-more-members/', //1818886
@@ -53,14 +51,14 @@ module.exports = defineConfig({
 
             singleOpinionPiece: 'https://dev.dailymaverick.co.za/opinionista/2023-08-24-we-stand-united-in-our-fight-against-russia-on-independence-day-in-ukraine/', //single-opinion-piece
 
-            templateCartoonPage: 'https://dev.dailymaverick.co.za/zapiro/', //template-cartoon-page
-            templateCartoonPage2: 'https://dev.dailymaverick.co.za/cartoon/about-time-2/', //template-cartoon-page
+            templateCartoonPage: 'https://dev.dailymaverick.co.za/zapiro/',
+            templateCartoonPage2: 'https://dev.dailymaverick.co.za/cartoon/about-time-2/',
 
             elemetorUrl: 'https://dev.dailymaverick.co.za/article/2022-12-08-test-new-elemetor/',
 
 
-            //summariesUrl: 'https://dev.dailymaverick.co.za/summaries/',
-            summariesUrl: 'https://dev.dailymaverick.co.za/home-summaries/',
+            summariesUrl: 'https://dev.dailymaverick.co.za/summaries/',
+            summariesNewUrl: 'https://dev.dailymaverick.co.za/home-summaries/',
 
             summariesCount: 46,
             summariesText1: 'Ukraine war',
