@@ -53,7 +53,7 @@ describe('Visit urls on front end and ensure elements exist', () => {
 		cy.viewport(1280, 1024);
 		cy.visit( Cypress.env('baseUrl') )
 		//top left nav
-		cy.get('.menu-main-menu-container .dm-menu li.menu-item-has-children').should('have.length', 6)
+		cy.get('.menu-main-menu-container .dm-menu li.menu-item-has-children').should('have.length', 7)
 		cy.get('.menu-main-menu-container .dm-menu li .sub-menu .menu-item').should('have.length', 20)
 
 		//top right nav
